@@ -3,14 +3,19 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to testHtmlDoc's documentation!
+Привет! это наша дока из будущего)))))
 =======================================
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
+Привет! Как дела
 
+Еще можно добавить обычный заголовок
+------------------------------------
+
+тада
 
 Indices and tables
 ==================
