@@ -1,0 +1,363 @@
+
+
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Примеры файлов отчетов &mdash; документация extern-api 1.1</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
+    <link rel="search" title="Поиск" href="../search.html" />
+    <link rel="next" title="Подпись XMLDsig для отчетов в ПФР" href="xmldsig.html" />
+    <link rel="prev" title="Контракты для формирования документов в черновике" href="contracts.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> extern-api
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Поиск в документации" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">История изменений</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release%20notes.html">История изменений API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Подготовка</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../recommendations.html">Рекомендации по работе c API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/index.html">Начало работы с API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth_oidc/index.html">Аутентификация OpenID Connect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../specification/index.html">Спецификация</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge%20base/index.html">База знаний</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Работа с API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../accounts/index.html">Работа с учетными записями</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drafts/index.html">Работа с черновиками</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dc/index.html">Работа с документооборотами</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inventories/index.html">Представление документов к требованиям</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../builder/index.html">Конструктор черновиков (DraftsBuilder)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents/index.html">Сервис контентов</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Дополнительно</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Справка</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cryptography.html">Криптография</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-OpenSSL-and-RSA.html">Использование OpenSSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RSA-certs.html">Получение RSA-сертификата</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contracts.html">Контракты для формирования документов в черновике</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Примеры файлов отчетов</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Наименование файлов отчетов</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rst-markup-exmp1">Пример 1 (отправка за свою организацию)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id5">Декларация</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#rst-markup-exmp2">Пример 2 (отправка за др. орг-цию, ошибка при подготовке)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id7">Декларация</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">Сообщение о представительстве</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#check">Пример 3 (некорректные документы для проверки работы Check)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id9">Декларация (с ошибкой)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id10">Сообщение о представительстве</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">Приложение (пояснительная записка)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id14">Декларация (без ошибки)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="xmldsig.html">Подпись XMLDsig для отчетов в ПФР</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contacts.html">Контакты</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SDK.html">SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/index.html">Аутентификация по auth.sid (obsolete)</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">extern-api</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Справка</a> &raquo;</li>
+        
+      <li>Примеры файлов отчетов</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/manuals/files-for-examples.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id2">
+<h1>Примеры файлов отчетов<a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Примечание</p>
+<p>Все файлы отчетов в формате xml, которые вы отправляете в ИФНС должны быть сохранены в кодировке windows-1251.</p>
+</div>
+<div class="section" id="id3">
+<h2>Наименование файлов отчетов<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для отчетов в ФНС в формате xml имя файла, помимо названия, <strong>дублируется внутри файла</strong> в теге Файл параметр ИдФайл. И в названии, и в теге имя файла должно полностью совпадать.</p>
+<p>Формат имени файла устанавлен в нормативных документах. Имя файла для ФНС будет состоять из следующих частей:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>название формы отчетности по приказу,</p></li>
+<li><p>код транзитной инспекции  (код МРИ),</p></li>
+<li><p>код конечной инспекции,</p></li>
+<li><p>ИНН-КПП слитно без разделителей (если по доверенности, то ИНН-КПП отправителя),</p></li>
+<li><p>дата формирования файла,</p></li>
+<li><p>идентификатор файла.</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition important">
+<p class="admonition-title">Важно</p>
+<p>Для тестовой отправки вы можете воспользоваться примерами документов, приведенными ниже. Но в каждом необходимо заменить название файла и актуальные для вашей тестовой учетной записи данные.</p>
+<p>Если вы не хотите вручную менять данные внутри файла и в его имени, воспользуйтесь <a class="reference external" href="https://developer.kontur.ru/doc/extern.test.tools">сервисом генерации тестовых данных</a>. В данном API реализованы методы для генерации тестовых файлов на ваших данных.</p>
+</div>
+</div>
+<div class="section" id="rst-markup-exmp1">
+<span id="id4"></span><h2>Пример 1 (отправка за свою организацию)<a class="headerlink" href="#rst-markup-exmp1" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="section" id="id5">
+<h3>Декларация<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h3>
+<p><a class="reference download internal" download="" href="../_downloads/e85fd731287ae88e31059c42b1ae41c1/NO_SRCHIS_0087_0087_3782868692378750338_20180411_d0cc4da7-a9a8-407a-97ac-93ceff1cdff0.xml"><code class="xref download docutils literal notranslate"><span class="pre">пример</span> <span class="pre">файла</span> <span class="pre">декларации</span> <span class="pre">Сведения</span> <span class="pre">о</span> <span class="pre">среднесписочной</span> <span class="pre">численности</span></code></a></p>
+<p>Данный файл уже сохранен в кодировке windows-1251. Если используете его для отправки, убедитесь, что:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>ФИО в теге ФИООтв совпадает с ФИО в сертификате, которым будет подписан документооборот,</p></li>
+<li><p>НПЮЛ совпадает с данными в сертификате, которым будет подписан документооборот.</p></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="rst-markup-exmp2">
+<span id="id6"></span><h2>Пример 2 (отправка за др. орг-цию, ошибка при подготовке)<a class="headerlink" href="#rst-markup-exmp2" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="section" id="id7">
+<h3>Декларация<a class="headerlink" href="#id7" title="Ссылка на этот заголовок">¶</a></h3>
+<p><a class="reference download internal" download="" href="../_downloads/3bb896d02e941f89317f57bf3747f1d7/NO_BUHOTCH_0087_0087_3782868692378750338_20180411_0aaac90f-ac5b-4709-a799-625eb7c0f78b.xml"><code class="xref download docutils literal notranslate"><span class="pre">пример</span> <span class="pre">файла</span> <span class="pre">бухгалтерской</span> <span class="pre">отчетности</span></code></a></p>
+</div>
+<div class="section" id="id8">
+<h3>Сообщение о представительстве<a class="headerlink" href="#id8" title="Ссылка на этот заголовок">¶</a></h3>
+<p><a class="reference download internal" download="" href="../_downloads/3447a3e131ff96f4117355539ed23f9d/ON_DOV_0087_0087_3782868692378750338_20180411_d075a2c7-1e38-49f1-a13b-28753780102c.xml"><code class="xref download docutils literal notranslate"><span class="pre">пример</span> <span class="pre">сообщения</span> <span class="pre">о</span> <span class="pre">представительстве</span></code></a></p>
+</div>
+</div>
+<div class="section" id="check">
+<span id="rst-markup-exmp3"></span><h2>Пример 3 (некорректные документы для проверки работы Check)<a class="headerlink" href="#check" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="section" id="id9">
+<h3>Декларация (с ошибкой)<a class="headerlink" href="#id9" title="Ссылка на этот заголовок">¶</a></h3>
+<p><a class="reference download internal" download="" href="../_downloads/bb890db9e16e7f4420699e2581ae9347/NO_BUHOTCH_0087_0087_3782868692378750338_20180411_15b810f1-6a58-4d17-8185-90336d5005b4.xml"><code class="xref download docutils literal notranslate"><span class="pre">пример</span> <span class="pre">файла</span> <span class="pre">бухгалтерской</span> <span class="pre">отчетности</span></code></a></p>
+</div>
+<div class="section" id="id10">
+<h3>Сообщение о представительстве<a class="headerlink" href="#id10" title="Ссылка на этот заголовок">¶</a></h3>
+<p><a class="reference download internal" download="" href="../_downloads/3447a3e131ff96f4117355539ed23f9d/ON_DOV_0087_0087_3782868692378750338_20180411_d075a2c7-1e38-49f1-a13b-28753780102c.xml"><code class="xref download docutils literal notranslate"><span class="pre">пример</span> <span class="pre">сообщения</span> <span class="pre">о</span> <span class="pre">представительстве</span></code></a></p>
+</div>
+<div class="section" id="id11">
+<h3>Приложение (пояснительная записка)<a class="headerlink" href="#id11" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Можно взять любой файл <a href="#id12"><span class="problematic" id="id13">*</span></a>.pdf, и присвоить ему имя, например:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">NO_BUHPZ_0087_0087_3782868692378750338_15b810f1</span><span class="o">-</span><span class="mi">6</span><span class="n">a58</span><span class="o">-</span><span class="mi">4</span><span class="n">d17</span><span class="o">-</span><span class="mi">8185</span><span class="o">-</span><span class="mi">90336</span><span class="n">d5005b4_20180411_15b810f1</span><span class="o">-</span><span class="mi">6</span><span class="n">a58</span><span class="o">-</span><span class="mi">4</span><span class="n">d17</span><span class="o">-</span><span class="mi">8185</span><span class="o">-</span><span class="mi">90336</span><span class="n">d5005b4</span><span class="o">.</span><span class="n">pdf</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id14">
+<h3>Декларация (без ошибки)<a class="headerlink" href="#id14" title="Ссылка на этот заголовок">¶</a></h3>
+<p><a class="reference download internal" download="" href="../_downloads/cee39d0894069c6aa8be6d2cf9a1ffdd/NO_BUHOTCH_0087_0087_3782868692378750338_20180411_15b810f1-6a58-4d17-8185-90336d5005b5.xml"><code class="xref download docutils literal notranslate"><span class="pre">пример</span> <span class="pre">файла</span> <span class="pre">бухгалтерской</span> <span class="pre">отчетности</span></code></a></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="xmldsig.html" class="btn btn-neutral float-right" title="Подпись XMLDsig для отчетов в ПФР" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="contracts.html" class="btn btn-neutral float-left" title="Контракты для формирования документов в черновике" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ <script type="text/javascript">
+ 	document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.toggle').forEach(item => {
+        const switcher = document.createElement('div');
+        switcher.classList.add('switcher');
+        switcher.addEventListener('click', () => {
+          item.classList.toggle('open');
+        })
+        item.appendChild(switcher);
+      });
+    })
+    /*
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+    */
+</script>
+
+
+</body>
+</html>

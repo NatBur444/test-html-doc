@@ -1,0 +1,422 @@
+
+
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Доверительная аутентификация &mdash; документация extern-api 1.1</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
+    <link rel="search" title="Поиск" href="../search.html" />
+    <link rel="next" title="Спецификация" href="../specification/index.html" />
+    <link rel="prev" title="Аутентификация по сертификату" href="cert.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> extern-api
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Поиск в документации" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">История изменений</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release%20notes.html">История изменений API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Подготовка</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../recommendations.html">Рекомендации по работе c API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/index.html">Начало работы с API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Аутентификация OpenID Connect</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="api-key.html">api-key</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth_oidc.html">Получение и использование Access Token</a></li>
+<li class="toctree-l2"><a class="reference internal" href="password.html">Аутентификация по паролю</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cert.html">Аутентификация по сертификату</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Доверительная аутентификация</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Связывание пользователей</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#access-token">Получение Access Token</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Пример доверительной аутентификации</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../specification/index.html">Спецификация</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge%20base/index.html">База знаний</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Работа с API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../accounts/index.html">Работа с учетными записями</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drafts/index.html">Работа с черновиками</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dc/index.html">Работа с документооборотами</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inventories/index.html">Представление документов к требованиям</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../builder/index.html">Конструктор черновиков (DraftsBuilder)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents/index.html">Сервис контентов</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Дополнительно</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../manuals/index.html">Справка</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contacts.html">Контакты</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SDK.html">SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/index.html">Аутентификация по auth.sid (obsolete)</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">extern-api</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Аутентификация OpenID Connect</a> &raquo;</li>
+        
+      <li>Доверительная аутентификация</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/auth_oidc/trusted.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="rst-markup-trusted">
+<span id="id1"></span><h1>Доверительная аутентификация<a class="headerlink" href="#rst-markup-trusted" title="Ссылка на этот заголовок">¶</a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Предупреждение</p>
+<p>Данный вид аутентификации доступен только для <strong>Компаний-Партнеров Удостоверяющего Центра</strong>.</p>
+</div>
+<dl class="simple">
+<dt>Компания-Партнер Удостоверяющего Центра</dt><dd><p>Это организация, которая имеет у себя аккредитованное рабочее место Удостоверяющего центра. Она самостоятельно может удостоверить личность пользователя, проверить документы и создать запрос на сертификат.</p>
+</dd>
+</dl>
+<ul class="simple">
+<li><p>Доверительная аутентификация позволяет получить Access Token, используя аутентификацию пользователя в доверенной системе Компании-Партнера.</p></li>
+<li><p>Доверительная аутентификация выполняется в один запрос. Для этого доверенная система формирует JWT токен и передает его Провайдеру.</p></li>
+</ul>
+<p>Для того, чтобы воспользоваться доверительной аутентификацией, необходимо при <strong>первом</strong> входе пользователя произвести связывание пользователей в системе Партнера и в Экстерне.</p>
+<div class="section" id="id2">
+<h2>Связывание пользователей<a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для доверительной аутентификации пользователя необходимо, чтобы пользователь Экстерна был связан с пользователем доверенной системы партнера. Связь может происходить следующим образом:</p>
+<ul class="simple">
+<li><p>вручную техподдержкой на стороне Экстерна по запросу Компании-Партнера,</p></li>
+<li><p>доверенной системе разрешается самостоятельно связывать определенных пользователей Экстерна с любым своим пользователем по номеру телефона. Для этого требуется отдельное разрешение, которое нужно получить Компании-Партнеру.</p></li>
+</ul>
+<p>Метод связывания пользователей (при наличии разрешения): <a class="reference external" href="https://developer.kontur.ru/doc/auth/method?type=put&amp;path=%2Fauth%2Fv5.16%2Fregister-external-service-id">PUT register-external-service-id</a></p>
+<p><strong>Параметры запроса</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ServiceUserId</span></code> — идентификатор пользователя в доверенной системе.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Phone</span></code> — телефон пользователя в формате „10 цифр без кода страны“, который был указан при выпуске сертификата пользователя.</p></li>
+</ul>
+</div>
+<div class="section" id="access-token">
+<h2>Получение Access Token<a class="headerlink" href="#access-token" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для получения Access Token в запросе <a class="reference external" href="https://developer.testkontur.ru/doc/openidconnect/method?type=post&amp;path=%2Fconnect%2Ftoken">POST tokenendpoint</a> нужно предать в теле запроса в параметре <code class="docutils literal notranslate"><span class="pre">token</span></code> JWT токен с информацией о пользователе.</p>
+<p>Метод: <a class="reference external" href="https://developer.testkontur.ru/doc/openidconnect/method?type=post&amp;path=%2Fconnect%2Ftoken">POST tokenendpoint</a></p>
+<p><strong>Параметры тела запроса:</strong></p>
+<p><strong>Content-Type: application/x-www-form-urlencoded</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">client_id</span></code> — сервисное имя, выдается вместе с api-key;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">client_secret</span></code> — api-key;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">grant_type</span></code> = trusted;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scope</span></code> = extern.api;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">token</span></code> — JWT токен с информации о пользователе. JWT токен доверенная система должна сформировать на своей стороне. Подробнее в <a class="reference external" href="https://developer.testkontur.ru/doc/openidconnect">документации OpenID Connect</a> → Доверительная аутентификация.</p></li>
+</ul>
+<p>Требования к JWT токену:</p>
+<blockquote>
+<div><ul>
+<li><p>Токен можно использовать только 1 раз.</p></li>
+<li><p>Общее время жизни токена не должно превышать 24 часов.</p></li>
+<li><p>Размер значения клейма jti (идентификатор токена) не должен превышать 36 байт.</p></li>
+<li><p>Издатель токена (iss) должен совпадать с clientId сервиса, инициирующего запрос.</p></li>
+<li><p>Обязательные клеймы, которые должны присутствовать в токене:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>exp - время истечения токена в unix time stamp.</p></li>
+<li><p>sub - идентификатор пользователя во внешней системе.</p></li>
+<li><p>jti - уникальный идентификатор токена.</p></li>
+<li><p>iss - издатель токена, т.е. сервис, желающий получить аутентификацию пользователя.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+<p>Токен должен быть подписан ключом (или сертификатом) доверенной системы. Допускается использование криптографии <a class="reference external" href="https://ru.wikipedia.org/wiki/RSA">RSA</a>. Сертификат и ключ для данного алгоритма криптографии можно получить, например, в ОС Windows <a class="reference internal" href="../manuals/using-OpenSSL-and-RSA.html"><span class="doc">с использованием OpenSSL</span></a>.</p>
+<p>В JWT токене обязательно в клейме <code class="docutils literal notranslate"><span class="pre">sub</span></code> передавать тот идентификатор, который указывали при связывании пользователей в параметре <code class="docutils literal notranslate"><span class="pre">ServiceUserId</span></code>.</p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<p>Пример генерации JWT с использованием библиотеки <a class="reference external" href="https://jwt.io/">jwt.io</a> и RSA сертификата.</p>
+</div>
+<div class="highlight-c# notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="n">X509Certificate2</span> <span class="n">certificate</span><span class="p">;</span>
+
+    <span class="n">certificate</span> <span class="p">=</span> <span class="k">new</span> <span class="n">X509Certificate2</span><span class="p">(</span><span class="s">@&quot;C:\PathToCertificate\certificate.pfx&quot;</span><span class="p">,</span> <span class="s">&quot;123&quot;</span><span class="p">);</span>
+    <span class="kt">var</span> <span class="n">internalUserId</span> <span class="p">=</span> <span class="s">&quot;0a9b268a-063b-4e3a-8ad3-4a9a61a2303b&quot;</span><span class="p">;</span> <span class="c1">//любой идентификатор, который был передан для связывания пользователей</span>
+    <span class="kt">var</span> <span class="n">internalTokenId</span> <span class="p">=</span> <span class="n">Guid</span><span class="p">.</span><span class="n">NewGuid</span><span class="p">().</span><span class="n">ToString</span><span class="p">();</span>
+
+    <span class="c1">// NuGet-пакет System.IdentityModel.Tokens.Jwt</span>
+
+    <span class="kt">var</span> <span class="n">claims</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ClaimsIdentity</span><span class="p">(</span><span class="k">new</span><span class="p">[]</span>
+    <span class="p">{</span>
+        <span class="k">new</span> <span class="nf">Claim</span><span class="p">(</span><span class="s">&quot;sub&quot;</span><span class="p">,</span> <span class="n">internalUserId</span><span class="p">),</span> <span class="c1">// идентификатор пользователя в доверенной системе</span>
+        <span class="k">new</span> <span class="nf">Claim</span><span class="p">(</span><span class="s">&quot;jti&quot;</span><span class="p">,</span> <span class="n">internalTokenId</span><span class="p">)</span> <span class="c1">// идентификатор токена в доверенной системе. должен меняться при каждом запросе, произвольная строка</span>
+    <span class="p">});</span>
+
+    <span class="kt">var</span> <span class="n">tokenDescriptor</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SecurityTokenDescriptor</span>
+    <span class="p">{</span>
+        <span class="n">Subject</span> <span class="p">=</span> <span class="n">claims</span><span class="p">,</span>
+        <span class="n">Issuer</span> <span class="p">=</span> <span class="n">clientId</span><span class="p">,</span> <span class="c1">// имя доверенной системы == сервисное имя, выданное вместе с api-key</span>
+        <span class="n">Expires</span> <span class="p">=</span> <span class="n">DateTime</span><span class="p">.</span><span class="n">UtcNow</span><span class="p">.</span><span class="n">AddMinutes</span><span class="p">(</span><span class="m">5</span><span class="p">),</span> <span class="c1">// время прекращения действия токена</span>
+        <span class="n">SigningCredentials</span> <span class="p">=</span> <span class="k">new</span> <span class="n">X509SigningCredentials</span><span class="p">(</span><span class="n">certificate</span><span class="p">)</span> <span class="c1">// сертификат</span>
+    <span class="p">};</span>
+
+    <span class="kt">var</span> <span class="n">tokenHandler</span> <span class="p">=</span> <span class="k">new</span> <span class="n">JwtSecurityTokenHandler</span><span class="p">();</span>
+    <span class="kt">var</span> <span class="n">token</span> <span class="p">=</span> <span class="n">tokenHandler</span><span class="p">.</span><span class="n">CreateToken</span><span class="p">(</span><span class="n">tokenDescriptor</span><span class="p">);</span>
+    <span class="n">jwtTokenString</span> <span class="p">=</span> <span class="n">tokenHandler</span><span class="p">.</span><span class="n">WriteToken</span><span class="p">(</span><span class="n">token</span><span class="p">);</span> <span class="c1">// преобразование в формат header.payload.sign</span>
+
+    <span class="kt">var</span> <span class="n">jwt</span> <span class="p">=</span> <span class="k">new</span> <span class="n">JwtSecurityToken</span><span class="p">(</span><span class="n">jwtTokenString</span><span class="p">);</span>
+    <span class="kt">var</span> <span class="n">v</span> <span class="p">=</span> <span class="n">jwt</span><span class="p">.</span><span class="n">ToString</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>Пример доверительной аутентификации<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h2>
+<p><strong>Пример запроса POST tokenendpoint с доверительной аутентификацией</strong></p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span>POST https://identity.testkontur.ru/connect/token
+
+Request Headers
+
+Accept: */*
+Host: identity.testkontur.ru
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 860
+
+Request Body
+
+client_id:extern.api
+client_secret:*****
+grant_type:trusted
+scope:extern.api
+token:eyJhbGciOiJSUzI1NiIsImtpZCI6IjA2RDkwRTg3RTUzREE5QkQzNjIxQjRFQkZGQUY1REFCNkI2NTBDRTMiLCJ4NXQiOiJCdGtPaC1VOXFiMDJJYlRyXzY5ZHEydGxET00iLCJ0eXAiOiJKV1QifQ.eyJzdWIiOiIwYTliMjY4YS0wNjNiLTRlM2EtOGFkMy00YTlhNjFhMjMwM2IiLCJqdGkiOiIxMmVkMWU1NC0xYjIzLTQzODctODJlNS0xZDEzYmNhNGQ4NjYiLCJuYmYiOjE2MDA3NzcxMzMsImV4cCI6MTYwMDc3NzQzMywiaWF0IjoxNjAwNzc3MTMzLCJpc3MiOiJLZUFwaS5UcnVzdGVkLlNlcnZpY2UifQ.UO4-9OzWj14WTjct1E2_SpB7pfaAdPlTu9r_ocNt9bgfeyMxZuFcfWeWTJd5PpdDQA1vXV1EccMO14Qojry0KawJrZVRC2sXZPwrmF0j0v7vK1prnlabaYBsSeO-1vY0EaboIC3Zr5Igw_4xK8R22e4ysY6TS7gBaSQpGF1yjRCB3I6OWPCSWcj81g8GWTiqkuxAgmkMBO6loHrNqdAeG8b-cMt5ycdA9PeFEjeeMZ3F2-A-CWw92OgfqVKgokrfotjnvpdIVZfQC6mCxvYuI4zhEGO_Qz9s_RgbZHifuKmUc89aZROHmEuzh3PHYP25PQ-2-3NzNLyBfF7b6ZJgXg
+</pre></div>
+</div>
+<p><strong>Пример ответа POST tokenendpoint</strong></p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span>HTTP/1.1 200 OK
+Content-Type: application/json; charset=UTF-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+Cache-Control: no-store, no-cache, max-age=0
+Pragma: no-cache
+X-Kontur-Trace-Id: 5ea7d9c5570c41cb966c9f7af263b2a8
+Context-Globals: FwAAAHZvc3Rvay5yZXF1ZXN0LnByaW9yaXR5CAAAAE9yZGluYXJ5FgAAAHZvc3Rvay50cmFjaW5nLmNvbnRleHRJAAAANWVhN2Q5YzUtNTcwYy00MWNiLTk2NmMtOWY3YWYyNjNiMmE4OzJhN2ZjMWRiLTdjNzQtNGVmMy1hMzg2LTJiYWVhNmQ5MWUyOA==
+X-Kontur-Dont-Retry: True
+Dont-Retry: True
+
+Response Body
+
+Content-Encoding: gzip
+{
+    &quot;access_token&quot;:&quot;a126187d9c71984e2b979ab7008cb16f124d97bbe9c256f7081dec3eedc2601f&quot;,
+    &quot;expires_in&quot;:86400,
+    &quot;token_type&quot;:&quot;Bearer&quot;
+}
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../specification/index.html" class="btn btn-neutral float-right" title="Спецификация" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="cert.html" class="btn btn-neutral float-left" title="Аутентификация по сертификату" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ <script type="text/javascript">
+ 	document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.toggle').forEach(item => {
+        const switcher = document.createElement('div');
+        switcher.classList.add('switcher');
+        switcher.addEventListener('click', () => {
+          item.classList.toggle('open');
+        })
+        item.appendChild(switcher);
+      });
+    })
+    /*
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+    */
+</script>
+
+
+</body>
+</html>

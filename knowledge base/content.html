@@ -1,0 +1,374 @@
+
+
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Сервис контентов &mdash; документация extern-api 1.1</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
+    <link rel="search" title="Поиск" href="../search.html" />
+    <link rel="next" title="DraftsBuilder" href="DraftsBuilder.html" />
+    <link rel="prev" title="Печать документов" href="print.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> extern-api
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Поиск в документации" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">История изменений</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release%20notes.html">История изменений API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Подготовка</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../recommendations.html">Рекомендации по работе c API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/index.html">Начало работы с API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth_oidc/index.html">Аутентификация OpenID Connect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../specification/index.html">Спецификация</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">База знаний</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="filename.html">Наименование файлов</a></li>
+<li class="toctree-l2"><a class="reference internal" href="print.html">Печать документов</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Сервис контентов</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Что нужно знать о сервисе контентов</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Преимущества сервиса контентов</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Как это работает</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rst-markup-load">Загружаем файл в сервис контентов</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rst-markup-dowload">Скачиваем файл из сервиса контентов</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DraftsBuilder.html">DraftsBuilder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loks.html">Блокировки</a></li>
+<li class="toctree-l2"><a class="reference internal" href="businessReg.html">Документооборот регистрации бизнеса</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demand.html">Требование</a></li>
+<li class="toctree-l2"><a class="reference internal" href="check-demand.html">Проверка требования ФНС</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inventory.html">Опись — ответ на требование</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rnpt.html">Прослеживаемость товаров. РНПТ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FSS.html">Документооборот с ФСС</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reestr-pvso.html">Реестр ПВСО</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sedo-fss.html">Уведомления и извещения СЭДО ФСС</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sedo-subscription.html">Подписки СЭДО ФСС на получение извещений и уведомлений</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proactiv.html">Проактивные выплаты</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proactive_%20algorithm.html">Алгоритм работы с методами в проактивных выплатах</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PFR.html">Документооборот с ПФР</a></li>
+<li class="toctree-l2"><a class="reference internal" href="szvtd.html">Отчетность в ПФР по форме СЗВ-ТД</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stat-letter.html">Письма в Росстат</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Работа с API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../accounts/index.html">Работа с учетными записями</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drafts/index.html">Работа с черновиками</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dc/index.html">Работа с документооборотами</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inventories/index.html">Представление документов к требованиям</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../builder/index.html">Конструктор черновиков (DraftsBuilder)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents/index.html">Сервис контентов</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Дополнительно</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../manuals/index.html">Справка</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contacts.html">Контакты</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SDK.html">SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/index.html">Аутентификация по auth.sid (obsolete)</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">extern-api</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">База знаний</a> &raquo;</li>
+        
+      <li>Сервис контентов</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/knowledge base/content.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>Сервис контентов<a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h1>
+<p>Сервис контентов предназначен для загрузки и скачивания файлов.</p>
+<div class="section" id="id2">
+<h2>Что нужно знать о сервисе контентов<a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h2>
+<p>С помощью методов сервиса контентов можно:</p>
+<ul class="simple">
+<li><p>загрузить контент целиком или по частям,</p></li>
+<li><p>скачать контент целиком или по частям.</p></li>
+</ul>
+<p>Для загрузки документов размером больше 64 Мбайт следует применять загрузку по частям.</p>
+<p>В методах загрузки и получения контента черновиков, документооборотов в соответствующих моделях появился параметр content-id, который содержит идентификатор контента.
+Для поддержания обратной совместимости сохранены старые способы загрузки и скачивания контентов напрямую в методах.</p>
+<p>Все документы, которые появляются в документообороте, будут иметь в модели идентификатор контента content-id. Это означает, что все документы от контролирующего органа также будут доступны для скачивания в сервисе контентов.</p>
+</div>
+<div class="section" id="id3">
+<h2>Преимущества сервиса контентов<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Сервис контентов позволяет загружать большие файлы отчетов. Сервис может работать с контентами до 30 ГБ.</p>
+<p>Если один и тот же файл необходимо передать в нескольких методах, вам не нужно его загружать повторно, например, для печати. Достаточно передать идентификатор контента.</p>
+</div>
+<div class="section" id="id4">
+<h2>Как это работает<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="section" id="rst-markup-load">
+<span id="id5"></span><h3>Загружаем файл в сервис контентов<a class="headerlink" href="#rst-markup-load" title="Ссылка на этот заголовок">¶</a></h3>
+<ol class="arabic">
+<li><p>Если документ больше 64 МБ, разбиваем на части по 64 МБ.</p></li>
+<li><p>Вызываем метод <a class="reference internal" href="../contents/content_methods.html#rst-markup-post-content"><span class="std std-ref">POST Upload</span></a>. Для загрузки контента по частям нужно передать заголовок Content-Range.</p></li>
+<li><p>Догружаем части контента методом <a class="reference internal" href="../contents/content_methods.html#rst-markup-put-content"><span class="std std-ref">PUT UploadByParts</span></a>.</p>
+<blockquote>
+<div><p>Части контента не обязательно грузить в порядке очередности. Но в итоге все части контента должны быть переданы.</p>
+</div></blockquote>
+</li>
+<li><p>Передаем идентификатор контента в нужном методе, например, добавление документа в черновик.</p></li>
+</ol>
+<p><strong>Пример запроса загрузки контента</strong></p>
+<p><strong>Запрос</strong></p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">POST</span> <span class="nn">/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/contents</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Authorization</span><span class="o">:</span> <span class="l">Bearer &lt;token&gt;</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/octet-stream</span>
+
+Контент передан в теле запроса
+</pre></div>
+</div>
+<p><strong>Ответ</strong></p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">201</span> <span class="ne">Created</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+<span class="na">Content-Length</span><span class="o">:</span> <span class="l">52</span>
+
+<span class="p">{</span>
+<span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;d065adea-8b9d-4228-bc17-8f86539e01a3&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="rst-markup-dowload">
+<span id="id6"></span><h3>Скачиваем файл из сервиса контентов<a class="headerlink" href="#rst-markup-dowload" title="Ссылка на этот заголовок">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Получаем документ в черновике или документообороте.</p></li>
+<li><p>Берем значение параметра content-id.</p></li>
+<li><p>Инициируем получение контента по идентификатору методом <a class="reference internal" href="../contents/content_methods.html#rst-markup-get-content"><span class="std std-ref">GET Download</span></a>.</p></li>
+</ol>
+<p><strong>Пример запроса получения контента</strong></p>
+<p><strong>Запрос</strong></p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/contents/d065adea-8b9d-4228-bc17-8f86539e01a3</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Authorization</span><span class="o">:</span> <span class="l">Bearer &lt;token&gt;</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/octet-stream</span>
+</pre></div>
+</div>
+<p><strong>Ответ</strong></p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/octet-stream</span>
+<span class="na">Content-Length</span><span class="o">:</span> <span class="l">727</span>
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;windows-1251&quot;?&gt;
+    &lt;Файл/&gt;
+        ...
+    &lt;/Файл&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="DraftsBuilder.html" class="btn btn-neutral float-right" title="DraftsBuilder" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="print.html" class="btn btn-neutral float-left" title="Печать документов" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ <script type="text/javascript">
+ 	document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.toggle').forEach(item => {
+        const switcher = document.createElement('div');
+        switcher.classList.add('switcher');
+        switcher.addEventListener('click', () => {
+          item.classList.toggle('open');
+        })
+        item.appendChild(switcher);
+      });
+    })
+    /*
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+    */
+</script>
+
+
+</body>
+</html>

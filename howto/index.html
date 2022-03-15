@@ -1,0 +1,322 @@
+
+
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Начало работы с API &mdash; документация extern-api 1.1</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
+    <link rel="search" title="Поиск" href="../search.html" />
+    <link rel="next" title="Алгоритм работы с API" href="stepbystep.html" />
+    <link rel="prev" title="Рекомендации по работе c API" href="../recommendations.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> extern-api
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Поиск в документации" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">История изменений</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release%20notes.html">История изменений API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Подготовка</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../recommendations.html">Рекомендации по работе c API</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Начало работы с API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="stepbystep.html">Алгоритм работы с API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howtodrafts.html">Работа с черновиком</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howtodocflow.html">Работа с документооборотом</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../auth_oidc/index.html">Аутентификация OpenID Connect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../specification/index.html">Спецификация</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge%20base/index.html">База знаний</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Работа с API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../accounts/index.html">Работа с учетными записями</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drafts/index.html">Работа с черновиками</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dc/index.html">Работа с документооборотами</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inventories/index.html">Представление документов к требованиям</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../builder/index.html">Конструктор черновиков (DraftsBuilder)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents/index.html">Сервис контентов</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Дополнительно</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../manuals/index.html">Справка</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contacts.html">Контакты</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SDK.html">SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/index.html">Аутентификация по auth.sid (obsolete)</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">extern-api</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Начало работы с API</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/howto/index.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id5">
+<h1>Начало работы с API<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<p class="rubric">Для начала работы с API</p>
+<ul class="simple">
+<li><p>Получите <a class="reference internal" href="../auth_oidc/api-key.html"><span class="doc">api-key</span></a>.</p></li>
+<li><p>Пройдите <a class="reference internal" href="../auth_oidc/index.html"><span class="doc">аутентификацию</span></a> и получите Access Token.</p></li>
+<li><p>Для криптографических операций необходимо иметь электронную подпись.</p></li>
+</ul>
+<p>Если вы еще не заключали договор с Контуром и хотите познакомиться с методами API, напишите нам. Мы вышлем вам тестовый api-key, сертификат и тестовую учетную запись.</p>
+<p>Когда вы примете решение об интеграции и заключите договор с Контуром, вам будут высланы данные вашей персональной учетной записи для боевой и тестовой площадки.</p>
+<p>Так как в API много разделов и методов, это может запутать вас при первом погружении в тему электронного документооборота. Ниже описаны главные особенности API, которые нужно учитывать при работе с методами. Чтобы помочь вам постепенно погрузиться в API и использовать только нужные методы, мы описали наиболее частые сценарии по работе с API и составили алгоритм действий для каждого из них.</p>
+<p class="rubric">Что нужно знать об API</p>
+<ul class="simple">
+<li><p><strong>Возвращаемые значения</strong> — json, кроме сервиса контентов. Даже если в методе возвращаются байты, то они вернутся в виде Json-строки. Внутри строки контент возвращается в формате base64. Напротив, <strong>принимаемые значения</strong> контентов ожидаются как application/octet-stream.</p></li>
+<li><p><strong>Работа с методами.</strong> Все доступные методы можно смотреть через Swagger. Это упрощает создание http клиентов для вашего языка программирования. Если хотите отправлять запросы через Postman, то вы можете скачать JSON файл swagger’a и импортировать его в Postman.</p></li>
+<li><p>Для Java есть официальный <a class="reference external" href="https://github.com/skbkontur/extern-java-sdk/">SDK</a>.</p></li>
+<li><p><strong>Аутентификация</strong> реализована на базе протокола <a class="reference internal" href="../auth_oidc/index.html"><span class="doc">OpenId Connect</span></a>. Для получения токена нужен <a class="reference internal" href="../auth_oidc/api-key.html"><span class="doc">api-key и client_id</span></a>.</p></li>
+<li><p>Для <strong>генерации тестовых данных</strong> мы разработали сервис <a class="reference external" href="https://developer.kontur.ru/doc/extern.test.tools">Extern Test Tools</a>, который позволяет сгенерировать данные пользователя, а также примеры отчетов в ФНС.</p></li>
+</ul>
+<p><strong>Разделы методов Swagger</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://developer.kontur.ru/doc/extern">API Экстерна для работы с учетными записями и организациями</a>.</p></li>
+<li><p><a class="reference external" href="https://developer.kontur.ru/doc/extern.drafts">API Экстерна для работы с черновиками и конструктором черновиков (draftsbuilder)</a>.</p></li>
+<li><p><a class="reference external" href="https://developer.kontur.ru/doc/extern.docflows">API Экстерна для работы с документооборотами и лентой событий</a>.</p></li>
+<li><p><a class="reference external" href="https://developer.kontur.ru/doc/extern.contents">API Экстерна для работы с сервисом контентов</a>.</p></li>
+</ul>
+<p><strong>Трейсинг запросов в API Контур.Экстерна</strong></p>
+<p>В ответе каждого запроса к API Контур.Экстерна возвращается будет лежать заголовок X-Kontur-Trace-Id — уникальный идентификатор запроса. Рекомендуем сохранять или логировать на вашей стороне данный идентификатор для диагностики работы вашего приложения</p>
+<p><strong>Тестовая площадка</strong></p>
+<p>Сервис: <a class="reference external" href="https://extern-api.testkontur.ru/">https://extern-api.testkontur.ru/</a></p>
+<p>В swagger документации все запросы по умолчанию отправляются на тестовую площадку.</p>
+<p>Сервис генерации тестовых данных <a class="reference external" href="https://developer.kontur.ru/doc/extern.test.tools">Extern Test Tools</a>.</p>
+<p>Для ФНС на тестовой площадке есть свой набор инспекций (роботов), которые нужно указывать в тестовых файлах отчетов и параметре ifns-code. Они отличаются стратегией обработки документооборотов. При работе с <em>отчетностью в ФНС</em> используйте следующие коды инспекций:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>0087 — Принимает все документы.</p></li>
+<li><p>0088 — Что бы вы ему не прислали — не примет.</p></li>
+<li><p>0085 — Присылает уведомления об уточнении.</p></li>
+</ul>
+</div></blockquote>
+<p><strong>Сертификаты и подписи</strong></p>
+<ul class="simple">
+<li><p>Для криптографических операций необходимо иметь <a class="reference external" href="https://kontur.ru/ca/spravka/36-iz_chego_sostoit_sertifikat_elektronnoj_podpisi">сертификат электронной подписи</a>. См. также статью <a class="reference internal" href="../manuals/cryptography.html"><span class="doc">Криптография</span></a>.</p></li>
+<li><p>Виды поддерживаемой подписи: открепленная, встроенная, множественная.</p></li>
+<li><p>Поддерживаемые форматы подписи: CMS/PKCS #7, XMLDsig.</p></li>
+</ul>
+<p class="rubric">Сценарии работы с API</p>
+<p>Порядок работы с методами зависит от цели и задач, которые вы решаете. Выделим основные три направления в работе с API Контур.Экстерна:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="stepbystep.html#rst-markup-sendalg"><span class="std std-ref">отправка отчетности в контролирующие органы</span></a>,</p></li>
+<li><p><a class="reference internal" href="howtodocflow.html"><span class="doc">мониторинг документооборотов</span></a>,</p></li>
+<li><p>представление ответа на требования ИФНС.</p></li>
+</ul>
+<p>Все перечисленные сценарии описаны в виде алгоритма действий с примерами вызова методов.</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="stepbystep.html" class="btn btn-neutral float-right" title="Алгоритм работы с API" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../recommendations.html" class="btn btn-neutral float-left" title="Рекомендации по работе c API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ <script type="text/javascript">
+ 	document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.toggle').forEach(item => {
+        const switcher = document.createElement('div');
+        switcher.classList.add('switcher');
+        switcher.addEventListener('click', () => {
+          item.classList.toggle('open');
+        })
+        item.appendChild(switcher);
+      });
+    })
+    /*
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+    */
+</script>
+
+
+</body>
+</html>

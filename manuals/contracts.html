@@ -1,0 +1,473 @@
+
+
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Контракты для формирования документов в черновике &mdash; документация extern-api 1.1</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
+    <link rel="search" title="Поиск" href="../search.html" />
+    <link rel="next" title="Примеры файлов отчетов" href="files-for-examples.html" />
+    <link rel="prev" title="Получение RSA-сертификата" href="RSA-certs.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> extern-api
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Поиск в документации" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">История изменений</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release%20notes.html">История изменений API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Подготовка</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../recommendations.html">Рекомендации по работе c API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/index.html">Начало работы с API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth_oidc/index.html">Аутентификация OpenID Connect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../specification/index.html">Спецификация</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge%20base/index.html">База знаний</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Работа с API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../accounts/index.html">Работа с учетными записями</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drafts/index.html">Работа с черновиками</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dc/index.html">Работа с документооборотами</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inventories/index.html">Представление документов к требованиям</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../builder/index.html">Конструктор черновиков (DraftsBuilder)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents/index.html">Сервис контентов</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Дополнительно</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Справка</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cryptography.html">Криптография</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-OpenSSL-and-RSA.html">Использование OpenSSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RSA-certs.html">Получение RSA-сертификата</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Контракты для формирования документов в черновике</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#json">Пример JSON для заявления на подключение к ЭДОК</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Пример JSON для УСН</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Пример JSON для подписок в СЭДО ФСС</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Пример JSON для ИОН запросов</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#n39-1">ИОН 1 - Запрос по справке о состоянии расчетов по налогам, сборам, пеням и штрафам (Форма N39-1)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">ИОН 2 - Запрос по выписке операций по расчетам с бюджетом</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">ИОН 3 - Запрос по перечню налоговых деклараций (расчетов) и бухгалтерской отчетности</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">ИОН 4 - Запрос по акту сверки расчетов по налогам, сборам, пеням и штрафам</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">ИОН 5 - Запрос справки об исполнении</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="files-for-examples.html">Примеры файлов отчетов</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xmldsig.html">Подпись XMLDsig для отчетов в ПФР</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contacts.html">Контакты</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SDK.html">SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/index.html">Аутентификация по auth.sid (obsolete)</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">extern-api</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Справка</a> &raquo;</li>
+        
+      <li>Контракты для формирования документов в черновике</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/manuals/contracts.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>Контракты для формирования документов в черновике<a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Примечание</p>
+<p>В данном разделе представлены примеры контрактов, которые вы можете передать в <a class="reference internal" href="../drafts/DraftDocumentBuildController.html"><span class="doc">методах формирования УСН,  ИОН, заявления на подключение к ЭДОК</span></a> в качестве тестовых данных. Данные примеры не универсальны, их необходимо адаптировать под конкретный случай.</p>
+</div>
+<div class="section" id="json">
+<h2>Пример JSON для заявления на подключение к ЭДОК<a class="headerlink" href="#json" title="Ссылка на этот заголовок">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference download internal" download="" href="../_downloads/30b81f135f2adef92b673c5bdbc2a2c7/Заявление на подключение к ЭДОК ИП.json"><code class="xref download docutils literal notranslate"><span class="pre">пример</span> <span class="pre">JSON</span> <span class="pre">для</span> <span class="pre">формирования</span> <span class="pre">файла</span> <span class="pre">заявления</span> <span class="pre">на</span> <span class="pre">подключение</span> <span class="pre">к</span> <span class="pre">ЭДОК</span> <span class="pre">ИП</span></code></a>;</p></li>
+<li><p><a class="reference download internal" download="" href="../_downloads/c914b34d3e92d3d109ec1772e1f6bcd2/Заявление на подключение к ЭДОК ЮЛ.json"><code class="xref download docutils literal notranslate"><span class="pre">пример</span> <span class="pre">JSON</span> <span class="pre">для</span> <span class="pre">формирования</span> <span class="pre">файла</span> <span class="pre">заявления</span> <span class="pre">на</span> <span class="pre">подключение</span> <span class="pre">к</span> <span class="pre">ЭДОК</span> <span class="pre">ЮЛ</span></code></a>;</p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>Пример JSON для УСН<a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Версия V1</p>
+<ul class="simple">
+<li><p><a class="reference download internal" download="" href="../_downloads/b1cf0940810ad40a5dd562a69fecd2d4/USN1.txt"><code class="xref download docutils literal notranslate"><span class="pre">пример</span> <span class="pre">JSON</span> <span class="pre">для</span> <span class="pre">формирования</span> <span class="pre">файла</span> <span class="pre">декларации</span> <span class="pre">УСН</span></code></a>;</p></li>
+</ul>
+<p>Версия V2</p>
+<ul class="simple">
+<li><p><a class="reference download internal" download="" href="../_downloads/1837130efcc078b3aa4f82e629d9daa4/USN2.txt"><code class="xref download docutils literal notranslate"><span class="pre">пример</span> <span class="pre">JSON</span> <span class="pre">для</span> <span class="pre">формирования</span> <span class="pre">файла</span> <span class="pre">декларации</span> <span class="pre">УСН</span></code></a>;</p></li>
+</ul>
+<p>Версия V3</p>
+<ul>
+<li><p><a class="reference download internal" download="" href="../_downloads/5f8b88408c25ee24eddfd51c37d2e90f/USN3.txt"><code class="xref download docutils literal notranslate"><span class="pre">пример</span> <span class="pre">JSON</span> <span class="pre">для</span> <span class="pre">формирования</span> <span class="pre">файла</span> <span class="pre">декларации</span> <span class="pre">УСН</span></code></a>;</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>используется для формирования файла версии 5.06 для отчётности с 2021 года.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2>Пример JSON для подписок в СЭДО ФСС<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для подписки оператора и страхователя по РНС необходимо указать параметр subscription-type, который может принимать значения:</p>
+<ul class="simple">
+<li><p>subscribe — в случае, если нужно подписаться на уведомления;</p></li>
+<li><p>unsubscribe —  в случае, если необходимо отписаться от уведомлений.</p></li>
+</ul>
+<p>Для подписки страхователя по сотруднику необходимо в теле запроса передать:</p>
+<ul>
+<li><p>agreement-received — флаг подтверждения, что страховать получил согласия застрахованных лиц на уведомления об их ЭЛН;</p></li>
+<li><p>commit-exclude — флаг подтверждения, что страхователь обязывается исключить подписку застрахованного (застрахованных) в случае его (их) увольнения;</p></li>
+<li><p>snils-list — список СНИЛС номеров сотрудников.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>force — флаг force позволяет предварительно отписать сотрудника от другого страхователя. Если сотрудник ранее был подписан у другого страхователя и при увольнении его не отписали, то данный флаг принудительно отпишет его от предыдущего работодателя и подпишет на указанного.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>subscription-type — тип подписки для указанных сотрудников. Может принимать значения:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>subscribe — в случае, если нужно подписаться на уведомления;</p></li>
+<li><p>unsubscribe —  в случае, если необходимо отписаться от уведомлений.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<ul class="simple">
+<li><p><a class="reference download internal" download="" href="../_downloads/847d6901fad413ef9568a9c5f111196a/abonent_subscription_for_snils.json"><code class="xref download docutils literal notranslate"><span class="pre">пример</span> <span class="pre">JSON</span> <span class="pre">для</span> <span class="pre">формирования</span> <span class="pre">подписки</span> <span class="pre">страхователя</span> <span class="pre">по</span> <span class="pre">сотруднику</span></code></a></p></li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h2>Пример JSON для ИОН запросов<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="#n39-1">ИОН 1 - Запрос по справке о состоянии расчетов по налогам, сборам, пеням и штрафам (Форма N39-1)</a></p></li>
+<li><p><a class="reference internal" href="#id5">ИОН 2 - Запрос по выписке операций по расчетам с бюджетом</a></p></li>
+<li><p><a class="reference internal" href="#id6">ИОН 3 - Запрос по перечню налоговых деклараций (расчетов) и бухгалтерской отчетности</a></p></li>
+<li><p><a class="reference internal" href="#id7">ИОН 4 - Запрос по акту сверки расчетов по налогам, сборам, пеням и штрафам</a></p></li>
+<li><p><a class="reference internal" href="#id8">ИОН 5 - Запрос справки об исполнении</a></p></li>
+</ul>
+<p>Для каждого JSON обязательны следующие поля:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>ВидЗапр - Вид запроса. Может принимать значения:</dt><dd><ul>
+<li><p>1 - в целом по организации</p></li>
+<li><p>2 - по всем КПП в одну ИФНС</p></li>
+<li><p>3 - по одному КПП в одну ИФНС</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>ФормОтв - Формат представления ответа. Может принимать следующие значения:</dt><dd><ul>
+<li><p>1 – в формате RTF</p></li>
+<li><p>2 – в формате XML</p></li>
+<li><p>3 – в формате XLS</p></li>
+<li><p>4 – в формате PDF</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Примечание</p>
+<p>Если вид запроса равен 1 (в целом по организации), то формат ответа всегда будет равен 2 (только в XML).</p>
+</div>
+<div class="section" id="n39-1">
+<h3>ИОН 1 - Запрос по справке о состоянии расчетов по налогам, сборам, пеням и штрафам (Форма N39-1)<a class="headerlink" href="#n39-1" title="Ссылка на этот заголовок">¶</a></h3>
+<ul>
+<li><p><a class="reference download internal" download="" href="../_downloads/1e3f580c82fbc6faba7c29ba7b228e4c/ion1.txt"><code class="xref download docutils literal notranslate"><span class="pre">пример</span> <span class="pre">JSON</span> <span class="pre">для</span> <span class="pre">формирования</span> <span class="pre">ИОН1</span></code></a>;</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Позволяет удостовериться в том, что налоги перечислены в бюджет и зачислены на верные КБК, а также проверить наличие пеней и штрафов.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h3>ИОН 2 - Запрос по выписке операций по расчетам с бюджетом<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h3>
+<ul>
+<li><p><a class="reference download internal" download="" href="../_downloads/340c19b4db28a5a38fc25b0d75ce16d6/ion2.txt"><code class="xref download docutils literal notranslate"><span class="pre">пример</span> <span class="pre">JSON</span> <span class="pre">для</span> <span class="pre">формирования</span> <span class="pre">ИОН2</span></code></a>;</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Запрашивается, если обнаружена недоимка. Содержит перечень учтенных налоговым органом операций по расчетам с бюджетом.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<ul class="simple">
+<li><p>УслФорВып принимает значение: 1 – группировать по видам платежа или 2 – не группировать по видам платежа</p></li>
+<li><p>ЗапрашиваемыйНалог - необязательный элемент, если не указать совсем, то вернется информация по всем налогам. Является массивом, содержит не менее 1 объекта.</p></li>
+<li><p>Налог - Название налога или сбора - необязательное поле</p></li>
+<li><p>КБК - Запрашиваемый КБК</p></li>
+<li><p>ОКАТО - можно указать ОКАТО или ОКТМО уплаты</p></li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h3>ИОН 3 - Запрос по перечню налоговых деклараций (расчетов) и бухгалтерской отчетности<a class="headerlink" href="#id6" title="Ссылка на этот заголовок">¶</a></h3>
+<ul>
+<li><p><a class="reference download internal" download="" href="../_downloads/f153edc794288e8e88f62d45dc313df8/ion3.txt"><code class="xref download docutils literal notranslate"><span class="pre">пример</span> <span class="pre">JSON</span> <span class="pre">для</span> <span class="pre">формирования</span> <span class="pre">ИОН3</span></code></a>;</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Формируется из базы инспекции и содержит регистрационные номера отчетов. Если отчет есть в перечне, значит он принят.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<ul class="simple">
+<li><dl class="simple">
+<dt>УслВыбОтч - Условие выбора отчётности. Принимает значение:</dt><dd><ul>
+<li><p>1 – все виды деклараций</p></li>
+<li><p>2 – первичные</p></li>
+<li><p>3 – корректирующие (последняя коррекция)</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>ДатаНач - Начальная дата периода по запросу информации</p></li>
+<li><p>ДатаКон - Конечная дата периода по запросу информации. Период, за который запрашивается услуга, должен находиться в пределах одного календарного года.</p></li>
+</ul>
+<p>Например, если налогоплательщик хочет получить выписку за период с 20.10.2010 по 02.02.2011, то необходимо будет сформировать два запроса: за период с 20.10.2010 по 31.12.2010 гг. и с 01.01.2011 по 02.02.2011 гг. Значение ГГГГ в элементе &lt;ДатаКон&gt; должно совпадать со значением ГГГГ в элементе &lt;ДатаНач&gt;.</p>
+</div>
+<div class="section" id="id7">
+<h3>ИОН 4 - Запрос по акту сверки расчетов по налогам, сборам, пеням и штрафам<a class="headerlink" href="#id7" title="Ссылка на этот заголовок">¶</a></h3>
+<ul>
+<li><p><a class="reference download internal" download="" href="../_downloads/56aa2cba8ad69b52718f2f411241e710/ion4.txt"><code class="xref download docutils literal notranslate"><span class="pre">пример</span> <span class="pre">JSON</span> <span class="pre">для</span> <span class="pre">формирования</span> <span class="pre">ИОН4</span></code></a>;</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Содержит подробную информацию по каждому из запрашиваемых налогов о суммах платежей, задолженностей, штрафов. Позволяет увидеть сальдо на начало проверяемого периода.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<ul class="simple">
+<li><p>ЗапрашиваемыйНалог - необязательный элемент, если не заполнить, то по всем налогам вернется информация. Является массивом, может содержать более 1 объекта</p></li>
+<li><p>Налог - Название налога или сбора - необязательное поле</p></li>
+<li><p>КБК - Запрашиваемый КБК</p></li>
+<li><p>ОКАТО - можно указать ОКАТО или ОКТМО уплаты</p></li>
+</ul>
+</div>
+<div class="section" id="id8">
+<h3>ИОН 5 - Запрос справки об исполнении<a class="headerlink" href="#id8" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Справка об исполнении налогоплательщиком (плательщиком сборов, налоговым агентом) обязанности по уплате налогов, сборов, пеней, штрафов.</p>
+<ul>
+<li><p><a class="reference download internal" download="" href="../_downloads/70ce82fa7b4e73b20d2d0066f9d161d0/ion5.txt"><code class="xref download docutils literal notranslate"><span class="pre">пример</span> <span class="pre">JSON</span> <span class="pre">для</span> <span class="pre">формирования</span> <span class="pre">ИОН5</span></code></a>;</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Содержит информацию в целом по организации (по данным всех инспекций ФНС) о наличии неисполненной обязанности по уплате налогов, сборов, пеней, штрафов, процентов.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="files-for-examples.html" class="btn btn-neutral float-right" title="Примеры файлов отчетов" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="RSA-certs.html" class="btn btn-neutral float-left" title="Получение RSA-сертификата" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ <script type="text/javascript">
+ 	document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.toggle').forEach(item => {
+        const switcher = document.createElement('div');
+        switcher.classList.add('switcher');
+        switcher.addEventListener('click', () => {
+          item.classList.toggle('open');
+        })
+        item.appendChild(switcher);
+      });
+    })
+    /*
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+    */
+</script>
+
+
+</body>
+</html>

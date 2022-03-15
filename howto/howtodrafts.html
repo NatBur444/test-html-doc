@@ -1,0 +1,952 @@
+
+
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Работа с черновиком &mdash; документация extern-api 1.1</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
+    <link rel="search" title="Поиск" href="../search.html" />
+    <link rel="next" title="Работа с документооборотом" href="howtodocflow.html" />
+    <link rel="prev" title="Алгоритм работы с API" href="stepbystep.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> extern-api
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Поиск в документации" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">История изменений</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release%20notes.html">История изменений API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Подготовка</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../recommendations.html">Рекомендации по работе c API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Начало работы с API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="stepbystep.html">Алгоритм работы с API</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Работа с черновиком</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Создание черновика</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Наполнение черновика файлами документов</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Проверка документов</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Наполнение черновика подписями документов</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id6">Порядок работы с подписью</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Проверка, подготовка, отправка черновика  с помощью задач</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id8">Асинхронное выполнение методов</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tasks">Задачи черновиков (Tasks)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#check-prepare-send-tasks">Пример работы с Check, Prepare, Send через Tasks</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="howtodocflow.html">Работа с документооборотом</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../auth_oidc/index.html">Аутентификация OpenID Connect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../specification/index.html">Спецификация</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge%20base/index.html">База знаний</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Работа с API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../accounts/index.html">Работа с учетными записями</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drafts/index.html">Работа с черновиками</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dc/index.html">Работа с документооборотами</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inventories/index.html">Представление документов к требованиям</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../builder/index.html">Конструктор черновиков (DraftsBuilder)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents/index.html">Сервис контентов</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Дополнительно</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../manuals/index.html">Справка</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contacts.html">Контакты</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SDK.html">SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/index.html">Аутентификация по auth.sid (obsolete)</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">extern-api</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Начало работы с API</a> &raquo;</li>
+        
+      <li>Работа с черновиком</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/howto/howtodrafts.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="rst-markup-howtodraft">
+<span id="id1"></span><h1>Работа с черновиком<a class="headerlink" href="#rst-markup-howtodraft" title="Ссылка на этот заголовок">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Примечание</p>
+<p>Черновик можно отправить только один раз. После успешной отправки черновик будет храниться в течение 1 года.</p>
+</div>
+<p>В данном разделе мы описали краткий процесс работы с черновиком на примере отчета о среднесписочной численности. Также объясним зачем нужны многочисленные проверки черновика и как работать с задачами (Tasks).</p>
+<img alt="../_images/howtodraftalg.jpg" src="../_images/howtodraftalg.jpg" />
+<p><strong>Порядок работы с черновиком:</strong></p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p><a class="reference internal" href="#id2">Создание черновика</a>.</p></li>
+<li><p><a class="reference internal" href="#id3">Наполнение черновика файлами документов</a>.</p></li>
+<li><p><a class="reference internal" href="#id4">Проверка документов</a>.</p></li>
+<li><p><a class="reference internal" href="#id5">Наполнение черновика подписями документов</a>.</p></li>
+<li><p><a class="reference internal" href="#id7">Проверка, подготовка, отправка черновика с помощью задач</a>.</p></li>
+</ol>
+</div></blockquote>
+<p>Для удобства тестирования алгоритма создания и отправки черновика можно скачать файл коллекции Postman:</p>
+<p><a class="reference download internal" download="" href="../_downloads/a04a7317d91d5ada6aa8f7ab369421a0/Работа с черновиком.postman_collection.json"><code class="xref download docutils literal notranslate"><span class="pre">файл</span> <span class="pre">коллекции</span> <span class="pre">Postman</span></code></a></p>
+<p>Прежде чем приступить к созданию черновика, нужно подумать о сценарии: чем наполнить черновик? Нужен файл отчета.</p>
+<p><strong>Где взять тестовый файл отчета?</strong></p>
+<p>Скорее всего у пользователя уже будут файлы бухгалтерской отчетности, которые он сформирует и заполнит по требованиям контролирующего органа. Но, чтобы настроить отправку, протестировать разные сценарии работы, не нужно обращаться к конечным пользователям за данными файлами. Предлагаем вам взять готовые примеры или сгенерировать свои файлы.</p>
+<blockquote>
+<div><p>На странице <a class="reference internal" href="../manuals/files-for-examples.html"><span class="doc">Примеры файлов отчетов</span></a> можно найти и скачать файлы отчетов, но в них нужно будет заполнить данные согласно вашей учетной записи.</p>
+<p>В сервисе генерации тестовых данных Extern Test Tools можно сгенерировать файл отчета. При помощи метода генерации файлов получим <a class="reference external" href="https://developer.kontur.ru/doc/extern.test.tools/method?type=post&amp;path=%2Ftest-tools%2Fv1%2Fgenerate-fuf-ssch">POST Generate ssch</a> файл отчета ССЧ в формате xml. Файл необходимо сохранить с именем из тега Файл, параметра ИдФайл. И в названии, и в теге имя файла должно полностью совпадать, см. рисунок.</p>
+<a class="reference internal image-reference" href="../_images/fileName.png"><img alt="../_images/fileName.png" src="../_images/fileName.png" style="width: 800px;" /></a>
+</div></blockquote>
+<div class="section" id="id2">
+<h2>Создание черновика<a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Прежде чем загрузить отчет, нужно создать контейнер, который будет хранить помимо файлов отчета также и метаинформацию о нем. Данный контейнер — это черновик. Чтобы создать его, вызываем метод <a class="reference external" href="https://developer.kontur.ru/doc/extern.drafts/method?type=post&amp;path=%2Fv1%2F%7BaccountId%7D%2Fdrafts">CreateDraft</a>. В данном методе необходимо передать метаинформацию о налогоплательщике, отправителе и получателе:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Payer — налогоплательщик (НП), организация, за которую отправляется отчетность,</p></li>
+<li><p>Sender — отправитель. Организация, которая общается с контролирующими органами, отправляет и получает документы. Payer и Sender могут совпадать.</p></li>
+<li><p>Recipient — получатель документооборота, т.е. контролирующий орган (КО).</p></li>
+</ul>
+</div></blockquote>
+<p>При создании черновика нужно передать контент сертификата в формате <cite>base64</cite>, который будет использован пользователем для подписания документов.</p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<p><strong>Пример запроса POST CreateDraft</strong></p>
+</div>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">POST</span> <span class="nn">/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/drafts</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">extern-api.testkontur.ru</span>
+<span class="na">Authorization</span><span class="o">:</span> <span class="l">Bearer &lt;token&gt;</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;sender&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;inn&quot;</span><span class="p">:</span> <span class="s2">&quot;7757424860&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;kpp&quot;</span><span class="p">:</span> <span class="s2">&quot;680345565&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;certificate&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;MIIJcDCCCR...+/MYE3Xk=&quot;</span> <span class="p">},</span>
+    <span class="nt">&quot;is-representative&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;ipaddress&quot;</span><span class="p">:</span> <span class="s2">&quot;8.8.8.8&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;recipient&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;ifns-code&quot;</span><span class="p">:</span> <span class="s2">&quot;0007&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;payer&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;inn&quot;</span><span class="p">:</span> <span class="s2">&quot;7757424860&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;organization&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;kpp&quot;</span><span class="p">:</span> <span class="s2">&quot;680345565&quot;</span>
+            <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>В ответе метод возвращает метаинформацию черновика, которую вы передали, а также его идентификатор и ссылки для работы с черновиком. В данном случае можно перейти по ссылке и выполнить запрос, чтобы посмотреть содержимое черновика.</p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<p><strong>Ответ GET DraftDocument</strong></p>
+</div>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;d9622b9d-aa31-477b-a399-fc676588bfb5&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;docflows&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="nt">&quot;documents&quot;</span><span class="p">:</span> <span class="p">[],</span>
+    <span class="nt">&quot;meta&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;sender&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;inn&quot;</span><span class="p">:</span> <span class="s2">&quot;7757424860&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;kpp&quot;</span><span class="p">:</span> <span class="s2">&quot;680345565&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Тестовая организация&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;certificate&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;MIIJcDCCCR...ykqopO+/MYE3Xk=&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;is-representative&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nt">&quot;ipaddress&quot;</span><span class="p">:</span> <span class="s2">&quot;8.8.8.8&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;recipient&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;ifns-code&quot;</span><span class="p">:</span> <span class="s2">&quot;0007&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;payer&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;inn&quot;</span><span class="p">:</span> <span class="s2">&quot;7757424860&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Тестовая организация&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;organization&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;kpp&quot;</span><span class="p">:</span> <span class="s2">&quot;680345565&quot;</span>
+        <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;new&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+        <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/drafts/d9622b9d-aa31-477b-a399-fc676588bfb5&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>Наполнение черновика файлами документов<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Черновик необходимо наполнить файлом отчета, приложениями к отчету и подписями. Главный файл отчета — это всегда xml-файл. К отчету могут идти также приложения и другие связанные файлы, например, доверенность. Каждый файл в черновике нужно загрузить в сервис контентов, а также для каждого файла нужно создавать отдельный документ в черновике при помощи метода <a class="reference external" href="https://developer.kontur.ru/doc/extern.drafts/method?type=post&amp;path=%2Fv1%2F%7BaccountId%7D%2Fdrafts%2F%7BdraftId%7D%2Fdocuments">Add document</a>.</p>
+<p>Для более гибкой работы с файлами предусмотрена возможность также создать пустой документ в черновике, чтобы в дальнейшем методом PUT положить контент файла.</p>
+<p><strong>Пример запроса POST UploadContent</strong></p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">POST</span> <span class="nn">/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/contents</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Authorization</span><span class="o">:</span> <span class="l">Bearer &lt;token&gt;</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/octet-stream</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">extern-api.testkontur.ru</span>
+<span class="na">Accept-Encoding</span><span class="o">:</span> <span class="l">gzip, deflate, br</span>
+<span class="na">Content-Length</span><span class="o">:</span> <span class="l">727</span>
+
+Контент передан в теле запроса
+</pre></div>
+</div>
+<p>В ответе метод загрузки контента вернет идентификатор загруженного контента, который нужно передать в методе создания документа.</p>
+<p><strong>Пример запроса POST AddDocument:</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>POST /v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/drafts/d9622b9d-aa31-477b-a399-fc676588bfb5/documents HTTP/1.1
+Authorization: Bearer &lt;token&gt;
+Accept: application/json
+Content-Type: application/json
+Host: extern-api.testkontur.ru
+
+{
+    &quot;content-id&quot;: &quot;719a73dc-ecf8-49d1-b6be-b4251fd90553&quot;
+}
+</pre></div>
+</div>
+<p>Мы намеренно не заполняем метаинформацию об отчете в запросе. Если файл корректный, то метод сам распознает нужную метаинформацию и вернет ее в ответе.</p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<p><strong>Ответ POST AddDocument:</strong></p>
+</div>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;4b3046fe-cabd-42e5-8618-8e9d9b2466a0&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;decrypted-content-link&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/drafts/d9622b9d-aa31-477b-a399-fc676588bfb5/documents/4b3046fe-cabd-42e5-8618-8e9d9b2466a0/decrypted-content&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;NO_SRCHIS_0007_0007_7757424860680345565_20200129_92425a70-4ac9-4680-bada-3666f0c0514v.xml&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;content-type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/xml&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;Encoding&quot;</span><span class="p">:</span> <span class="s2">&quot;windows-1251&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;FormName&quot;</span><span class="p">:</span> <span class="s2">&quot;Сведения о среднесписочной численности работников за предшествующий календарный год&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;КНД&quot;</span><span class="p">:</span> <span class="s2">&quot;1110018&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;CorrectionNumber&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;IsPrintable&quot;</span><span class="p">:</span> <span class="s2">&quot;True&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;Period&quot;</span><span class="p">:</span> <span class="s2">&quot;2018 год&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;OriginalFilename&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nt">&quot;SvdregCode&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nt">&quot;contentType&quot;</span><span class="p">:</span> <span class="s2">&quot;Xml&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;AccountingPeriodBegin&quot;</span><span class="p">:</span> <span class="s2">&quot;01.01.2018&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;AccountingPeriodEnd&quot;</span><span class="p">:</span> <span class="s2">&quot;12.31.2018&quot;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;contents&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+        <span class="nt">&quot;content-id&quot;</span><span class="p">:</span> <span class="s2">&quot;a1c26991-1ce9-4d51-8ee2-83303b7dd31d&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;encrypted&quot;</span><span class="p">:</span> <span class="kc">false</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>Проверка документов<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Прежде чем подписывать файлы, лучше выполнить проверку документов черновика методом <a class="reference external" href="https://developer.kontur.ru/doc/extern.drafts/method?type=post&amp;path=%2Fv1%2F%7BaccountId%7D%2Fdrafts%2F%7BdraftId%7D%2Fcheck">Check</a>. Данный метод выполняет:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>проверку на соответствие формату, то есть xml-файл документа проходит проверку по xsd-схеме;</p></li>
+<li><p>проверки правильности контрольных соотношений согласно формату документа;</p></li>
+<li><p>кросс-проверки между документами черновика, например, соответствие подписантов в доверенности и документе.</p></li>
+</ul>
+</div></blockquote>
+<p><strong>Ответ метода Check:</strong></p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+     <span class="nt">&quot;data&quot;</span><span class="p">:</span> <span class="p">{</span>
+     <span class="nt">&quot;documents-errors&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;6ea75127-abc8-4866-b67d-464f1e678273&quot;</span><span class="p">:</span> <span class="p">[]</span>
+     <span class="p">},</span>
+     <span class="nt">&quot;common-errors&quot;</span><span class="p">:</span> <span class="p">[]</span>
+     <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Мы убедились, что файл отчета корректный, Check не выявил ошибок. Можно подписывать файл, который положили в черновик. У нас в примере в черновике лежит только один файл отчета, соответственно нам нужно приложить подпись только к нему.</p>
+</div>
+<div class="section" id="id5">
+<h2>Наполнение черновика подписями документов<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Под каждым файлом клиент ставит свою подпись, чтобы подтвердить свою личность как отправителя. Подпись можно добавить к документу методом <a class="reference external" href="https://developer.kontur.ru/doc/extern.drafts/method?type=post&amp;path=%2Fv1%2F%7BaccountId%7D%2Fdrafts%2F%7BdraftId%7D%2Fdocuments%2F%7BdocumentId%7D%2Fsignatures">POST AddSignature</a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Предупреждение</p>
+<p>Если документы в черновике изменятся, то подписи станут недействительными.</p>
+</div>
+<p>Если документ изменится, то подпись также нужно будет заменить. Для редактирования подписи текущего документа используйте метод <a class="reference external" href="https://developer.kontur.ru/doc/extern.drafts/method?type=put&amp;path=%2Fv1%2F%7BaccountId%7D%2Fdrafts%2F%7BdraftId%7D%2Fdocuments%2F%7BdocumentId%7D%2Fsignatures%2F%7BsignatureId%7D">PUT Signature</a>.</p>
+<div class="section" id="id6">
+<h3>Порядок работы с подписью<a class="headerlink" href="#id6" title="Ссылка на этот заголовок">¶</a></h3>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Подписываем файл отчета закрытым ключом электронной подписи.</p></li>
+<li><p>Конвертируем полученную подпись в base64.</p></li>
+<li><p>Добавляем подпись в формате base64 в черновик.</p></li>
+</ol>
+</div></blockquote>
+<p><strong>Запрос POST AddSignature:</strong></p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">POST</span> <span class="nn">/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/drafts/d9622b9d-aa31-477b-a399-fc676588bfb5/documents/4b3046fe-cabd-42e5-8618-8e9d9b2466a0/signatures</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">extern-api.testkontur.ru</span>
+<span class="na">Authorization</span><span class="o">:</span> <span class="l">Bearer &lt;token&gt;</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/pgp-signature</span>
+
+{
+    &quot;base64-content&quot;:&quot;MIINFQYJKoZIhvcNAQcCoIINBjCCD...nOfRonWQdDi4Tavb9CLvI=&quot;
+}
+</pre></div>
+</div>
+<p>Мы убедились, что файл отчета корректный, и подпись документа лежит в черновике. Можно переходить к подготовке черновика и отправке.</p>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>Проверка, подготовка, отправка черновика  с помощью задач<a class="headerlink" href="#id7" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Перед отправкой отчетности в налоговый орган необходимо прогнать черновик через три метода в строгом порядке: <strong>Check -&gt; Prepare -&gt; Send</strong>. Если хотя бы в одном из методов произошла ошибка, черновик не будет отправлен в налоговый орган.</p>
+<p>Существует возможность не вызывать методы последовательно, а вызвать сразу подготовку и отправку, или только отправку. При этом стоит понимать, что внутри каждого метода будут вызваны и предыдущие методы тоже. Это необходимо, чтобы предотвратить отправку непроверенных и неподготовленных документов в контролирующие органы.</p>
+<p>Если операция Send прошла успешно, черновик будет отправлен и превратится в документооборот, его идентификатор вернется в ответе.</p>
+<div class="section" id="id8">
+<h3>Асинхронное выполнение методов<a class="headerlink" href="#id8" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Все три метода имеют флаг deferred, который включает асинхронное выполнение методов.</p>
+<ul class="simple">
+<li><p>Если флаг <cite>deferred = false</cite> (по умолчанию), то вы будете ожидать выполнения операции.</p></li>
+<li><p>Если флаг <cite>deferred = true</cite>, то метод будет выполняться асинхронно. Для выполнения метода будет создана задача (Task). Статус ее выполнения необходимо смотреть по taskId.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Примечание</p>
+<p>Работа с черновиком через задачи является более предпочтительной стратегией, так как невозможно предсказать объем отправляемых пользователем данных.</p>
+</div>
+</div>
+<div class="section" id="tasks">
+<h3>Задачи черновиков (Tasks)<a class="headerlink" href="#tasks" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Некоторые методы могут принимать большие объемы данных. Чтобы не нагружать сервер, а вам не нужно было ждать ответа продолжительное время, перечисленные методы могут переводить работу с данными в режим задач:</p>
+<ul class="simple">
+<li><p>подписание черновика,</p></li>
+<li><p>проверка,</p></li>
+<li><p>подготовка,</p></li>
+<li><p>отправка,</p></li>
+<li><p>печать.</p></li>
+</ul>
+<p>Данные методы возвращают в ответе модель ApiTaskResult. Важно знать id задачи и ее task-state — состояние, которое помогает понять статус выполнения задачи. Вы можете посмотреть все запущенные задачи черновика методом <a class="reference external" href="https://developer.kontur.ru/doc/extern.drafts/method?type=get&amp;path=%2Fv1%2F%7BaccountId%7D%2Fdrafts%2F%7BdraftId%7D%2Ftasks">GET DraftTasks</a>.</p>
+</div>
+<div class="section" id="check-prepare-send-tasks">
+<h3>Пример работы с Check, Prepare, Send через Tasks<a class="headerlink" href="#check-prepare-send-tasks" title="Ссылка на этот заголовок">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Запрос Check</p></li>
+</ol>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">POST</span> <span class="nn">/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/drafts/d9622b9d-aa31-477b-a399-fc676588bfb5/check?deferred=true</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Authorization</span><span class="o">:</span> <span class="l">Bearer &lt;token&gt;</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</pre></div>
+</div>
+<p>Ответ:</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;c0620f2f-ea43-465a-ab87-96995e0adcf8&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;task-state&quot;</span><span class="p">:</span> <span class="s2">&quot;running&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;task-type&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:task-type:check&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Проверка статуса задачи</p></li>
+</ol>
+<p>Запрос <a class="reference external" href="https://developer.kontur.ru/doc/extern.drafts/method?type=get&amp;path=%2Fv1%2F%7BaccountId%7D%2Fdrafts%2F%7BdraftId%7D%2Ftasks%2F%7BapiTaskId%7D">GET TaskId</a>:</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/drafts/d9622b9d-aa31-477b-a399-fc676588bfb5/tasks/c0620f2f-ea43-465a-ab87-96995e0adcf8</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Authorization</span><span class="o">:</span> <span class="l">Bearer &lt;token&gt;</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">extern-api.testkontur.ru</span>
+</pre></div>
+</div>
+<p>Ответ GET TaskId:</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+<span class="na">Content-Length</span><span class="o">:</span> <span class="l">285</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;c0620f2f-ea43-465a-ab87-96995e0adcf8&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;task-state&quot;</span><span class="p">:</span> <span class="s2">&quot;succeed&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;task-type&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:task-type:check&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;task-result&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;data&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;documents-errors&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;4b3046fe-cabd-42e5-8618-8e9d9b2466a0&quot;</span><span class="p">:</span> <span class="p">[]</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;common-errors&quot;</span><span class="p">:</span> <span class="p">[]</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Запрос Prepare</p></li>
+</ol>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">POST</span> <span class="nn">/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/drafts/d9622b9d-aa31-477b-a399-fc676588bfb5/prepare?deferred=true</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Authorization</span><span class="o">:</span> <span class="l">Bearer &lt;token&gt;</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</pre></div>
+</div>
+<p>Ответ:</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span> HTTP/1.1 200 OK
+ Content-Type: application/json; charset=utf-8
+
+{
+     &quot;id&quot;: &quot;02ce6882-2765-457e-aca3-9384f9d3c558&quot;,
+     &quot;task-state&quot;: &quot;running&quot;,
+     &quot;task-type&quot;: &quot;urn:task-type:prepare&quot;
+}
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Проверка статуса задачи подготовки черновика.</p></li>
+</ol>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<p>Ответ GET TaskId:</p>
+</div>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;02ce6882-2765-457e-aca3-9384f9d3c558&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;task-state&quot;</span><span class="p">:</span> <span class="s2">&quot;succeed&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;task-type&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:task-type:prepare&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;task-result&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;check-result&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;documents-errors&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;b32171d6-9ebc-4c73-b557-5a203b68f8df&quot;</span><span class="p">:</span> <span class="p">[]</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;common-errors&quot;</span><span class="p">:</span> <span class="p">[]</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;next&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/drafts/74b6e8b9-290a-4d12-b874-c7fb35cad54f/send?force=false&quot;</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;ok&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Запрос Send</p></li>
+</ol>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">POST</span> <span class="nn">/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/drafts/d9622b9d-aa31-477b-a399-fc676588bfb5/send?deferred=true</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Authorization</span><span class="o">:</span> <span class="l">Bearer &lt;token&gt;</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</pre></div>
+</div>
+<p>Ответ:</p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+
+{
+    &quot;id&quot;: &quot;1ad1ee85-6346-4bb5-88de-c83536a08784&quot;,
+    &quot;task-state&quot;: &quot;running&quot;,
+    &quot;task-type&quot;: &quot;urn:task-type:send&quot;
+}
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>Проверка статуса задачи отправки черновика.</p></li>
+</ol>
+<div class="toggle docutils container" id="rst-markup-drafttask">
+<div class="header docutils container">
+<p>Ответ GET TaskId:</p>
+</div>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Date</span><span class="o">:</span> <span class="l">Wed, 22 Apr 2020 14:17:35 GMT</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;b54a8c6d-e1f1-4e93-841f-9863f6a90aeb&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;task-state&quot;</span><span class="p">:</span> <span class="s2">&quot;succeed&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;task-type&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:task-type:send&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;task-result&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;0c4e50b5-66ac-4a92-b051-3bc95472dddb&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;organization-id&quot;</span><span class="p">:</span> <span class="s2">&quot;988b38f1-5580-4ba9-b9f8-3215e7f392ea&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:docflow:fns534-report&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:docflow-common-status:sent&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;success-state&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:docflow-state:neutral&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;form-version&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;knd&quot;</span><span class="p">:</span> <span class="s2">&quot;1110018&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;100501&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;form-fullname&quot;</span><span class="p">:</span> <span class="s2">&quot;Сведения о среднесписочной численности работников за предшествующий календарный год&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;form-shortname&quot;</span><span class="p">:</span> <span class="s2">&quot;Сведения о среднесписочной численности&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;recipient&quot;</span><span class="p">:</span> <span class="s2">&quot;0007&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;final-recipient&quot;</span><span class="p">:</span> <span class="s2">&quot;0007&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;correction-number&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nt">&quot;period-begin&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-01T00:00:00.0000000&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;period-end&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-12-31T00:00:00.0000000&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;period-code&quot;</span><span class="p">:</span> <span class="s2">&quot;34&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;payer-inn&quot;</span><span class="p">:</span> <span class="s2">&quot;7757424860-680345565&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;original-draft-id&quot;</span><span class="p">:</span> <span class="s2">&quot;d9622b9d-aa31-477b-a399-fc676588bfb5&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;documents&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;111f7485-7e2d-4c81-8017-9edc61835684&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:document:fns534-report&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;NO_SRCHIS_0007_0007_7757424860680345565_20200129_92425a70-4ac9-4680-bada-3666f0c0514v.xml&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;content-type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/xml&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;decrypted-content-size&quot;</span><span class="p">:</span> <span class="mi">2233</span><span class="p">,</span>
+            <span class="nt">&quot;encrypted-content-size&quot;</span><span class="p">:</span> <span class="mi">2233</span><span class="p">,</span>
+            <span class="nt">&quot;compressed&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;requisites&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="nt">&quot;related-docflows-count&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="nt">&quot;support-recognition&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;encrypted-certificates&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                <span class="nt">&quot;serial-number&quot;</span><span class="p">:</span> <span class="s2">&quot;01D0850043AB3C924A605B8D8661E43E&quot;</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                <span class="nt">&quot;serial-number&quot;</span><span class="p">:</span> <span class="s2">&quot;33AC7500C3AAAE924839AA8AE6C459FE&quot;</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                <span class="nt">&quot;serial-number&quot;</span><span class="p">:</span> <span class="s2">&quot;19CCC7C800010000215D&quot;</span>
+                <span class="p">}</span>
+            <span class="p">]</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;decrypted&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;decrypted-content&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/111f7485-7e2d-4c81-8017-9edc61835684/decrypted-content&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;encrypted&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;encrypted-content&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/111f7485-7e2d-4c81-8017-9edc61835684/encrypted-content&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;docflow-document-contents&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                <span class="nt">&quot;content-id&quot;</span><span class="p">:</span> <span class="s2">&quot;2e1a8085-875a-471c-881e-9600f6ac96ef&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;encrypted&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="nt">&quot;compressed&quot;</span><span class="p">:</span> <span class="kc">true</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                <span class="nt">&quot;content-id&quot;</span><span class="p">:</span> <span class="s2">&quot;c670c7ab-0849-4536-a7b5-0594ea76212a&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;encrypted&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+                <span class="nt">&quot;compressed&quot;</span><span class="p">:</span> <span class="kc">false</span>
+                <span class="p">}</span>
+            <span class="p">]</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;send-date&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-04-22T14:16:36.1338472Z&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;signatures&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;920a7f48-9acd-4582-841a-e21df444e06d&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;ООО &#39;Баланс Плюс&#39; (Марков Георгий Эльдарович)&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;signature-certificate-thumbprint&quot;</span><span class="p">:</span> <span class="s2">&quot;20AACA440F33D0C90FBC052108012D3062D44873&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;content-link&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;content&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/111f7485-7e2d-4c81-8017-9edc61835684/signatures/920a7f48-9acd-4582-841a-e21df444e06d/content&quot;</span>
+                <span class="p">},</span>
+                <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/111f7485-7e2d-4c81-8017-9edc61835684/signatures/920a7f48-9acd-4582-841a-e21df444e06d/content&quot;</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;docflow&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb&quot;</span>
+                <span class="p">}</span>
+                <span class="p">]</span>
+            <span class="p">}</span>
+            <span class="p">],</span>
+            <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;docflow&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/111f7485-7e2d-4c81-8017-9edc61835684&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;related-docflow&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru//v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/111f7485-7e2d-4c81-8017-9edc61835684/related&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;encrypted-content&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/111f7485-7e2d-4c81-8017-9edc61835684/encrypted-content&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;decrypted-content&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/111f7485-7e2d-4c81-8017-9edc61835684/decrypted-content&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;decrypt-content&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/111f7485-7e2d-4c81-8017-9edc61835684/decrypt-content&quot;</span>
+            <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;6076f7bc-a016-4d22-bb63-221df6582906&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:document:fns534-report-date-confirmation&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;PD_NOSRCHIS_7757424860680345565_7757424860680345565_1BM_20200422_b4885f2a-dddb-4484-89f3-e83dc94ea83d.xml&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;content-type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/xml&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;decrypted-content-size&quot;</span><span class="p">:</span> <span class="mi">3023</span><span class="p">,</span>
+            <span class="nt">&quot;compressed&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;requisites&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="nt">&quot;support-recognition&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;encrypted-certificates&quot;</span><span class="p">:</span> <span class="p">[]</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;decrypted&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;decrypted-content&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/6076f7bc-a016-4d22-bb63-221df6582906/decrypted-content&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;docflow-document-contents&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                <span class="nt">&quot;content-id&quot;</span><span class="p">:</span> <span class="s2">&quot;c5227d5f-7b80-41a3-91a1-34136a99171c&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;encrypted&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+                <span class="nt">&quot;compressed&quot;</span><span class="p">:</span> <span class="kc">true</span>
+                <span class="p">}</span>
+            <span class="p">]</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;send-date&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-04-22T14:16:36.1338472Z&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;signatures&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;7117bfa4-60b6-4652-942d-7bafe10c476a&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;АО \&quot;ПФ \&quot;СКБ Контур\&quot;&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;signature-certificate-thumbprint&quot;</span><span class="p">:</span> <span class="s2">&quot;ADBB03393A5C3F5402A8EFF8F7AAE859076079F8&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;content-link&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;content&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/6076f7bc-a016-4d22-bb63-221df6582906/signatures/7117bfa4-60b6-4652-942d-7bafe10c476a/content&quot;</span>
+                <span class="p">},</span>
+                <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/6076f7bc-a016-4d22-bb63-221df6582906/signatures/7117bfa4-60b6-4652-942d-7bafe10c476a/content&quot;</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;docflow&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb&quot;</span>
+                <span class="p">}</span>
+                <span class="p">]</span>
+            <span class="p">}</span>
+            <span class="p">],</span>
+            <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;docflow&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/6076f7bc-a016-4d22-bb63-221df6582906&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;reply&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/6076f7bc-a016-4d22-bb63-221df6582906/generate-reply?documentType=fns534-report-receipt&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;fns534-report-receipt&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;decrypted-content&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/6076f7bc-a016-4d22-bb63-221df6582906/decrypted-content&quot;</span>
+            <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;79e6d1db-fbe6-4b00-a447-cc9eb1a90571&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:document:fns534-report-description&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;TR_DEKL.xml&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;content-type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/xml&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;decrypted-content-size&quot;</span><span class="p">:</span> <span class="mi">364</span><span class="p">,</span>
+            <span class="nt">&quot;compressed&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;requisites&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="nt">&quot;support-recognition&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;encrypted-certificates&quot;</span><span class="p">:</span> <span class="p">[]</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;decrypted&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;decrypted-content&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/79e6d1db-fbe6-4b00-a447-cc9eb1a90571/decrypted-content&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;docflow-document-contents&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                <span class="nt">&quot;content-id&quot;</span><span class="p">:</span> <span class="s2">&quot;ad34e8ab-4518-47e8-b578-b26adc728d1f&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;encrypted&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+                <span class="nt">&quot;compressed&quot;</span><span class="p">:</span> <span class="kc">true</span>
+                <span class="p">}</span>
+            <span class="p">]</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;send-date&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-04-22T14:16:36.1338472Z&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;signatures&quot;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;docflow&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/79e6d1db-fbe6-4b00-a447-cc9eb1a90571&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;decrypted-content&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/79e6d1db-fbe6-4b00-a447-cc9eb1a90571/decrypted-content&quot;</span>
+            <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;organization&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/organizations/988b38f1-5580-4ba9-b9f8-3215e7f392ea&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;web-docflow&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://setter.testkontur.ru/?inn=662909960905&amp;forward_to_rel=/ft/transmission/state.aspx?key=cfOOHYSO4USxIIRIMEKAL%2fE4i5iAValLufgyFefzkuqKJpsKOwY6TorTSpphojA7tVBODKxmkkqwUTvJVHLd2w%3d%3d&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;reply&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/6076f7bc-a016-4d22-bb63-221df6582906/generate-reply?documentType=fns534-report-receipt&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;fns534-report-receipt&quot;</span>
+        <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&quot;send-date&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-04-22T17:16:36.1338472&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;last-change-date&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-04-22T14:16:36.1338472Z&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>В ответе метода в task-result/id лежит идентификатор созданного документооборота. Работа с черновиком завершена, он отправлен в ФНС.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="howtodocflow.html" class="btn btn-neutral float-right" title="Работа с документооборотом" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="stepbystep.html" class="btn btn-neutral float-left" title="Алгоритм работы с API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ <script type="text/javascript">
+ 	document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.toggle').forEach(item => {
+        const switcher = document.createElement('div');
+        switcher.classList.add('switcher');
+        switcher.addEventListener('click', () => {
+          item.classList.toggle('open');
+        })
+        item.appendChild(switcher);
+      });
+    })
+    /*
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+    */
+</script>
+
+
+</body>
+</html>

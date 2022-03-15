@@ -1,0 +1,374 @@
+
+
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>DraftsBuilder &mdash; документация extern-api 1.1</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
+    <link rel="search" title="Поиск" href="../search.html" />
+    <link rel="next" title="Блокировки" href="loks.html" />
+    <link rel="prev" title="Сервис контентов" href="content.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> extern-api
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Поиск в документации" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">История изменений</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release%20notes.html">История изменений API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Подготовка</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../recommendations.html">Рекомендации по работе c API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/index.html">Начало работы с API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth_oidc/index.html">Аутентификация OpenID Connect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../specification/index.html">Спецификация</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">База знаний</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="filename.html">Наименование файлов</a></li>
+<li class="toctree-l2"><a class="reference internal" href="print.html">Печать документов</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content.html">Сервис контентов</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">DraftsBuilder</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Что такое DraftsBuilder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rst-markup-invent-file">Файл описи в DraftsBuilder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Структура DraftsBuilder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rst-markup-db-proc">Процесс работы с DraftsBuilder</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="loks.html">Блокировки</a></li>
+<li class="toctree-l2"><a class="reference internal" href="businessReg.html">Документооборот регистрации бизнеса</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demand.html">Требование</a></li>
+<li class="toctree-l2"><a class="reference internal" href="check-demand.html">Проверка требования ФНС</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inventory.html">Опись — ответ на требование</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rnpt.html">Прослеживаемость товаров. РНПТ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FSS.html">Документооборот с ФСС</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reestr-pvso.html">Реестр ПВСО</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sedo-fss.html">Уведомления и извещения СЭДО ФСС</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sedo-subscription.html">Подписки СЭДО ФСС на получение извещений и уведомлений</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proactiv.html">Проактивные выплаты</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proactive_%20algorithm.html">Алгоритм работы с методами в проактивных выплатах</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PFR.html">Документооборот с ПФР</a></li>
+<li class="toctree-l2"><a class="reference internal" href="szvtd.html">Отчетность в ПФР по форме СЗВ-ТД</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stat-letter.html">Письма в Росстат</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Работа с API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../accounts/index.html">Работа с учетными записями</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drafts/index.html">Работа с черновиками</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dc/index.html">Работа с документооборотами</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inventories/index.html">Представление документов к требованиям</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../builder/index.html">Конструктор черновиков (DraftsBuilder)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents/index.html">Сервис контентов</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Дополнительно</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../manuals/index.html">Справка</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contacts.html">Контакты</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SDK.html">SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/index.html">Аутентификация по auth.sid (obsolete)</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">extern-api</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">База знаний</a> &raquo;</li>
+        
+      <li>DraftsBuilder</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/knowledge base/DraftsBuilder.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="draftsbuilder">
+<h1>DraftsBuilder<a class="headerlink" href="#draftsbuilder" title="Ссылка на этот заголовок">¶</a></h1>
+<div class="section" id="id3">
+<h2>Что такое DraftsBuilder<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для формирования черновика из переданных документов пользователя создан конструктор черновиков — DraftsBuilder. Он приводит к установленному формату файлы пользователя, строит шаблон из загруженных файлов, подписей контрагентов и сообщения о представительстве (доверенности) и собирает созданный шаблон в черновик.</p>
+<dl class="simple">
+<dt>DraftsBuilder можно использовать для получения черновиков следующих <em>типов документооборотов</em>:</dt><dd><ul class="simple">
+<li><p>ответ на требование (<a class="reference external" href="urn:docflow:fns534-inventory">urn:docflow:fns534-inventory</a>),</p></li>
+<li><p>регистрация бизнеса (<a class="reference external" href="urn:docflow:business-registration">urn:docflow:business-registration</a>),</p></li>
+<li><p>отчетность в ПФР (<a class="reference external" href="urn:docflow:pfr-report">urn:docflow:pfr-report</a>).</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Функции DraftsBuilder:</strong></p>
+<ul class="simple">
+<li><p>Приводит приложенные файлы к установленному контролирующим органом формату.</p></li>
+<li><p>Разбивает файлы на черновики.</p></li>
+<li><p>Подкладывает в каждый черновик сообщение о представительстве, переданное налогоплательщиком.</p></li>
+<li><p>Задает документам уникальное название.</p></li>
+<li><p>Формирует XML-файл описи к каждому черновику.</p></li>
+</ul>
+<p><strong>Изменение имен файлов:</strong></p>
+<dl class="simple">
+<dt>Для ФНС:</dt><dd><p>Все имена приложений и документов DraftsBuilder приводит к установленному ФНС формату и задает уникальный гуид.</p>
+</dd>
+<dt>Для ПФР:</dt><dd><p>Если имя файла соответствует формату, то оно не изменится. Если имя файла не соответствует формату, то DraftsBuilder переименует файл.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="rst-markup-invent-file">
+<span id="id4"></span><h2>Файл описи в DraftsBuilder<a class="headerlink" href="#rst-markup-invent-file" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для некоторых документооборотов налогоплательщик должен соблюдать требования к составу отправляемых документов в налоговый орган. В составе должен быть файл описи, в котором перечислены документы пользователя. DraftsBuilder формирует этот файл самостоятельно.</p>
+<p>Файл описи в DraftsBuilder — это XML-файл с перечислением документов, которые налогоплательщик отправляет в налоговый орган. Это формализованный файл установленного формата, формируется в DraftsBuilder автоматически на основании всех переданных файлов.</p>
+<p>В случае использования DraftsBuilder для получения черновика ответа на требования XML-файл описи будет состоять из списка документов с привязкой пункта требования, в документах будут перечислены файлы для налогового органа и подписи.</p>
+<dl class="simple">
+<dt>Замечание про подписи</dt><dd><p>Существует два вида подписи: подпись контрагента, которая подкладывается к формализованным файлам, и подпись отправителя. Подпись контрагента нужно подписывать КЭП отправителя описи, так же как и остальные файлы черновика перед отправкой.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="id5">
+<h2>Структура DraftsBuilder<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h2>
+<img alt="../_images/structure.png" src="../_images/structure.png" />
+<p id="rst-markup-db-restricting">В DraftsBuilder можно положить файлы (<a class="reference external" href="https://normativ.kontur.ru/document?moduleId=1&amp;documentId=291280&amp;rangeId=180910">документы, представленные в виде скан-образа</a>) с расширением: jpg, png, pdf, tif, tiff. Один черновик описи может содержать до 99 файлов и быть объемом не более 60 Мб. Если суммарный объем приложенных файлов будет больше 60 Мб, или пользователь приложит большее количество, DraftsBuilder сам разделит их на несколько черновиков. Черновики будут отправлены как <em>отдельные документообороты</em>.</p>
+<dl class="simple">
+<dt>Замечание про документы и файлы</dt><dd><p>Нужно разделять сущности документа и файла в DraftsBuilder. Налогоплательщик предоставляет документы в налоговый орган. Документ может состоять из нескольких файлов. В DraftsBuilder документ является контейнером для файлов. Файл — это файл пользователя, который он отправляет в налоговый орган в составе документа. Файлы могут быть формализованные и неформализованные,подробнее читайте <a class="reference external" href="https://www.diadoc.ru/docs/faq/faq-127">в справке</a>.</p>
+</dd>
+</dl>
+<p>В один документ-контейнер можно положить:</p>
+<ul class="simple">
+<li><p>один или несколько файлов одного неформализованного документа,</p></li>
+<li><p>формализованный файл и подпись контрагента,</p></li>
+<li><p>титульные страницы формализованного документа с подписями контрагента.</p></li>
+</ul>
+</div>
+<div class="section" id="rst-markup-db-proc">
+<span id="id6"></span><h2>Процесс работы с DraftsBuilder<a class="headerlink" href="#rst-markup-db-proc" title="Ссылка на этот заголовок">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Создание DraftsBuilder методом <a class="reference internal" href="../builder/%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%B8%D0%BB%D0%B4%D0%B5%D1%80%D0%B0.html#rst-markup-createdb"><span class="std std-ref">POST CreateDraftsBuilder</span></a></p></li>
+</ol>
+<blockquote>
+<div><p>Метод создает шаблон черновика. В результате метод вернет идентификатор созданного шаблона DraftsBuilder и все его содержимое.</p>
+<p>При создании обязательно заполнить метаинформацию DraftsBuilder, в ней необходимо указать <a class="reference internal" href="../specification/%D1%82%D0%B8%D0%BF%D1%8B%20DraftsBuilder.html"><span class="doc">тип DraftsBuilder</span></a></p>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>Добавление документа <a class="reference internal" href="../builder/%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%B8%D0%BB%D0%B4%D0%B5%D1%80%D0%B0.html#rst-markup-createdocdb"><span class="std std-ref">POST CreateDraftsBuilderDocument</span></a></p></li>
+</ol>
+<blockquote>
+<div><p>Чтобы добавить файлы, необходимо сначала добавить для них контейнер — документ. Вызываем столько раз, сколько документов передает пользователь.</p>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p>Добавление файла <a class="reference internal" href="../builder/%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%B8%D0%BB%D0%B4%D0%B5%D1%80%D0%B0.html#rst-markup-createfiledb"><span class="std std-ref">POST CreateDraftsBuilderDocumentFile</span></a></p></li>
+</ol>
+<blockquote>
+<div><p>Метод создает файл в документе. Вызываем столько раз, сколько файлов нужно положить в документ-контейнер.</p>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li><p>Сбор DraftsBuilder <a class="reference internal" href="../builder/%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%B8%D0%BB%D0%B4%D0%B5%D1%80%D0%B0.html#rst-markup-builddb"><span class="std std-ref">POST BuildDrafts</span></a></p></li>
+</ol>
+<blockquote>
+<div><p>Метод собирает все добавленные файлы и документы DraftsBuilder шаблона в черновики. В результате метод вернет идентификаторы черновиков, в каждом из которых находится: XML-файл описи, файлы, сообщение о представительстве (если есть).</p>
+</div></blockquote>
+<p>Для редактирования содержимого DraftsBuilder смотрите описание <a class="reference internal" href="../builder/%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%B8%D0%BB%D0%B4%D0%B5%D1%80%D0%B0.html"><span class="doc">методов</span></a>.</p>
+<p>Чтобы предотвратить появление коллизий, в работе методов предусмотрены ограничения — <a class="reference internal" href="loks.html"><span class="doc">блокировки</span></a>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="loks.html" class="btn btn-neutral float-right" title="Блокировки" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="content.html" class="btn btn-neutral float-left" title="Сервис контентов" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ <script type="text/javascript">
+ 	document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.toggle').forEach(item => {
+        const switcher = document.createElement('div');
+        switcher.classList.add('switcher');
+        switcher.addEventListener('click', () => {
+          item.classList.toggle('open');
+        })
+        item.appendChild(switcher);
+      });
+    })
+    /*
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+    */
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,449 @@
+
+
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Документооборот с ПФР &mdash; документация extern-api 1.1</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
+    <link rel="search" title="Поиск" href="../search.html" />
+    <link rel="next" title="Отчетность в ПФР по форме СЗВ-ТД" href="szvtd.html" />
+    <link rel="prev" title="Алгоритм работы с методами в проактивных выплатах" href="proactive_%20algorithm.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> extern-api
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Поиск в документации" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">История изменений</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release%20notes.html">История изменений API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Подготовка</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../recommendations.html">Рекомендации по работе c API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/index.html">Начало работы с API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth_oidc/index.html">Аутентификация OpenID Connect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../specification/index.html">Спецификация</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">База знаний</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="filename.html">Наименование файлов</a></li>
+<li class="toctree-l2"><a class="reference internal" href="print.html">Печать документов</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content.html">Сервис контентов</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DraftsBuilder.html">DraftsBuilder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loks.html">Блокировки</a></li>
+<li class="toctree-l2"><a class="reference internal" href="businessReg.html">Документооборот регистрации бизнеса</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demand.html">Требование</a></li>
+<li class="toctree-l2"><a class="reference internal" href="check-demand.html">Проверка требования ФНС</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inventory.html">Опись — ответ на требование</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rnpt.html">Прослеживаемость товаров. РНПТ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FSS.html">Документооборот с ФСС</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reestr-pvso.html">Реестр ПВСО</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sedo-fss.html">Уведомления и извещения СЭДО ФСС</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sedo-subscription.html">Подписки СЭДО ФСС на получение извещений и уведомлений</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proactiv.html">Проактивные выплаты</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proactive_%20algorithm.html">Алгоритм работы с методами в проактивных выплатах</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Документооборот с ПФР</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Особенности формирования отчетности в ПФР</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#api">Процесс работы с API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id7">Создание черновика</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">Документооборот</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">Полезные ссылки по отчетности в ПФР</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="szvtd.html">Отчетность в ПФР по форме СЗВ-ТД</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stat-letter.html">Письма в Росстат</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Работа с API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../accounts/index.html">Работа с учетными записями</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drafts/index.html">Работа с черновиками</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dc/index.html">Работа с документооборотами</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inventories/index.html">Представление документов к требованиям</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../builder/index.html">Конструктор черновиков (DraftsBuilder)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents/index.html">Сервис контентов</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Дополнительно</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../manuals/index.html">Справка</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contacts.html">Контакты</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SDK.html">SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/index.html">Аутентификация по auth.sid (obsolete)</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">extern-api</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">База знаний</a> &raquo;</li>
+        
+      <li>Документооборот с ПФР</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/knowledge base/PFR.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id4">
+<h1><a class="toc-backref" href="#id10">Документооборот с ПФР</a><a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h1>
+<div class="contents topic" id="id5">
+<p class="topic-title">Оглавление</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#id4" id="id10">Документооборот с ПФР</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id6" id="id11">Особенности формирования отчетности в ПФР</a></p></li>
+<li><p><a class="reference internal" href="#api" id="id12">Процесс работы с API</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id7" id="id13">Создание черновика</a></p></li>
+<li><p><a class="reference internal" href="#id8" id="id14">Документооборот</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#id9" id="id15">Полезные ссылки по отчетности в ПФР</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>Через API Контур.Экстерна в Пенсионный Фонд России можно отправить следующие формы отчетности:</p>
+<ul class="simple">
+<li><p>СЗВ-М реестр застрахованных лиц (ежемесячная отчетность);</p></li>
+<li><p>СЗВ-СТАЖ сведения о стаже застрахованных лиц;</p></li>
+<li><p>СЗВ-КОРР корректировка ранее учтенных сведений;</p></li>
+<li><p>ОДВ-1 корректировка или отмена сведений о рабочих местах в особых условиях труда;</p></li>
+<li><p>Квартальная отчетность ДСВ-3;</p></li>
+<li><p>АДВ 1,2,3 - Анкета застрахованного лица.</p></li>
+</ul>
+<p>Также в Пенсионный Фонд России можно отправить другие формы отчетности через систему ЭДОК:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>заявления на подключение к ЭДОК</p></li>
+<li><p>СЗВ-ТД.</p></li>
+</ul>
+<p>Подробнее про данные документообороты см. в статье <a class="reference internal" href="szvtd.html"><span class="doc">Отчетность в ПФР по форме СЗВ-ТД</span></a></p>
+</div></blockquote>
+<div class="section" id="id6">
+<h2><a class="toc-backref" href="#id11">Особенности формирования отчетности в ПФР</a><a class="headerlink" href="#id6" title="Ссылка на этот заголовок">¶</a></h2>
+<ol class="arabic">
+<li><p>В метаинформации черновика заполняется регистрационная информация, которую необходимо передавать в ПФР: код УПФР, регистрационный номер организации в ПФР.</p></li>
+<li><p>Регистрационный номер и код УПФР всегда необходимо передавать в формате ПФР через дефис.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Маска кода УПФР: ХХХ-ХХХ.</p></li>
+<li><p>Маска регистрационного номера: ХХХ-ХХХ-ХХХХХХ.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>В черновике должен быть <a class="reference internal" href="DraftsBuilder.html#rst-markup-invent-file"><span class="std std-ref">файл описи</span></a>, в котором указаны дата и время создания файла.</p></li>
+<li><p>Черновик будет доступен для отправки только в течение <strong>24 часов</strong> от указанного в описи времени. Если через 24 часа черновик не отправлен, нужно снова сформировать файл описи. Так как время и дата файла описи не должны отличаться от даты и времени отправки более чем на 24 часа.</p></li>
+<li><p>В документообороте с ПФР ответными документами являются подписи полученных от УПФР файлов.</p></li>
+</ol>
+</div>
+<div class="section" id="api">
+<h2><a class="toc-backref" href="#id12">Процесс работы с API</a><a class="headerlink" href="#api" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="section" id="id7">
+<h3><a class="toc-backref" href="#id13">Создание черновика</a><a class="headerlink" href="#id7" title="Ссылка на этот заголовок">¶</a></h3>
+<ol class="arabic">
+<li><p>Если нет файла описи:</p>
+<ul class="simple">
+<li><p>Создаем <a class="reference internal" href="DraftsBuilder.html"><span class="doc">DraftsBuilder</span></a> с типом <a class="reference external" href="urn:drafts-builder:pfr-report">urn:drafts-builder:pfr-report</a>, в метаинформации обязательно заполнить в RecipientInfo поле <code class="docutils literal notranslate"><span class="pre">upfr-code</span></code>, в AccountInfo поле <code class="docutils literal notranslate"><span class="pre">registration-number-pfr</span></code> — это информация, которая должна быть передана в УПФР с отчетом.</p></li>
+</ul>
+<p>Пример регистрационного номера юридического лица в ПФР: 000-000-000000. Пример кода УПФР: 000-000.</p>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<p><strong>Пример тела запроса для создания DraftsBuilder</strong></p>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;Sender&quot;</span><span class="p">:</span> <span class="p">{</span>
+       <span class="nt">&quot;Inn&quot;</span><span class="p">:</span> <span class="s2">&quot;7381415822&quot;</span><span class="p">,</span>
+       <span class="nt">&quot;Kpp&quot;</span><span class="p">:</span> <span class="s2">&quot;111135111&quot;</span><span class="p">,</span>
+       <span class="nt">&quot;Name&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+       <span class="nt">&quot;Certificate&quot;</span><span class="p">:</span> <span class="p">{</span>
+           <span class="nt">&quot;Content&quot;</span><span class="p">:</span> <span class="s2">&quot;MIIJyDCCCXW...plBLbm61IfFrgjCSh3pteYQ9XEx2s8eFFg&quot;</span>
+       <span class="p">},</span>
+       <span class="nt">&quot;IsRepresentative&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+       <span class="nt">&quot;IPAddress&quot;</span><span class="p">:</span> <span class="s2">&quot;8.8.8.8&quot;</span>
+   <span class="p">},</span>
+   <span class="nt">&quot;Payer&quot;</span><span class="p">:</span> <span class="p">{</span>
+       <span class="nt">&quot;Inn&quot;</span><span class="p">:</span> <span class="s2">&quot;7381415822&quot;</span><span class="p">,</span>
+       <span class="nt">&quot;Name&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+       <span class="nt">&quot;Organization&quot;</span><span class="p">:</span> <span class="p">{</span>
+           <span class="nt">&quot;Kpp&quot;</span><span class="p">:</span> <span class="s2">&quot;111135111&quot;</span>
+       <span class="p">},</span>
+       <span class="nt">&quot;RegistrationNumberFss&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+       <span class="nt">&quot;RegistrationNumberPfr&quot;</span><span class="p">:</span> <span class="s2">&quot;823-858-020760&quot;</span>
+   <span class="p">},</span>
+   <span class="nt">&quot;Recipient&quot;</span><span class="p">:</span> <span class="p">{</span>
+       <span class="nt">&quot;IfnsCode&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+       <span class="nt">&quot;MriCode&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+       <span class="nt">&quot;TogsCode&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+       <span class="nt">&quot;UpfrCode&quot;</span><span class="p">:</span> <span class="s2">&quot;666-666&quot;</span><span class="p">,</span>
+       <span class="nt">&quot;FssCode&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+       <span class="nt">&quot;RegistrationIfnsCode&quot;</span><span class="p">:</span> <span class="kc">null</span>
+   <span class="p">},</span>
+   <span class="nt">&quot;BuilderType&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:drafts-builder:pfr-report&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;BuilderData&quot;</span><span class="p">:</span> <span class="kc">null</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<ul class="simple">
+<li><p>Когда все файлы для отчета с подписями добавлены в документы, запускаем сборку черновика. В результате в черновике будут все добавленные документы и файл «Описание отчетности». <a class="reference internal" href="DraftsBuilder.html#rst-markup-db-proc"><span class="std std-ref">Подробнее о процессе работы с DraftsBuilder</span></a>.</p></li>
+<li><p>Переходим к <a class="reference internal" href="../drafts/%D0%BF%D0%BE%D1%80%D1%8F%D0%B4%D0%BE%D0%BA%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B%20%D1%81%20%D1%87%D0%B5%D1%80%D0%BD%D0%BE%D0%B2%D0%B8%D0%BA%D0%B0%D0%BC%D0%B8.html"><span class="doc">работе с черновиком</span></a>. Перед проверкой черновика обязательно нужно подписать файл описи.</p></li>
+</ul>
+</li>
+<li><p>Если файл описи есть, переходим сразу к <a class="reference internal" href="../drafts/%D0%BF%D0%BE%D1%80%D1%8F%D0%B4%D0%BE%D0%BA%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B%20%D1%81%20%D1%87%D0%B5%D1%80%D0%BD%D0%BE%D0%B2%D0%B8%D0%BA%D0%B0%D0%BC%D0%B8.html"><span class="doc">работе с черновиком</span></a>.</p></li>
+</ol>
+</div>
+<div class="section" id="id8">
+<h3><a class="toc-backref" href="#id14">Документооборот</a><a class="headerlink" href="#id8" title="Ссылка на этот заголовок">¶</a></h3>
+<div class="admonition seealso">
+<p class="admonition-title">См.также</p>
+<p>Подробная схема и описание возможных статусов документооборота с ПФР представлены в разделе <a class="reference internal" href="../specification/%D1%81%D1%82%D0%B0%D1%82%D1%83%D1%81%D1%8B%20%D0%94%D0%9E.html#rst-markup-prf-status"><span class="std std-ref">спецификации</span></a>.</p>
+</div>
+<ol class="arabic simple">
+<li><p>Пользователь отправляет отчет в УПФР.</p></li>
+<li><p>В течение 2-х рабочих дней с момента отправки отчета УПФР высылает <strong>квитанцию</strong> (подтверждение о получении).</p></li>
+</ol>
+<blockquote>
+<div><p><em>Квитанция</em> (подтверждение о получении) – документ, подтверждающий факт доставки отправленных документов в ПФР. Регламентированный срок получения квитанции составляет 2 рабочих дня.</p>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p>В течение 4-х рабочих дней с момента отправки отчета УПФР высылает <strong>протокол контроля</strong>.</p></li>
+</ol>
+<blockquote>
+<div><p><em>Протокол контроля</em> — документ, который содержит результат проверки отчета на стороне контролирующего органа и имеет статус. Положительный протокол и свидетельствует об удачной сдаче отчета в ПФР в случае, если ошибок не обнаружено. Отрицательный протокол свидетельствует о наличии ошибок, в таком случае требуется повторная отправка отчета. Регламентированный срок получения протокола составляет 2 рабочих дня с момента получения квитанции о доставке.</p>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li><p>Пользователь подписывает поступивший протокол из УПФР, что является подтверждением получения протокола.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Примечание</p>
+<p>В документообороте с УПФР <strong>ответными документами являются подписи расшифрованных контентов</strong> протокола контроля и всех приложений к протоколу. Подписи должны быть отправлены все вместе. Для этого были реализованы <a class="reference internal" href="../dc/%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%BD%D1%8B%D0%B9%20%D0%B4%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82.html#rst-markup-pfr-reply"><span class="std std-ref">методы для работы с ответными документами в ПФР</span></a>.</p>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Когда пользователь получает протокол контроля (документ с типом <a class="reference external" href="urn:document:pfr-report-protocol">urn:document:pfr-report-protocol</a>), под ним будет сформирована ссылка на создание пакета ответного документа. Метод: <a class="reference internal" href="../dc/%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%BD%D1%8B%D0%B9%20%D0%B4%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82.html#rst-markup-generatepfrreply"><span class="std std-ref">POST GeneratePfrReply</span></a>. В результате метод вернет сгенерированную структуру пакета ответных документов.</p></li>
+</ol>
+<blockquote>
+<div><p>Внутри пакета ответных документов в каждом документе будет лежать зашифрованный контент документов из УПФР. Также в документе будет ссылка, чтобы скачать его.</p>
+</div></blockquote>
+<ol class="arabic simple" start="6">
+<li><p>Пользователь для каждого документа сам расшифровывает контент и загружает его обратно: в документе будет ссылка на добавление расшифрованного контента. Метод: <a class="reference internal" href="../dc/%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%BD%D1%8B%D0%B9%20%D0%B4%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82.html#rst-markup-savepfrreplydocumentdecryptedcontent"><span class="std std-ref">PUT SavePfrReplyDocumentDecryptedContent</span></a>.</p></li>
+<li><p>Далее необходимо во все документы приложить подпись пользователя, которой он расшифровывал контент, в формате base64. В документе также будет ссылка. Метод: <a class="reference internal" href="../dc/%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%BD%D1%8B%D0%B9%20%D0%B4%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82.html#rst-markup-savepfrreplydocumentsignature"><span class="std std-ref">PUT SavePfrReplyDocumentSignature</span></a>.</p></li>
+<li><p>Когда ко всем документам будут приложены расшифрованные контенты и подписи, можно отправлять сформированный пакет ответных документов. Метод: <a class="reference internal" href="../dc/%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%BD%D1%8B%D0%B9%20%D0%B4%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82.html#rst-markup-sendpfrreplydocument"><span class="std std-ref">POST SendPfrReplyDocument</span></a>.</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="id9">
+<h2><a class="toc-backref" href="#id15">Полезные ссылки по отчетности в ПФР</a><a class="headerlink" href="#id9" title="Ссылка на этот заголовок">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.kontur-extern.ru/how_to_connect/connect_pfr">Порядок подключения к системе ЭДО ПФР</a> - в данной статье раскрыты особенности оформления юридических документов. Для некоторых регионов существуют свои правила.</p></li>
+<li><p><a class="reference external" href="https://kontur.ru/extern/spravka/254-otchetnost_pfr">Отчетность в ПФР для ЮЛ и ИП в 2019 году</a></p></li>
+<li><p><a class="reference external" href="https://kontur.ru/extern/spravka/286-szv">СЗВ-М в 2019 году</a></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="szvtd.html" class="btn btn-neutral float-right" title="Отчетность в ПФР по форме СЗВ-ТД" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="proactive_%20algorithm.html" class="btn btn-neutral float-left" title="Алгоритм работы с методами в проактивных выплатах" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ <script type="text/javascript">
+ 	document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.toggle').forEach(item => {
+        const switcher = document.createElement('div');
+        switcher.classList.add('switcher');
+        switcher.addEventListener('click', () => {
+          item.classList.toggle('open');
+        })
+        item.appendChild(switcher);
+      });
+    })
+    /*
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+    */
+</script>
+
+
+</body>
+</html>

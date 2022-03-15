@@ -1,115 +1,328 @@
 
+
+
+
 <!DOCTYPE html>
+<html class="writer-html5" lang="ru" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>API Контур Экстерна &mdash; документация extern-api 1.1</title>
+  
 
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Привет! это наша дока из будущего))))) &#8212; testHtmlDoc 1 documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-   
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  <link rel="stylesheet" href="_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
 
-  </head><body>
+  
+  
+    <link rel="shortcut icon" href="_static/favicon2.ico"/>
   
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Алфавитный указатель" href="genindex.html" />
+    <link rel="search" title="Поиск" href="search.html" />
+    <link rel="next" title="История изменений API" href="release%20notes.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
           
 
-          <div class="body" role="main">
+          
+            <a href="#" class="icon icon-home"> extern-api
+          
+
+          
+          </a>
+
+          
             
-  <div class="section" id="id1">
-<h1>Привет! это наша дока из будущего)))))<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+            
+              <div class="version">
+                1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Поиск в документации" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">История изменений</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release%20notes.html">История изменений API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Подготовка</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="recommendations.html">Рекомендации по работе c API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="howto/index.html">Начало работы с API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auth_oidc/index.html">Аутентификация OpenID Connect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="specification/index.html">Спецификация</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knowledge%20base/index.html">База знаний</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Работа с API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="accounts/index.html">Работа с учетными записями</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drafts/index.html">Работа с черновиками</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dc/index.html">Работа с документооборотами</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inventories/index.html">Представление документов к требованиям</a></li>
+<li class="toctree-l1"><a class="reference internal" href="builder/index.html">Конструктор черновиков (DraftsBuilder)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/index.html">Сервис контентов</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Дополнительно</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="manuals/index.html">Справка</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contacts.html">Контакты</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SDK.html">SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auth/index.html">Аутентификация по auth.sid (obsolete)</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">extern-api</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>API Контур Экстерна</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/index.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id7">
+<h1>API Контур Экстерна<a class="headerlink" href="#id7" title="Ссылка на этот заголовок">¶</a></h1>
+<a class="reference internal image-reference" href="_images/logo.png"><img alt="_images/logo.png" src="_images/logo.png" style="width: 550px;" /></a>
 <div class="toctree-wrapper compound">
 </div>
-<p>Привет! Как дела</p>
-<div class="section" id="id2">
-<h2>Еще можно добавить обычный заголовок<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>тада</p>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<p>API позволяет интегрировать сервис отчетности с контролирующими органами в ваши процессы и информационные системы.</p>
+<p>Контур.Экстерн является сервисом отчетности, который обеспечивает электронный документооборот между хозяйствующими субъектами и контролирующими органами. Веб сервис обладает рядом преимуществ, но не всегда может поддержать уникальные сценарии пользователя. API Контур.Экстерна нужен, чтобы встроить работу с электронным документооборотом отчетности в интерфейсы информационных систем клиента.</p>
+</div>
+<div class="section" id="id8">
+<h1>Интеграционные возможности<a class="headerlink" href="#id8" title="Ссылка на этот заголовок">¶</a></h1>
+<p>Использование API Контур.Экстерна позволяет:</p>
+<ol class="arabic simple">
+<li><p>Авторизовать пользователя в его в учетной записи Контур.Экстерна.</p></li>
+<li><p>Создать черновик отчета и подготовить его отправке в контролирующие органы, такие как ФНС, ФСС, ПФР, Росстат.</p></li>
+<li><p>Отправить сформированную отчетность в контролирующий орган.</p></li>
+<li><p>Отследить и завершить документооборот с контролирующим органом. API позволяет создать все необходимые технологические документы.</p></li>
+<li><p>Настроить централизованный мониторинг отчетности для любой организационной структуры — вы сможете следить за статусами документооборотов и настроить для себя уведомления по изменениям в них.</p></li>
+<li><p>Автоматизировать работу с требованиями — вы сможете настроить массовую загрузку поступивших требований в вашу информационную систему. Пользователи смогут формировать и отправлять ответ на требование без ограничения на количество и объем отправляемых документов.</p></li>
+<li><p>Организовать зашифрованный или расшифрованный архив отчетов в вашей информационной системе или локальном хранилище.</p></li>
+</ol>
+</div>
+<div class="section" id="id9">
+<h1>Модели сотрудничества<a class="headerlink" href="#id9" title="Ссылка на этот заголовок">¶</a></h1>
+<a class="reference internal image-reference" href="_images/firstPage.png"><img alt="_images/firstPage.png" src="_images/firstPage.png" style="width: 600px;" /></a>
+<div class="section" id="id10">
+<h2>Абонент Контур.Экстерна<a class="headerlink" href="#id10" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если вы автоматизируете процессы отчетности в своей компании или холдинге, то вы сможете внедрить Контур.Экстерн в свою корпоративную информационную систему. Ваши пользователи будут работать в привычном для них интерфейсе, а API Контур.Экстерна станет инструментом для проверки и передачи данных из вашей информационной системы в контролирующие органы.</p>
+</div>
+<div class="section" id="id11">
+<h2>Компания-партнер Контур.Экстерна<a class="headerlink" href="#id11" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если вы разрабатываете или уже продаете свою информационную систему, и хотите расширить ее функциональность в части электронного документооборота с контролирующими органами — вам не нужно получать статус оператора ЭДО. Ваша система будет взаимодействовать с контролирующими органами в соответствии с законодательством через API Контур.Экстерна. Вашим клиентам достаточно будет получить учетную запись в Экстерне, и они смогут работать с отчетностью в вашей системе по вашим тарифам.</p>
 </div>
 </div>
-<div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id12">
+<h1>С чего начать<a class="headerlink" href="#id12" title="Ссылка на этот заголовок">¶</a></h1>
+<p>Для начала работы с API Контур.Экстерна:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
-<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
-<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+<li><p>Получите <a class="reference internal" href="auth_oidc/api-key.html"><span class="doc">api-key</span></a>.</p></li>
+<li><p>Заключите договор с Контуром.</p></li>
+<li><p>Пройдите <a class="reference internal" href="auth_oidc/index.html"><span class="doc">аутентификацию</span></a> и получите Access Token.</p></li>
+<li><p>Для криптографических операций необходимо иметь <a class="reference external" href="https://kontur.ru/ca/spravka/36-iz_chego_sostoit_sertifikat_elektronnoj_podpisi">сертификат электронной подписи</a>.</p></li>
 </ul>
 </div>
-
-
-          </div>
-          
-        </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="#">testHtmlDoc</a></h1>
-
-
-
-
-
-
-
-
-<h3>Navigation</h3>
-
-<div class="relations">
-<h3>Related Topics</h3>
+<div class="section" id="id13">
+<h1>Тестирование сервиса<a class="headerlink" href="#id13" title="Ссылка на этот заголовок">¶</a></h1>
+<p>Если вы сомневаетесь, подходит ли вам наш API, мы предоставляем широкий выбор инструментов для тестирования. Вы сможете самостоятельно изучить документацию. А если хотите попробовать поработать с методами, напишите нам на <a class="reference external" href="mailto:extern-api&#37;&#52;&#48;skbkontur&#46;ru">extern-api<span>&#64;</span>skbkontur<span>&#46;</span>ru</a>. Мы вышлем тестовый api-key, учетную запись с  тестовым сертификатом и заполненными данными, чтобы вы могли отправлять запросы и познакомиться с API. В сервисе <a class="reference external" href="https://developer.kontur.ru/doc/extern.test.tools">Extern Test Tools</a> вы можете сгенерировать тестовые данные, которые можно использовать на тестовой площадке.</p>
+</div>
+<div class="section" id="id14">
+<h1>Полезные ссылки<a class="headerlink" href="#id14" title="Ссылка на этот заголовок">¶</a></h1>
+<ul class="simple">
+<li><p>Документация Swagger:</p>
 <ul>
-  <li><a href="#">Documentation overview</a><ul>
-  </ul></li>
+<li><p><a class="reference external" href="https://developer.kontur.ru/doc/extern">API Экстерна для работы с учетными записями и организациями</a>.</p></li>
+<li><p><a class="reference external" href="https://developer.kontur.ru/doc/extern.drafts">API Экстерна для работы с черновиками и конструктором черновиков (draftsbuilder)</a>.</p></li>
+<li><p><a class="reference external" href="https://developer.kontur.ru/doc/extern.docflows">API Экстерна для работы с документооборотами и лентой событий</a>.</p></li>
+<li><p><a class="reference external" href="https://developer.kontur.ru/doc/extern.contents">API Экстерна для работы с сервисом контентов</a>.</p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://extern-api.testkontur.ru/">Тестовая площадка</a></p></li>
+<li><p><a class="reference external" href="https://extern-api.kontur.ru/">Рабочая площадка</a></p></li>
+<li><p><a class="reference external" href="https://www.kontur-extern.ru/support/faq">Вопросы и ответы по отчетности</a></p></li>
+<li><p><a class="reference external" href="https://developer.kontur.ru/doc/extern.test.tools">Extern Test Tools</a> — сервис для генерации тестовых данных, которые можно использовать на тестовой площадке.</p></li>
 </ul>
 </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="release%20notes.html" class="btn btn-neutral float-right" title="История изменений API" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-</div>
-<script>$('#searchbox').show(0);</script>
 
+  <hr/>
 
+  <div role="contentinfo">
+    <p>
 
+    </p>
+  </div> 
 
-
-
-
-
+</footer>
         </div>
       </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2022, me.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.2.0</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
-      
-      |
-      <a href="_sources/index.rst.txt"
-          rel="nofollow">Page source</a>
-    </div>
 
-    
+    </section>
 
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
     
-  </body>
+  
+ <script type="text/javascript">
+ 	document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.toggle').forEach(item => {
+        const switcher = document.createElement('div');
+        switcher.classList.add('switcher');
+        switcher.addEventListener('click', () => {
+          item.classList.toggle('open');
+        })
+        item.appendChild(switcher);
+      });
+    })
+    /*
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+    */
+</script>
+
+
+</body>
 </html>

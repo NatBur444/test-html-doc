@@ -1,0 +1,1138 @@
+
+
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Статусы и порядок документооборотов &mdash; документация extern-api 1.1</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
+    <link rel="search" title="Поиск" href="../search.html" />
+    <link rel="next" title="Состояния документооборота" href="%D1%81%D0%BE%D1%81%D1%82%D0%BE%D1%8F%D0%BD%D0%B8%D1%8F%20%D0%94%D0%9E.html" />
+    <link rel="prev" title="Типы DraftsBuilder" href="%D1%82%D0%B8%D0%BF%D1%8B%20DraftsBuilder.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> extern-api
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Поиск в документации" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">История изменений</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release%20notes.html">История изменений API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Подготовка</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../recommendations.html">Рекомендации по работе c API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/index.html">Начало работы с API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth_oidc/index.html">Аутентификация OpenID Connect</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Спецификация</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="%D1%82%D0%B8%D0%BF%D1%8B%20%D0%94%D0%9E.html">Типы документооборотов</a></li>
+<li class="toctree-l2"><a class="reference internal" href="%D1%82%D0%B8%D0%BF%D1%8B%20%D0%B4%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%BE%D0%B2.html">Типы документов</a></li>
+<li class="toctree-l2"><a class="reference internal" href="%D1%82%D0%B8%D0%BF%D1%8B%20DraftsBuilder.html">Типы DraftsBuilder</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Статусы и порядок документооборотов</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">ФНС</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rst-markup-fnsreport-status">Декларации</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">ИОН-запросы</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">Письма в ФНС</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">Письма из ФНС</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rst-markup-demand-status">Требования</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rst-markup-submission-status">Представления и Опись</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">Заявления</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rst-markup-business-reg-status">Регистрация бизнеса</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">Росстат</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id12">Отчеты</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rst-markup-stat-letter-status">Письма в Росстат</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id14">Письма из Росстата</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#rst-markup-prf-status">ПФР</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id16">Отчеты</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rst-markup-szvtd-status">Отчет СЗВ-ТД</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id18">Письма в ПФР</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id19">Письма и рассылки из ПФР</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id20">Уточнение платежей</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rst-markup-ancillary-status">Заявление на подключение к ЭДОК</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id22">ФСС</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rst-markup-4fss">Расчет 4-ФСС</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rst-markup-subscription">Подписка оператора на документооборот с ФСС по абоненту</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rst-markup-pvso">Извещение о прямых выплатах мер социального обеспечения</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rst-markup-sedo-eln">Уведомления об изменении статуса электронного больничного листа</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="%D1%81%D0%BE%D1%81%D1%82%D0%BE%D1%8F%D0%BD%D0%B8%D1%8F%20%D0%94%D0%9E.html">Состояния документооборота</a></li>
+<li class="toctree-l2"><a class="reference internal" href="%D1%81%D1%82%D0%B0%D1%82%D1%83%D1%81%D1%8B%20%D0%BB%D0%B5%D0%BD%D1%82%D1%8B%20%D1%81%D0%BE%D0%B1%D1%8B%D1%82%D0%B8%D0%B9.html">Статусы ленты событий</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge%20base/index.html">База знаний</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Работа с API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../accounts/index.html">Работа с учетными записями</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drafts/index.html">Работа с черновиками</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dc/index.html">Работа с документооборотами</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inventories/index.html">Представление документов к требованиям</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../builder/index.html">Конструктор черновиков (DraftsBuilder)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents/index.html">Сервис контентов</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Дополнительно</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../manuals/index.html">Справка</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contacts.html">Контакты</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SDK.html">SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/index.html">Аутентификация по auth.sid (obsolete)</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">extern-api</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Спецификация</a> &raquo;</li>
+        
+      <li>Статусы и порядок документооборотов</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/specification/статусы ДО.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>Статусы и порядок документооборотов<a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h1>
+<div class="section" id="id2">
+<h2>ФНС<a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="section" id="rst-markup-fnsreport-status">
+<span id="id3"></span><h3>Декларации<a class="headerlink" href="#rst-markup-fnsreport-status" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Возможные статусы:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 13%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Urn</p></th>
+<th class="head"><p>Короткое имя</p></th>
+<th class="head"><p>Комментарий</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:sent">urn:docflow-common-status:sent</a></p></td>
+<td><p>отправлен</p></td>
+<td><p>документооборот отправлен в ФНС</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="urn:docflow-common-status:delivered">urn:docflow-common-status:delivered</a></p></td>
+<td><p>доставлен</p></td>
+<td><p>от ФНС пришло извещение о получении, документооборот успешно загружен в приемный комплекс ФНС</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:response-arrived">urn:docflow-common-status:response-arrived</a></p></td>
+<td><p>получен ответ</p></td>
+<td><p>от ФНС пришли результаты обработки или проверки</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="urn:docflow-common-status:response-processed">urn:docflow-common-status:response-processed</a></p></td>
+<td><p>ответ обработан</p></td>
+<td><p>абонент отправил извещение о получении на квитанцию о приеме</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:finished">urn:docflow-common-status:finished</a></p></td>
+<td><p>завершен</p></td>
+<td><p>абонент отправил извещение о получении на результаты проверки или на уведомление об отказе</p></td>
+</tr>
+</tbody>
+</table>
+<p>Процесс изменения статуса:</p>
+<img alt="../_images/status-fns534-report.jpg" src="../_images/status-fns534-report.jpg" />
+</div>
+<div class="section" id="id4">
+<h3>ИОН-запросы<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Возможные статусы:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 13%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Urn</p></th>
+<th class="head"><p>Короткое имя</p></th>
+<th class="head"><p>Комментарий</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:sent">urn:docflow-common-status:sent</a></p></td>
+<td><p>отправлен</p></td>
+<td><p>документооборот отправлен в ФНС</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="urn:docflow-common-status:delivered">urn:docflow-common-status:delivered</a></p></td>
+<td><p>доставлен</p></td>
+<td><p>от ФНС пришло извещение о получении, документооборот успешно загружен в приемный комплекс ФНС</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:response-arrived">urn:docflow-common-status:response-arrived</a></p></td>
+<td><p>получен ответ</p></td>
+<td><p>от ФНС пришли результаты обработки или проверки</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="urn:docflow-common-status:response-processed">urn:docflow-common-status:response-processed</a></p></td>
+<td><p>ответ обработан</p></td>
+<td><p>абонент отправил извещение о получении на квитанцию о приеме</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:finished">urn:docflow-common-status:finished</a></p></td>
+<td><p>завершен</p></td>
+<td><p>абонент отправил извещение о получении на результаты проверки или на уведомление об отказе</p></td>
+</tr>
+</tbody>
+</table>
+<p>Процесс изменения статуса:</p>
+<img alt="../_images/status-fns534-ion.jpg" src="../_images/status-fns534-ion.jpg" />
+</div>
+<div class="section" id="id5">
+<h3>Письма в ФНС<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Возможные статусы:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 13%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Urn</p></th>
+<th class="head"><p>Короткое имя</p></th>
+<th class="head"><p>Комментарий</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:sent">urn:docflow-common-status:sent</a></p></td>
+<td><p>отправлен</p></td>
+<td><p>документооборот отправлен в ФНС</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="urn:docflow-common-status:delivered">urn:docflow-common-status:delivered</a></p></td>
+<td><p>доставлен</p></td>
+<td><p>от ФНС пришло извещение о получении, документооборот успешно загружен в приемный комплекс ФНС</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:response-arrived">urn:docflow-common-status:response-arrived</a></p></td>
+<td><p>получен ответ</p></td>
+<td><p>от ФНС пришел отказ в обработке письма</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="urn:docflow-common-status:response-processed">urn:docflow-common-status:response-processed</a></p></td>
+<td><p>ответ обработан</p></td>
+<td><p>абонент отправил извещение о получении на уведомление об отказе</p></td>
+</tr>
+</tbody>
+</table>
+<p>Процесс изменения статуса:</p>
+<img alt="../_images/status-fns534-letter.jpg" src="../_images/status-fns534-letter.jpg" />
+</div>
+<div class="section" id="id6">
+<h3>Письма из ФНС<a class="headerlink" href="#id6" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Возможные статусы:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 13%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Urn</p></th>
+<th class="head"><p>Короткое имя</p></th>
+<th class="head"><p>Комментарий</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:received">urn:docflow-common-status:received</a></p></td>
+<td><p>получен</p></td>
+<td><p>абонент получил письмо от ФНС, доступно для чтения</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="urn:docflow-common-status:finished">urn:docflow-common-status:finished</a></p></td>
+<td><p>завершен</p></td>
+<td><p>абонент отправил извещение о получении письма или рассылки</p></td>
+</tr>
+</tbody>
+</table>
+<p>Процесс изменения статуса:</p>
+<img alt="../_images/status-fns534-letterCU.jpg" src="../_images/status-fns534-letterCU.jpg" />
+</div>
+<div class="section" id="rst-markup-demand-status">
+<span id="id7"></span><h3>Требования<a class="headerlink" href="#rst-markup-demand-status" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Возможные статусы:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 13%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Urn</p></th>
+<th class="head"><p>Короткое имя</p></th>
+<th class="head"><p>Комментарий</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:received">urn:docflow-common-status:received</a></p></td>
+<td><p>получен</p></td>
+<td><p>требование пришло от ФНС,доступно для чтения</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="urn:docflow-common-status:arrived">urn:docflow-common-status:arrived</a></p></td>
+<td><p>получен</p></td>
+<td><p>абонент отправил извещение о получении требования</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:processed">urn:docflow-common-status:processed</a></p></td>
+<td><p>обработан</p></td>
+<td><p>абонент отправил квитанцию о приеме или уведомление об отказе</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="urn:docflow-common-status:finished">urn:docflow-common-status:finished</a></p></td>
+<td><p>завершен</p></td>
+<td><p>инспекция прислала извещение о получении квитанции о приеме или уведомления об отказе</p></td>
+</tr>
+</tbody>
+</table>
+<p>Процесс изменения статуса:</p>
+<img alt="../_images/status-fns534-demand.jpg" src="../_images/status-fns534-demand.jpg" />
+</div>
+<div class="section" id="rst-markup-submission-status">
+<span id="id8"></span><h3>Представления и Опись<a class="headerlink" href="#rst-markup-submission-status" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Возможные статусы:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 17%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Urn</p></th>
+<th class="head"><p>Короткое имя</p></th>
+<th class="head"><p>Комментарий</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:sent">urn:docflow-common-status:sent</a></p></td>
+<td><p>отправлен</p></td>
+<td><p>документооборот отправлен в ФНС</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="urn:docflow-common-status:delivered">urn:docflow-common-status:delivered</a></p></td>
+<td><p>доставлен</p></td>
+<td><p>от ФНС пришло извещение о получении, документооборот успешно загружен в приемный комплекс ФНС</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:response-arrived">urn:docflow-common-status:response-arrived</a></p></td>
+<td><p>получен ответ</p></td>
+<td><p>от ФНС пришли результаты обработки или проверки</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="urn:docflow-common-status:finished">urn:docflow-common-status:finished</a></p></td>
+<td><p>завершен</p></td>
+<td><p>абонент отправил извещение о получении на результаты проверки или на уведомление об отказе</p></td>
+</tr>
+</tbody>
+</table>
+<p>Процесс изменения статуса:</p>
+<img alt="../_images/status-fns534-submission.jpg" src="../_images/status-fns534-submission.jpg" />
+</div>
+<div class="section" id="id9">
+<h3>Заявления<a class="headerlink" href="#id9" title="Ссылка на этот заголовок">¶</a></h3>
+<div class="admonition important">
+<p class="admonition-title">Важно</p>
+<p>Данный процесс документооборота заявлений о ввозе товаров и уплате косвенных налогов действует с сентября 2013 года. При работе с документооборотами этого типа, созданными до этого, набор документов будет отличаться.</p>
+</div>
+<p>Возможные статусы:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 13%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Urn</p></th>
+<th class="head"><p>Короткое имя</p></th>
+<th class="head"><p>Комментарий</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:sent">urn:docflow-common-status:sent</a></p></td>
+<td><p>отправлен</p></td>
+<td><p>документооборот отправлен в ФНС</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="urn:docflow-common-status:delivered">urn:docflow-common-status:delivered</a></p></td>
+<td><p>доставлен</p></td>
+<td><p>от ФНС пришло извещение о получении, документооборот успешно загружен в приемный комплекс ФНС</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:response-arrived">urn:docflow-common-status:response-arrived</a></p></td>
+<td><p>получен ответ</p></td>
+<td><p>от ФНС пришли результаты обработки или проверки</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="urn:docflow-common-status:response-processed">urn:docflow-common-status:response-processed</a></p></td>
+<td><p>ответ обработан</p></td>
+<td><p>абонент отправил извещение о получении на квитанцию о приеме</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:finished">urn:docflow-common-status:finished</a></p></td>
+<td><p>завершен</p></td>
+<td><p>абонент отправил извещение о получении на результаты проверки или на уведомление об отказе</p></td>
+</tr>
+</tbody>
+</table>
+<p>Процесс изменения статуса:</p>
+<img alt="../_images/status-fns534-application2013.jpg" src="../_images/status-fns534-application2013.jpg" />
+</div>
+<div class="section" id="rst-markup-business-reg-status">
+<span id="id10"></span><h3>Регистрация бизнеса<a class="headerlink" href="#rst-markup-business-reg-status" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Возможные статусы и состояния:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 14%" />
+<col style="width: 43%" />
+<col style="width: 14%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Urn</p></th>
+<th class="head"><p>Короткое имя</p></th>
+<th class="head"><p>Комментарий</p></th>
+<th class="head"><p>Возможное состояние</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:sent">urn:docflow-common-status:sent</a></p></td>
+<td><p>отправлен</p></td>
+<td><p>документооборот поставлен в очередь на отправку</p></td>
+<td><p>neutral</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="urn:docflow-common-status:delivered">urn:docflow-common-status:delivered</a></p></td>
+<td><p>доставлен</p></td>
+<td><p>документооборот отправлен в ФНС</p></td>
+<td><p>neutral</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:response-arrived">urn:docflow-common-status:response-arrived</a></p></td>
+<td><p>получен ответ</p></td>
+<td><p>от ФНС пришла расписка о принятии заявления, документооборот успешно загружен в приемный комплекс ФНС</p></td>
+<td><p>neutral</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="urn:docflow-common-status:finished">urn:docflow-common-status:finished</a></p></td>
+<td><p>завершен</p></td>
+<td><p>от ФНС пришли результаты обработки или проверки</p></td>
+<td><p>success или failed</p></td>
+</tr>
+</tbody>
+</table>
+<p>Процесс изменения статуса:</p>
+<img alt="../_images/status-fns534-businessRegistration.jpg" src="../_images/status-fns534-businessRegistration.jpg" />
+</div>
+</div>
+<div class="section" id="id11">
+<h2>Росстат<a class="headerlink" href="#id11" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="section" id="id12">
+<h3>Отчеты<a class="headerlink" href="#id12" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Возможные статусы:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 13%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Urn</p></th>
+<th class="head"><p>Короткое имя</p></th>
+<th class="head"><p>Комментарий</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:sent">urn:docflow-common-status:sent</a></p></td>
+<td><p>отправлен</p></td>
+<td><p>документооборот отправлен в Росстат</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="urn:docflow-common-status:delivered">urn:docflow-common-status:delivered</a></p></td>
+<td><p>доставлен</p></td>
+<td><p>от Росстата пришло извещение о получении, документооборот успешно загружен в приемный комплекс Росстата</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:response-arrived">urn:docflow-common-status:response-arrived</a></p></td>
+<td><p>получен ответ</p></td>
+<td><p>от Росстата пришли результаты проверки, возможны 4 вида различных документов, они могут быть неформализованными</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="urn:docflow-common-status:finished">urn:docflow-common-status:finished</a></p></td>
+<td><p>завершен</p></td>
+<td><p>абонент отправил извещение о получении на результаты проверки</p></td>
+</tr>
+</tbody>
+</table>
+<p>Процесс изменения статуса:</p>
+<img alt="../_images/status-stat-report.jpg" src="../_images/status-stat-report.jpg" />
+</div>
+<div class="section" id="rst-markup-stat-letter-status">
+<span id="id13"></span><h3>Письма в Росстат<a class="headerlink" href="#rst-markup-stat-letter-status" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Возможные статусы:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 13%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Urn</p></th>
+<th class="head"><p>Короткое имя</p></th>
+<th class="head"><p>Комментарий</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:sent">urn:docflow-common-status:sent</a></p></td>
+<td><p>отправлен</p></td>
+<td><p>документооборот отправлен в Росстат</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="urn:docflow-common-status:delivered">urn:docflow-common-status:delivered</a></p></td>
+<td><p>доставлен</p></td>
+<td><p>от Росстата пришло извещение о получении, документооборот успешно загружен в приемный комплекс Росстат</p></td>
+</tr>
+</tbody>
+</table>
+<p>Процесс изменения статуса:</p>
+<img alt="../_images/status-stat-letter.jpg" src="../_images/status-stat-letter.jpg" />
+</div>
+<div class="section" id="id14">
+<h3>Письма из Росстата<a class="headerlink" href="#id14" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Возможные статусы:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 13%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Urn</p></th>
+<th class="head"><p>Короткое имя</p></th>
+<th class="head"><p>Комментарий</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:received">urn:docflow-common-status:received</a></p></td>
+<td><p>получен</p></td>
+<td><p>абонент получил письмо от Росстата, доступно для чтения</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="urn:docflow-common-status:finished">urn:docflow-common-status:finished</a></p></td>
+<td><p>завершен</p></td>
+<td><p>абонент отправил извещение о получении письма</p></td>
+</tr>
+</tbody>
+</table>
+<p>Процесс изменения статуса:</p>
+<img alt="../_images/status-stat-letterCU.jpg" src="../_images/status-stat-letterCU.jpg" />
+</div>
+</div>
+<div class="section" id="rst-markup-prf-status">
+<span id="id15"></span><h2>ПФР<a class="headerlink" href="#rst-markup-prf-status" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="section" id="id16">
+<h3>Отчеты<a class="headerlink" href="#id16" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Возможные статусы:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 13%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Urn</p></th>
+<th class="head"><p>Короткое имя</p></th>
+<th class="head"><p>Комментарий</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:sent">urn:docflow-common-status:sent</a></p></td>
+<td><p>отправлен</p></td>
+<td><p>документооборот отправлен в ПФР</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="urn:docflow-common-status:delivered">urn:docflow-common-status:delivered</a></p></td>
+<td><p>доставлен</p></td>
+<td><p>от ПФР пришло подтверждение получения, документооборот успешно загружен в приемный комплекс ПФР</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:response-arrived">urn:docflow-common-status:response-arrived</a></p></td>
+<td><p>получен ответ</p></td>
+<td><p>от ПФР пришли результаты проверки, в случае положительного протокола также вернутся подписи УПФР под отправленным отчетом</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="urn:docflow-common-status:finished">urn:docflow-common-status:finished</a></p></td>
+<td><p>завершен</p></td>
+<td><p>абонент подтвердил получение протокола, путем отправки своей подписи под протоколом и всеми приложениями; либо из УПФР вернулась ошибка приема отчета (обычно технического плана), в зависимости от её причины, она может быть устранена без участия абонента и документооборот продолжится далее, в этом случае ошибка из документооборота пропадет</p></td>
+</tr>
+</tbody>
+</table>
+<p>Процесс изменения статуса:</p>
+<img alt="../_images/status-pfr-report.jpg" src="../_images/status-pfr-report.jpg" />
+</div>
+<div class="section" id="rst-markup-szvtd-status">
+<span id="id17"></span><h3>Отчет СЗВ-ТД<a class="headerlink" href="#rst-markup-szvtd-status" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Возможные статусы:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 13%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Urn</p></th>
+<th class="head"><p>Короткое имя</p></th>
+<th class="head"><p>Комментарий</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:sent">urn:docflow-common-status:sent</a></p></td>
+<td><p>отправлен</p></td>
+<td><p>документооборот отправлен в ПФР</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="urn:docflow-common-status:delivered">urn:docflow-common-status:delivered</a></p></td>
+<td><p>доставлен</p></td>
+<td><p>от ПФР пришло подтверждение получения, документооборот успешно загружен в приемный комплекс ПФР</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:response-arrived">urn:docflow-common-status:response-arrived</a></p></td>
+<td><p>получен ответ</p></td>
+<td><p>от ПФР пришли положительные результаты проверки; либо из УПФР вернулось уведомление о выявленных ошибках</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="urn:docflow-common-status:finished">urn:docflow-common-status:finished</a></p></td>
+<td><p>завершен</p></td>
+<td><p>Оператор ЭДО отправил уведомление о доставке; либо из УПФР вернулся отказ в приеме заявления</p></td>
+</tr>
+</tbody>
+</table>
+<p>Процесс изменения статуса:</p>
+<img alt="../_images/status-pfr-szvtd.jpg" src="../_images/status-pfr-szvtd.jpg" />
+</div>
+<div class="section" id="id18">
+<h3>Письма в ПФР<a class="headerlink" href="#id18" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Возможные статусы:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 13%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Urn</p></th>
+<th class="head"><p>Короткое имя</p></th>
+<th class="head"><p>Комментарий</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:sent">urn:docflow-common-status:sent</a></p></td>
+<td><p>отправлен</p></td>
+<td><p>документооборот отправлен в ПФР</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="urn:docflow-common-status:finished">urn:docflow-common-status:finished</a></p></td>
+<td><p>завершен</p></td>
+<td><p>от ПФР пришло подтверждение получения, документооборот успешно загружен в приемный комплекс ПФР</p></td>
+</tr>
+</tbody>
+</table>
+<p>Процесс изменения статуса:</p>
+<img alt="../_images/status-pfr-letter.jpg" src="../_images/status-pfr-letter.jpg" />
+</div>
+<div class="section" id="id19">
+<h3>Письма и рассылки из ПФР<a class="headerlink" href="#id19" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Возможные статусы:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 13%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Urn</p></th>
+<th class="head"><p>Короткое имя</p></th>
+<th class="head"><p>Комментарий</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:received">urn:docflow-common-status:received</a></p></td>
+<td><p>получен</p></td>
+<td><p>абонент получил письмо или рассылку от ПФР, доступны для чтения</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="urn:docflow-common-status:finished">urn:docflow-common-status:finished</a></p></td>
+<td><p>завершен</p></td>
+<td><p>абонент отправил подтверждение получения письма или рассылки</p></td>
+</tr>
+</tbody>
+</table>
+<p>Процесс изменения статуса:</p>
+<img alt="../_images/status-pfr-letterCU.jpg" src="../_images/status-pfr-letterCU.jpg" />
+</div>
+<div class="section" id="id20">
+<h3>Уточнение платежей<a class="headerlink" href="#id20" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Возможные статусы:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 13%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Urn</p></th>
+<th class="head"><p>Короткое имя</p></th>
+<th class="head"><p>Комментарий</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:sent">urn:docflow-common-status:sent</a></p></td>
+<td><p>отправлен</p></td>
+<td><p>документооборот отправлен в ПФР</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="urn:docflow-common-status:delivered">urn:docflow-common-status:delivered</a></p></td>
+<td><p>доставлен</p></td>
+<td><p>от ПФР пришло подтверждение получения, документооборот успешно загружен в приемный комплекс ПФР</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:response-arrived">urn:docflow-common-status:response-arrived</a></p></td>
+<td><p>получен ответ</p></td>
+<td><p>от ПФР пришли результаты проверки, в случае положительного протокола также вернутся подписи УПФР под отправленным отчетом</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="urn:docflow-common-status:finished">urn:docflow-common-status:finished</a></p></td>
+<td><p>завершен</p></td>
+<td><p>абонент подтвердил получение протокола, путем отправки своей подписи под протоколом и всеми приложениями</p></td>
+</tr>
+</tbody>
+</table>
+<p>Процесс изменения статуса:</p>
+<img alt="../_images/status-pfr-ios.jpg" src="../_images/status-pfr-ios.jpg" />
+</div>
+<div class="section" id="rst-markup-ancillary-status">
+<span id="id21"></span><h3>Заявление на подключение к ЭДОК<a class="headerlink" href="#rst-markup-ancillary-status" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Возможные статусы:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 13%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Urn</p></th>
+<th class="head"><p>Короткое имя</p></th>
+<th class="head"><p>Комментарий</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:sent">urn:docflow-common-status:sent</a></p></td>
+<td><p>отправлен</p></td>
+<td><p>документооборот отправлен в ПФР</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="urn:docflow-common-status:delivered">urn:docflow-common-status:delivered</a></p></td>
+<td><p>доставлен</p></td>
+<td><p>от ПФР пришло подтверждение получения, документооборот успешно загружен в приемный комплекс ПФР</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:response-arrived">urn:docflow-common-status:response-arrived</a></p></td>
+<td><p>получен ответ</p></td>
+<td><p>от ПФР пришли положительные результаты проверки</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="urn:docflow-common-status:finished">urn:docflow-common-status:finished</a></p></td>
+<td><p>завершен</p></td>
+<td><p>оператор ЭДО отправил уведомление о доставке; либо из УПФР вернулся отказ в приеме заявления</p></td>
+</tr>
+</tbody>
+</table>
+<p>Процесс изменения статуса:</p>
+<img alt="../_images/status-pfr-ancillary.png" src="../_images/status-pfr-ancillary.png" />
+</div>
+</div>
+<div class="section" id="id22">
+<h2>ФСС<a class="headerlink" href="#id22" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="section" id="rst-markup-4fss">
+<span id="id23"></span><h3>Расчет 4-ФСС<a class="headerlink" href="#rst-markup-4fss" title="Ссылка на этот заголовок">¶</a></h3>
+<div class="admonition important">
+<p class="admonition-title">Важно</p>
+<p>Данный тип документооборота отличается тем, что кроме обмена документа, в нем важную роль играют стадии и статусы стадий его прохождения. Поэтому ниже будут даны описания процесса документооборота в разрезе документов и в разрезе его стадий.</p>
+</div>
+<p>Возможные статусы:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 13%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Urn</p></th>
+<th class="head"><p>Короткое имя</p></th>
+<th class="head"><p>Комментарий</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:sent">urn:docflow-common-status:sent</a></p></td>
+<td><p>отправлен</p></td>
+<td><p>документооборот отправлен в ФСС</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="urn:docflow-common-status:delivered">urn:docflow-common-status:delivered</a></p></td>
+<td><p>доставлен</p></td>
+<td><p>от ФСС пришло подтверждение получения, документооборот успешно загружен в приемный комплекс ФСС, на этом шаге не происходит обмен документами, факт доставки расчета 4-ФСС до ФСС подтверждается</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:finished">urn:docflow-common-status:finished</a></p></td>
+<td><p>завершен</p></td>
+<td><p>абонент подтвердил получение протокола, путем отправки своей подписи под протоколом и всеми приложениями; либо из ФСС вернулась ошибка приема отчета (обычно технического плана), в зависимости от её причины, она может быть устранена без участия абонента и документооборот продолжится далее, в этом случае ошибка из документооборота пропадет</p></td>
+</tr>
+</tbody>
+</table>
+<p>Процесс изменения статуса по документам:</p>
+<img alt="../_images/status-fss-report-doc.jpg" src="../_images/status-fss-report-doc.jpg" />
+<p>Процесс изменения статуса по стадиям документооборота:</p>
+<img alt="../_images/status-fss-report-stage.jpg" src="../_images/status-fss-report-stage.jpg" />
+<p>Стадии документооборота:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 13%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Стадия</p></th>
+<th class="head"><p>Короткое имя</p></th>
+<th class="head"><p>Комментарий</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>SosSave</p></td>
+<td><p>прием расчета</p></td>
+<td><p>Контур.Экстерн принял расчет 4-ФСС от абонента и готовит его к отправке в ФСС, выдается подтверждение даты отправки</p></td>
+</tr>
+<tr class="row-odd"><td><p>GetFile</p></td>
+<td><p>отправка в ФСС</p></td>
+<td><p>расчет 4-ФСС находится в стадии отправки в ФСС, ошибка на этой стадии означает завершение документооборота, расчет считается непринятым</p></td>
+</tr>
+<tr class="row-even"><td><p>DecryptCheckSign</p></td>
+<td><p>расшифровка и проверка ЭП</p></td>
+<td><p>расчет 4-ФСС поступил в приемный комплекс ФСС, производится его расшифровка и проверка ЭП под ним, ошибка на этой стадии означает завершение документооборота, расчет считается непринятым</p></td>
+</tr>
+<tr class="row-odd"><td><p>FormatCheck</p></td>
+<td><p>форматный контроль</p></td>
+<td><p>приемный комплекс ФСС проверяет расчет 4-ФСС на соответствие формату, ошибка на этой стадии означает завершение документооборота, расчет считается непринятым</p></td>
+</tr>
+<tr class="row-even"><td><p>LogicalCheck</p></td>
+<td><p>логический контроль</p></td>
+<td><p>приемный комплекс ФСС проверяет расчет 4-ФСС на выполнение контрольных соотношений, ошибка на этой стадии не означает завершение документооборота, позже будет сформирована квитанция, но в протоколе проверки будут указаны замечания ФСС, которые нужно исправить и отправить корректирующий расчет 4-ФСС в рамках нового документооборота</p></td>
+</tr>
+<tr class="row-odd"><td><p>FormingReceipt</p></td>
+<td><p>формирование квитанции</p></td>
+<td><p>расчет 4-ФСС проверен и принят ФСС, формируется квитанция, подписанная представителем ФСС</p></td>
+</tr>
+</tbody>
+</table>
+<p>Статусы стадий документооборота:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 13%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Статус</p></th>
+<th class="head"><p>Короткое имя</p></th>
+<th class="head"><p>Комментарий</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Success</p></td>
+<td><p>успех</p></td>
+<td><p>стадия завершилась успешно</p></td>
+</tr>
+<tr class="row-odd"><td><p>Error</p></td>
+<td><p>ошибка</p></td>
+<td><p>стадия завершилась неудачей</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rst-markup-subscription">
+<span id="id24"></span><h3>Подписка оператора на документооборот с ФСС по абоненту<a class="headerlink" href="#rst-markup-subscription" title="Ссылка на этот заголовок">¶</a></h3>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 13%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Urn</p></th>
+<th class="head"><p>Короткое имя</p></th>
+<th class="head"><p>Комментарий</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:sent">urn:docflow-common-status:sent</a></p></td>
+<td><p>Отправлен</p></td>
+<td><p>Отправлен запрос на подписку</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="urn:docflow-common-status:delivered">urn:docflow-common-status:delivered</a></p></td>
+<td><p>Доставлен</p></td>
+<td><p>Получен ответ на запрос подписки</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:finished">urn:docflow-common-status:finished</a></p></td>
+<td><p>Завершен</p></td>
+<td><p>Получен результат подписки или сообщение об ошибке</p></td>
+</tr>
+</tbody>
+</table>
+<p>Процесс изменения статуса:</p>
+<img alt="../_images/status-fss-provider-subscription.jpg" src="../_images/status-fss-provider-subscription.jpg" />
+</div>
+<div class="section" id="rst-markup-pvso">
+<span id="id25"></span><h3>Извещение о прямых выплатах мер социального обеспечения<a class="headerlink" href="#rst-markup-pvso" title="Ссылка на этот заголовок">¶</a></h3>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 13%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Urn</p></th>
+<th class="head"><p>Короткое имя</p></th>
+<th class="head"><p>Комментарий</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:received">urn:docflow-common-status:received</a></p></td>
+<td><p>Получен</p></td>
+<td><p>Получен запрос на получение извещения ПВСО</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="urn:docflow-common-status:response-arrived">urn:docflow-common-status:response-arrived</a></p></td>
+<td><p>Получен ответ</p></td>
+<td><p>Извещение ПВСО</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:processed">urn:docflow-common-status:processed</a></p></td>
+<td><p>Ответ обработан</p></td>
+<td><p>Отправлено извещение о прочтении извещения ПВСО</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="urn:docflow-common-status:finished">urn:docflow-common-status:finished</a></p></td>
+<td><p>Завершен</p></td>
+<td><p>Получено извещение о прочтении извещения о прочтении</p></td>
+</tr>
+</tbody>
+</table>
+<p>Процесс изменения статуса:</p>
+<img alt="../_images/sedo_pvso.jpg" src="../_images/sedo_pvso.jpg" />
+</div>
+<div class="section" id="rst-markup-sedo-eln">
+<span id="id26"></span><h3>Уведомления об изменении статуса электронного больничного листа<a class="headerlink" href="#rst-markup-sedo-eln" title="Ссылка на этот заголовок">¶</a></h3>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 13%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Urn</p></th>
+<th class="head"><p>Короткое имя</p></th>
+<th class="head"><p>Комментарий</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:received">urn:docflow-common-status:received</a></p></td>
+<td><p>Получен</p></td>
+<td><p>Получен запрос на получение уведомления об ЭЛН</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="urn:docflow-common-status:response-arrived">urn:docflow-common-status:response-arrived</a></p></td>
+<td><p>Получен ответ</p></td>
+<td><p>Уведомление о изменении ЭЛН</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="urn:docflow-common-status:processed">urn:docflow-common-status:processed</a></p></td>
+<td><p>Ответ обработан</p></td>
+<td><p>Отправлено извещение о прочтении уведомления ЭЛН</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="urn:docflow-common-status:finished">urn:docflow-common-status:finished</a></p></td>
+<td><p>Завершен</p></td>
+<td><p>Получено извещение о прочтении извещения о прочтении</p></td>
+</tr>
+</tbody>
+</table>
+<p>Процесс изменения статуса:</p>
+<img alt="../_images/sedo_eln.jpg" src="../_images/sedo_eln.jpg" />
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="%D1%81%D0%BE%D1%81%D1%82%D0%BE%D1%8F%D0%BD%D0%B8%D1%8F%20%D0%94%D0%9E.html" class="btn btn-neutral float-right" title="Состояния документооборота" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="%D1%82%D0%B8%D0%BF%D1%8B%20DraftsBuilder.html" class="btn btn-neutral float-left" title="Типы DraftsBuilder" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ <script type="text/javascript">
+ 	document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.toggle').forEach(item => {
+        const switcher = document.createElement('div');
+        switcher.classList.add('switcher');
+        switcher.addEventListener('click', () => {
+          item.classList.toggle('open');
+        })
+        item.appendChild(switcher);
+      });
+    })
+    /*
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+    */
+</script>
+
+
+</body>
+</html>

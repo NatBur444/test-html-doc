@@ -1,0 +1,423 @@
+
+
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Проактивные выплаты &mdash; документация extern-api 1.1</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
+    <link rel="search" title="Поиск" href="../search.html" />
+    <link rel="next" title="Алгоритм работы с методами в проактивных выплатах" href="proactive_%20algorithm.html" />
+    <link rel="prev" title="Подписки СЭДО ФСС на получение извещений и уведомлений" href="sedo-subscription.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> extern-api
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Поиск в документации" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">История изменений</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release%20notes.html">История изменений API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Подготовка</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../recommendations.html">Рекомендации по работе c API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/index.html">Начало работы с API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth_oidc/index.html">Аутентификация OpenID Connect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../specification/index.html">Спецификация</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">База знаний</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="filename.html">Наименование файлов</a></li>
+<li class="toctree-l2"><a class="reference internal" href="print.html">Печать документов</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content.html">Сервис контентов</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DraftsBuilder.html">DraftsBuilder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loks.html">Блокировки</a></li>
+<li class="toctree-l2"><a class="reference internal" href="businessReg.html">Документооборот регистрации бизнеса</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demand.html">Требование</a></li>
+<li class="toctree-l2"><a class="reference internal" href="check-demand.html">Проверка требования ФНС</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inventory.html">Опись — ответ на требование</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rnpt.html">Прослеживаемость товаров. РНПТ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FSS.html">Документооборот с ФСС</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reestr-pvso.html">Реестр ПВСО</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sedo-fss.html">Уведомления и извещения СЭДО ФСС</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sedo-subscription.html">Подписки СЭДО ФСС на получение извещений и уведомлений</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Проактивные выплаты</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Что такое проактивные выплаты</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Порядок взаимодействия</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Кратко. Какие документообороты участвуют в проактивных выплатах</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="proactive_%20algorithm.html">Алгоритм работы с методами в проактивных выплатах</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PFR.html">Документооборот с ПФР</a></li>
+<li class="toctree-l2"><a class="reference internal" href="szvtd.html">Отчетность в ПФР по форме СЗВ-ТД</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stat-letter.html">Письма в Росстат</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Работа с API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../accounts/index.html">Работа с учетными записями</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drafts/index.html">Работа с черновиками</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dc/index.html">Работа с документооборотами</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inventories/index.html">Представление документов к требованиям</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../builder/index.html">Конструктор черновиков (DraftsBuilder)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents/index.html">Сервис контентов</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Дополнительно</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../manuals/index.html">Справка</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contacts.html">Контакты</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SDK.html">SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/index.html">Аутентификация по auth.sid (obsolete)</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">extern-api</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">База знаний</a> &raquo;</li>
+        
+      <li>Проактивные выплаты</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/knowledge base/proactiv.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id2">
+<h1>Проактивные выплаты<a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h1>
+<div class="section" id="id3">
+<h2>Что такое проактивные выплаты<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h2>
+<p>С 1 января 2022 года действует проактивная схема исчисления пособий. Изменения в Федеральный закон <a class="reference external" href="https://normativ.kontur.ru/document?moduleId=1&amp;documentId=381092&amp;utm_source=wiki.skbkontur.ru&amp;utm_medium=referral&amp;utm_referer=wiki.skbkontur.ru&amp;utm_startpage=kontur.ru%2Farticles%2F6278&amp;utm_orderpage=kontur.ru%2Farticles%2F6278">от 29.16.2006 №255-ФЗ</a> вносит Закон <a class="reference external" href="https://normativ.kontur.ru/document?moduleId=1&amp;documentId=396405&amp;utm_source=wiki.skbkontur.ru&amp;utm_medium=referral&amp;utm_referer=wiki.skbkontur.ru&amp;utm_startpage=kontur.ru%2Farticles%2F6278&amp;utm_orderpage=kontur.ru%2Farticles%2F6278">от 30.04.2021 №126-ФЗ</a>.</p>
+<p>До 1 января 2022 года действовал заявительный порядок выплаты пособий. При такой схеме сотрудник передавал информацию о больничном и заявление в бухгалтерию работодателя. Работодатель направлял реестр в ФСС. Новая схема минимизирует действия работодателя. ФСС будет получать информацию об открытии и закрытии электронного больничного листа от медучреждений и запрашивать недостающие данные о застрахованном лице у ПФР и работодателя. Работодателю нужно будет либо подтвердить полученные данные о застрахованном лице от ФСС, либо дополнить их, либо скорректировать.</p>
+<p>Для начисления пособий ФСС ориентируется на внешние события:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>для пособий по временной нетрудоспособности — открытие и закрытие больничного;</p></li>
+<li><p>для пособий по беременности и родам —  закрытие больничного;</p></li>
+<li><p>для пособий по рождению ребенка —  запись в Едином госреестре ЗАГСа.</p></li>
+</ul>
+</div></blockquote>
+<p>Ежемесячное пособие по уходу за ребенком по-прежнему нужно будет передавать по схеме прямых выплат.</p>
+<p>Обмениваться уведомлениями и сообщениями с ФСС можно будет через <a class="reference internal" href="sedo-fss.html"><span class="doc">систему СЭДО</span></a> с помощью оператора связи.</p>
+<p>ФСС может привлекать работодателя к ответственности за несвоевременно поданные и недостоверные данные согласно <a class="reference external" href="https://normativ.kontur.ru/document?moduleId=1&amp;documentId=381092&amp;cwi=0&amp;utm_source=wiki.skbkontur.ru&amp;utm_medium=referral&amp;utm_referer=wiki.skbkontur.ru&amp;utm_startpage=kontur.ru%2Farticles%2F6278&amp;utm_orderpage=kontur.ru%2Farticles%2F6105#h144">ст. 15.2 255-ФЗ</a>.</p>
+<p>Ниже описан порядок взаимодействия с ФСС в рамках проактивных выплат. Про алгоритм работы с методами для исходящих и входящих документооборотов ФСС смотрите статью <a class="reference internal" href="proactive_%20algorithm.html"><span class="doc">Алгоритм работы с методами в проактивных выплатах</span></a>.</p>
+</div>
+<div class="section" id="id4">
+<h2>Порядок взаимодействия<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h2>
+<p><strong>Подготовка к страховому случаю</strong></p>
+<ol class="arabic simple">
+<li><p>Для получения уведомлений и извещений от ФСС работодатель выполняет <a class="reference internal" href="sedo-subscription.html"><span class="doc">подписку оператора на организацию по РНС</span></a>. Это можно сделать один раз, в начале взаимодействия с системой СЭДО или при смене оператора связи.</p></li>
+<li><p>Работодатель передает <strong>Сведения о застрахованном лице</strong> в региональное отделение ФСС, когда на работу устраивается новый сотрудник или изменяются данные по текущим сотрудникам. Необходимо подать документы не позднее 3 рабочих дней со дня подписи сотрудником формы <strong>Сведения о застрахованном лице</strong>.</p></li>
+<li><p>ФСС обрабатывает данные и предоставляет <strong>Результат регистрации сведений о застрахованном лице</strong>.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../_images/preparation_fss_proactive.png"><img alt="../_images/preparation_fss_proactive.png" src="../_images/preparation_fss_proactive.png" style="width: 700px;" /></a>
+<p><strong>Открытие ЭЛН</strong></p>
+<ol class="arabic simple">
+<li><p>При наступлении страхового случая сотрудник обращается в медучреждение и оформляет больничный в виде ЭЛН.</p></li>
+<li><p>Сотрудник медучреждения направляет <strong>ЭЛН</strong> в ФСС.</p></li>
+<li><p>ФСС отправляет <strong>Уведомление об изменении статуса ЭЛН</strong> работодателю.</p></li>
+<li><p>Работодатель запрашивает <strong>ЭЛН</strong> с портала, рассчитывает и оплачивает первые 3 дня пособия.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../_images/opening_fss_proactive.png"><img alt="../_images/opening_fss_proactive.png" src="../_images/opening_fss_proactive.png" style="width: 700px;" /></a>
+<p><strong>Как ФСC получает сведения о сотруднике</strong></p>
+<ol class="arabic simple">
+<li><p>После поступления информации об открытом ЭЛН, ФСС запрашивает сведения о сотруднике и его работодателях в ПФР.</p></li>
+<li><p>ФСС сравнивает данные из ПФР с предоставленными ранее сведениями о застрахованном лице работодателем.</p></li>
+<li><p>ФСС направляет работодателю документ <strong>Информация о несоответствии сведений о застрахованном лице</strong>, если данные о сотруднике не совпадают.</p></li>
+<li><p>Работодатель предоставляет <strong>Сведения о застрахованном лице</strong>.</p></li>
+<li><p>При получении ответа на запрос ФСС направляет <strong>Результат обработки ответа на запрос проверки</strong>.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../_images/check_info_fss_proactive.png"><img alt="../_images/check_info_fss_proactive.png" src="../_images/check_info_fss_proactive.png" style="width: 700px;" /></a>
+<p><strong>Закрытие ЭЛН</strong></p>
+<ol class="arabic simple">
+<li><p>После закрытия ЭЛН ФСС направляет работодателю <strong>Уведомление об изменении статуса ЭЛН</strong> и <strong>Запрос недостающих сведений</strong>, чтобы подтвердить и запросить недостающие сведения для назначения пособия.</p></li>
+<li><p>Работодатель присылает <strong>Ответ на запрос проверки</strong> не позднее 3 рабочих дней со дня закрытия ЭЛН и <a class="reference internal" href="reestr-pvso.html"><span class="doc">Реестр ПВСО</span></a>.</p></li>
+<li><p>При получении ответа на запрос ФСС направляет <strong>Результат обработки ответа на запрос проверки</strong>.</p></li>
+<li><p>ФСС сравнивает полученные данные о сотруднике с данными из ПФР.</p></li>
+<li><p>Если данные по сотруднику совпадают, ФСС выплачивает пособие в течение 10 рабочих дней (<a class="reference external" href="https://normativ.kontur.ru/document?moduleId=1&amp;documentId=381092&amp;cwi=0&amp;utm_source=wiki.skbkontur.ru&amp;utm_medium=referral&amp;utm_referer=wiki.skbkontur.ru&amp;utm_startpage=kontur.ru%2Farticles%2F6278&amp;utm_orderpage=kontur.ru%2Farticles%2F6105#h144">ст. 15.2 255-ФЗ</a>).</p></li>
+<li><p>После выплаты пособия ФСС направляет работодателю уведомление <strong>Выплата пособия</strong>.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../_images/closed_fss_proactive.png"><img alt="../_images/closed_fss_proactive.png" src="../_images/closed_fss_proactive.png" style="width: 700px;" /></a>
+<p><strong>Извещение ПВСО</strong></p>
+<ol class="arabic simple">
+<li><p>Перед расчетом и выплатой пособия инспектор ФСС может вручную сверить сведения о сотруднике по данным из ПФР и от работодателя.</p></li>
+<li><p>Инспектор направляет <strong>Извещение ПВСО</strong>, если есть расхождения.</p></li>
+<li><p>Работодатель направляет <a class="reference internal" href="sedo-fss.html"><span class="doc">подтверждение о получении извещения и ответ на извещение</span></a>.</p></li>
+<li><p>При получении ответа на запрос ФСС направляется <strong>Результат обработки ответа на запрос проверки</strong>.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../_images/pvsonotice_fss_proactive.png"><img alt="../_images/pvsonotice_fss_proactive.png" src="../_images/pvsonotice_fss_proactive.png" style="width: 700px;" /></a>
+</div>
+<div class="section" id="id5">
+<h2>Кратко. Какие документообороты участвуют в проактивных выплатах<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 58%" />
+<col style="width: 23%" />
+<col style="width: 20%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Документооборот</strong></p></td>
+<td><p><strong>Направление</strong></p></td>
+<td><p><strong>Кто отправляет</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Подписка абонентов операторов <br />
+(Подписка оператора на организацию по РНС)</p></td>
+<td><p>Исходящий</p></td>
+<td><p>Работодатель</p></td>
+</tr>
+<tr class="row-odd"><td><p>Сведения о застрахованном лице</p></td>
+<td><p>Исходящий</p></td>
+<td><p>Работодатель</p></td>
+</tr>
+<tr class="row-even"><td><p>Результат регистрации сведений о застрахованном лице</p></td>
+<td><p>Входящий</p></td>
+<td><p>ФСС</p></td>
+</tr>
+<tr class="row-odd"><td><p>Информация о несоответствии сведений о застрахованном лице</p></td>
+<td><p>Входящий</p></td>
+<td><p>ФСС</p></td>
+</tr>
+<tr class="row-even"><td><p>Уведомления об изменении статуса электронного больничного листа</p></td>
+<td><p>Входящий</p></td>
+<td><p>ФСС</p></td>
+</tr>
+<tr class="row-odd"><td><p>Запрос на проверку, подтверждение, корректировку сведений <br />
+проактивной выплаты страхового обеспечения <br />
+(Запрос недостающих сведений)</p></td>
+<td><p>Входящий</p></td>
+<td><p>ФСС</p></td>
+</tr>
+<tr class="row-even"><td><p>Ответ на запрос проверки, подтверждения, корректировки сведений <br />
+проактивной выплаты страхового обеспечения <br />
+(Ответ на запрос проверки)</p></td>
+<td><p>Исходящий</p></td>
+<td><p>Работодатель</p></td>
+</tr>
+<tr class="row-odd"><td><p>Результат обработки ответа на запрос проверки, подтверждения, <br />
+корректировки сведений проактивной выплаты страхового обеспечения <br />
+(Результат обработки ответа на запрос проверки)</p></td>
+<td><p>Входящий</p></td>
+<td><p>ФСС</p></td>
+</tr>
+<tr class="row-even"><td><p>Реестр прямых выплат страхового обеспечения <br />
+(Реестр ПВСО)</p></td>
+<td><p>Исходящий</p></td>
+<td><p>Работодатель</p></td>
+</tr>
+<tr class="row-odd"><td><p>Извещение ПВСО</p></td>
+<td><p>Входящий</p></td>
+<td><p>ФСС</p></td>
+</tr>
+<tr class="row-even"><td><p>Статус выплаты пособия по временной нетрудоспособности <br />
+и материнству <br />
+(Выплата пособия)</p></td>
+<td><p>Входящий</p></td>
+<td><p>ФСС</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="proactive_%20algorithm.html" class="btn btn-neutral float-right" title="Алгоритм работы с методами в проактивных выплатах" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="sedo-subscription.html" class="btn btn-neutral float-left" title="Подписки СЭДО ФСС на получение извещений и уведомлений" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ <script type="text/javascript">
+ 	document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.toggle').forEach(item => {
+        const switcher = document.createElement('div');
+        switcher.classList.add('switcher');
+        switcher.addEventListener('click', () => {
+          item.classList.toggle('open');
+        })
+        item.appendChild(switcher);
+      });
+    })
+    /*
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+    */
+</script>
+
+
+</body>
+</html>

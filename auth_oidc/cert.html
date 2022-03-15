@@ -1,0 +1,405 @@
+
+
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Аутентификация по сертификату &mdash; документация extern-api 1.1</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
+    <link rel="search" title="Поиск" href="../search.html" />
+    <link rel="next" title="Доверительная аутентификация" href="trusted.html" />
+    <link rel="prev" title="Аутентификация по паролю" href="password.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> extern-api
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Поиск в документации" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">История изменений</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release%20notes.html">История изменений API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Подготовка</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../recommendations.html">Рекомендации по работе c API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/index.html">Начало работы с API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Аутентификация OpenID Connect</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="api-key.html">api-key</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth_oidc.html">Получение и использование Access Token</a></li>
+<li class="toctree-l2"><a class="reference internal" href="password.html">Аутентификация по паролю</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Аутентификация по сертификату</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">1. Инициализация</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">2. Подтверждение</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Пример аутентификации по сертификату</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="trusted.html">Доверительная аутентификация</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../specification/index.html">Спецификация</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge%20base/index.html">База знаний</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Работа с API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../accounts/index.html">Работа с учетными записями</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drafts/index.html">Работа с черновиками</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dc/index.html">Работа с документооборотами</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inventories/index.html">Представление документов к требованиям</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../builder/index.html">Конструктор черновиков (DraftsBuilder)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents/index.html">Сервис контентов</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Дополнительно</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../manuals/index.html">Справка</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contacts.html">Контакты</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SDK.html">SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/index.html">Аутентификация по auth.sid (obsolete)</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">extern-api</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Аутентификация OpenID Connect</a> &raquo;</li>
+        
+      <li>Аутентификация по сертификату</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/auth_oidc/cert.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="rst-markup-certificate">
+<span id="id1"></span><h1>Аутентификация по сертификату<a class="headerlink" href="#rst-markup-certificate" title="Ссылка на этот заголовок">¶</a></h1>
+<div class="admonition important">
+<p class="admonition-title">Важно</p>
+<p>Аутентификация по сертификату двухшаговая.</p>
+</div>
+<div class="section" id="id2">
+<h2>1. Инициализация<a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h2>
+<ul class="simple">
+<li><p>Пользователь присылает объект идентификации — открытый ключ сертификата (<em>public_key</em>).</p></li>
+<li><p>Для переданного client_id генерируется случайное значение — <em>rnd</em>. Сервер шифрует <em>rnd</em> (получаем <em>enc(rnd)</em>) на сертификат пользователя и отправляет его в ответе.</p></li>
+</ul>
+<p>Метод: <a class="reference external" href="https://developer.testkontur.ru/doc/openidconnect/method?type=post&amp;path=%2Fauthentication%2Fcertificate">POST Certificate</a></p>
+<p><strong>Параметры тела запроса:</strong></p>
+<p><strong>Content-Type: application/x-www-form-urlencoded</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">client_id</span></code> — сервисное имя, выдается вместе с api-key;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">client_secret</span></code> — api-key;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">public_key</span></code> — сертификат в PEM-формате;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">free</span></code> — булевый флаг проверки валидности сертификата (true — не проверять сертификат на валидность, по умолчанию — false).</p></li>
+</ul>
+<p><strong>Ответ</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">encrypted_key</span></code> — случайная зашифрованная строка. Возвращается в кодировке base64.</p></li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2>2. Подтверждение<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В encrypted_key лежат данные в формате base64, их нужно декодировать. Полученный результат нужно дешифровать с помощью сертификата (получаем <em>dec(enc(rnd))</em>).</p>
+<p>Расшифрованный результат <em>dec(enc(rnd))</em> отправляется в OpenId Provider в формате base64 (параметр <code class="docutils literal notranslate"><span class="pre">decrypted_key</span></code>) вместе с отпечатком сертификата (параметр <code class="docutils literal notranslate"><span class="pre">thumbprint</span></code>).</p>
+<p>Метод: <a class="reference external" href="https://developer.testkontur.ru/doc/openidconnect/method?type=post&amp;path=%2Fconnect%2Ftoken">POST tokenendpoint</a></p>
+<p><strong>Параметры тела запроса:</strong></p>
+<p><strong>Content-Type: application/x-www-form-urlencoded</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">client_id</span></code> — сервисное имя, выдается вместе с api-key;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">client_secret</span></code> — api-key;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">grant_type</span></code> = certificate;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scope</span></code> = extern.api;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">decrypted_key</span></code> — расшифрованный ключ в кодировке base64;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">thumbprint</span></code> — отпечаток сертификата пользователя.</p></li>
+</ul>
+<p><strong>Ответ</strong>:</p>
+<p>В ответ провайдер возвращает приложению Access Token.</p>
+</div>
+<div class="section" id="id4">
+<h2>Пример аутентификации по сертификату<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h2>
+<p><strong>1. Инициализация. Пример запроса POST certificate</strong></p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span>POST https://identity.testkontur.ru/authentication/certificate
+
+Request Headers
+
+Accept: */*
+Host: identity.testkontur.ru
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 3444
+
+Request Body
+
+client_id:extern.api
+client_secret:*********
+public_key:MIIJnzCCCUyg...81jlw7m/+g==
+free:true
+</pre></div>
+</div>
+<p><strong>Пример ответа POST certificate</strong></p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span>HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+X-Kontur-Trace-Id: 27bb7faa48294cf49ae6007d70905468
+Context-Globals: FwAAAHZvc3Rvay5yZXF1ZXN0LnByaW9yaXR5CAAAAE9yZGluYXJ5FgAAAHZvc3Rvay50cmFjaW5nLmNvbnRleHRJAAAAMjdiYjdmYWEtNDgyOS00Y2Y0LTlhZTYtMDA3ZDcwOTA1NDY4OzBiY2QwOThhLTU5MjYtNDJlNC05NjAzLTJiMTM2MDdlODk5ZQ==
+X-Kontur-Dont-Retry: True
+Dont-Retry: True
+Content-Encoding: gzip
+
+Response Body
+
+{
+    &quot;encrypted_key&quot;:&quot;MIIDo2QE...Q4X4OA==&quot;,
+    &quot;trusted_thumbprints&quot;:null
+}
+</pre></div>
+</div>
+<p><strong>2. Подтверждение. Пример запроса POST tokenendpoint с аутентификацией по сертификату</strong></p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span>POST https://identity.testkontur.ru/connect/token
+
+Request Headers
+
+Accept: */*
+Host: identity.testkontur.ru
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 574
+
+Request Body
+
+client_id:extern.api
+client_secret:******
+grant_type:certificate
+scope:extern.api
+decrypted_key:gs1mx/rvAD6MSOpe...DBbvLuC9NWMKeE85rYsGXQ==
+thumbprint:517a26be6b0e2b84d8eb95614ececb121c441c89
+</pre></div>
+</div>
+<p><strong>Пример ответа POST tokenendpoint</strong></p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span>HTTP/1.1 200 OK
+Content-Type: application/json; charset=UTF-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+Cache-Control: no-store, no-cache, max-age=0
+Pragma: no-cache
+X-Kontur-Trace-Id: aef5da881a7c43a5913f6ccfe5a9af29
+Context-Globals: FgAAAHZvc3Rvay50cmFjaW5nLmNvbnRleHRJAAAAYWVmNWRhODgtMWE3Yy00M2E1LTkxM2YtNmNjZmU1YTlhZjI5O2JhZjU5MzAzLWNjZjItNDBmYi04NjYwLWI3YWUzZjRkMzQ0ORcAAAB2b3N0b2sucmVxdWVzdC5wcmlvcml0eQgAAABPcmRpbmFyeQ==
+X-Kontur-Dont-Retry: True
+Dont-Retry: True
+Content-Encoding: gzip
+
+Response Body
+
+{
+    &quot;access_token&quot;:&quot;340edee15505ef619f22f5963306d87ffc9b7d920c12b6aa8d9b67cbdce5688d&quot;,
+    &quot;expires_in&quot;:86400,
+    &quot;token_type&quot;:&quot;Bearer&quot;
+}
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="trusted.html" class="btn btn-neutral float-right" title="Доверительная аутентификация" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="password.html" class="btn btn-neutral float-left" title="Аутентификация по паролю" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ <script type="text/javascript">
+ 	document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.toggle').forEach(item => {
+        const switcher = document.createElement('div');
+        switcher.classList.add('switcher');
+        switcher.addEventListener('click', () => {
+          item.classList.toggle('open');
+        })
+        item.appendChild(switcher);
+      });
+    })
+    /*
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+    */
+</script>
+
+
+</body>
+</html>

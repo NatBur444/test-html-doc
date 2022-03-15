@@ -1,0 +1,309 @@
+
+
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Методы для работы с организациями &mdash; документация extern-api 1.1</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
+    <link rel="search" title="Поиск" href="../search.html" />
+    <link rel="next" title="Методы для работы с сертификатами учетных записей" href="%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20API%20%D0%B4%D0%BB%D1%8F%20%D1%81%D0%B5%D1%80%D1%82%D0%BE%D0%B2.html" />
+    <link rel="prev" title="Методы для работы с учетными записями" href="%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20API%20%D0%B4%D0%BB%D1%8F%20%D1%83%D1%87%D0%B5%D1%82%D0%BE%D0%BA.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> extern-api
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Поиск в документации" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">История изменений</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release%20notes.html">История изменений API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Подготовка</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../recommendations.html">Рекомендации по работе c API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/index.html">Начало работы с API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth_oidc/index.html">Аутентификация OpenID Connect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../specification/index.html">Спецификация</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge%20base/index.html">База знаний</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Работа с API</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Работа с учетными записями</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20API%20%D0%B4%D0%BB%D1%8F%20%D1%83%D1%87%D0%B5%D1%82%D0%BE%D0%BA.html">Методы для работы с учетными записями</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Методы для работы с организациями</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Получение списка доступных организаций</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Получение конкретной организации</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Добавление организации</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Редактирование организации</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Удаление организации</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20API%20%D0%B4%D0%BB%D1%8F%20%D1%81%D0%B5%D1%80%D1%82%D0%BE%D0%B2.html">Методы для работы с сертификатами учетных записей</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../drafts/index.html">Работа с черновиками</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dc/index.html">Работа с документооборотами</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inventories/index.html">Представление документов к требованиям</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../builder/index.html">Конструктор черновиков (DraftsBuilder)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents/index.html">Сервис контентов</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Дополнительно</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../manuals/index.html">Справка</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contacts.html">Контакты</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SDK.html">SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/index.html">Аутентификация по auth.sid (obsolete)</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">extern-api</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Работа с учетными записями</a> &raquo;</li>
+        
+      <li>Методы для работы с организациями</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/accounts/методы API для организаций.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>Методы для работы с организациями<a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h1>
+<p>В данном разделе пойдет речь о работе с организациями в указанной учетной записи.</p>
+<p>Подробная спецификация методов показана в сваггере в разделе <a class="reference external" href="https://developer.kontur.ru/doc/extern/method?type=get&amp;path=%2Fv1%2F%7BaccountId%7D%2Forganizations">Organizations</a>.</p>
+<p>Список доступных методов:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#id2">Получение списка доступных организаций</a></p></li>
+<li><p><a class="reference internal" href="#id3">Получение конкретной организации</a></p></li>
+<li><p><a class="reference internal" href="#id4">Добавление организации</a></p></li>
+<li><p><a class="reference internal" href="#id5">Редактирование организации</a></p></li>
+<li><p><a class="reference internal" href="#id6">Удаление организации</a></p></li>
+</ul>
+<div class="section" id="id2">
+<h2>Получение списка доступных организаций<a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Метод: <a class="reference external" href="https://developer.kontur.ru/doc/extern/method?type=get&amp;path=%2Fv1%2F%7BaccountId%7D%2Forganizations">GET Organizations</a></p>
+<p>Метод используется для получения списка всех организаций, за которые возможна работа из-под указанной учетной записи.</p>
+</div>
+<div class="section" id="id3">
+<h2>Получение конкретной организации<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Метод: <a class="reference external" href="https://developer.kontur.ru/doc/extern/method?type=get&amp;path=%2Fv1%2F%7BaccountId%7D%2Forganizations%2F%7BorgId%7D">GET Organization</a></p>
+</div>
+<div class="section" id="id4">
+<h2>Добавление организации<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Метод: <a class="reference external" href="https://developer.kontur.ru/doc/extern/method?type=post&amp;path=%2Fv1%2F%7BaccountId%7D%2Forganizations">POST Organization</a></p>
+</div>
+<div class="section" id="id5">
+<h2>Редактирование организации<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Метод: <a class="reference external" href="https://developer.kontur.ru/doc/extern/method?type=put&amp;path=%2Fv1%2F%7BaccountId%7D%2Forganizations%2F%7BorgId%7D">PUT Organization</a></p>
+<p>Допускается изменение только названия организации.</p>
+</div>
+<div class="section" id="id6">
+<h2>Удаление организации<a class="headerlink" href="#id6" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Метод: <a class="reference external" href="https://developer.kontur.ru/doc/extern/method?type=delete&amp;path=%2Fv1%2F%7BaccountId%7D%2Forganizations%2F%7BorgId%7D">DELETE Organization</a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20API%20%D0%B4%D0%BB%D1%8F%20%D1%81%D0%B5%D1%80%D1%82%D0%BE%D0%B2.html" class="btn btn-neutral float-right" title="Методы для работы с сертификатами учетных записей" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20API%20%D0%B4%D0%BB%D1%8F%20%D1%83%D1%87%D0%B5%D1%82%D0%BE%D0%BA.html" class="btn btn-neutral float-left" title="Методы для работы с учетными записями" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ <script type="text/javascript">
+ 	document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.toggle').forEach(item => {
+        const switcher = document.createElement('div');
+        switcher.classList.add('switcher');
+        switcher.addEventListener('click', () => {
+          item.classList.toggle('open');
+        })
+        item.appendChild(switcher);
+      });
+    })
+    /*
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+    */
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,333 @@
+
+
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Уведомления и извещения СЭДО ФСС &mdash; документация extern-api 1.1</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
+    <link rel="search" title="Поиск" href="../search.html" />
+    <link rel="next" title="Подписки СЭДО ФСС на получение извещений и уведомлений" href="sedo-subscription.html" />
+    <link rel="prev" title="Реестр ПВСО" href="reestr-pvso.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> extern-api
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Поиск в документации" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">История изменений</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release%20notes.html">История изменений API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Подготовка</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../recommendations.html">Рекомендации по работе c API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/index.html">Начало работы с API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth_oidc/index.html">Аутентификация OpenID Connect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../specification/index.html">Спецификация</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">База знаний</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="filename.html">Наименование файлов</a></li>
+<li class="toctree-l2"><a class="reference internal" href="print.html">Печать документов</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content.html">Сервис контентов</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DraftsBuilder.html">DraftsBuilder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loks.html">Блокировки</a></li>
+<li class="toctree-l2"><a class="reference internal" href="businessReg.html">Документооборот регистрации бизнеса</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demand.html">Требование</a></li>
+<li class="toctree-l2"><a class="reference internal" href="check-demand.html">Проверка требования ФНС</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inventory.html">Опись — ответ на требование</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rnpt.html">Прослеживаемость товаров. РНПТ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FSS.html">Документооборот с ФСС</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reestr-pvso.html">Реестр ПВСО</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Уведомления и извещения СЭДО ФСС</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Извещения ПВСО</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Уведомления об электронных больничных</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Получение извещений, уведомлений и ошибок</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sedo-subscription.html">Подписки СЭДО ФСС на получение извещений и уведомлений</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proactiv.html">Проактивные выплаты</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proactive_%20algorithm.html">Алгоритм работы с методами в проактивных выплатах</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PFR.html">Документооборот с ПФР</a></li>
+<li class="toctree-l2"><a class="reference internal" href="szvtd.html">Отчетность в ПФР по форме СЗВ-ТД</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stat-letter.html">Письма в Росстат</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Работа с API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../accounts/index.html">Работа с учетными записями</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drafts/index.html">Работа с черновиками</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dc/index.html">Работа с документооборотами</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inventories/index.html">Представление документов к требованиям</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../builder/index.html">Конструктор черновиков (DraftsBuilder)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents/index.html">Сервис контентов</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Дополнительно</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../manuals/index.html">Справка</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contacts.html">Контакты</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SDK.html">SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/index.html">Аутентификация по auth.sid (obsolete)</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">extern-api</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">База знаний</a> &raquo;</li>
+        
+      <li>Уведомления и извещения СЭДО ФСС</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/knowledge base/sedo-fss.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id2">
+<h1>Уведомления и извещения СЭДО ФСС<a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h1>
+<p>ФСС разработал универсальный сервис электронного документооборота — СЭДО. Через СЭДО ФСС может обмениваться сообщениями и документами (входящими и исходящими) со страхователями при посредничестве операторов ЭДО.</p>
+<p>На текущий момент через данный сервис возможно работать с документооборотами, которые участвуют в схеме <a class="reference internal" href="proactiv.html"><span class="doc">Проактивных выплат</span></a>. К ним также относятся следующие документообороты:</p>
+<ul class="simple">
+<li><p>извещения ПВСО (тип документооборота <a class="reference external" href="urn:docflow:fss-sedo-pvso-notification">urn:docflow:fss-sedo-pvso-notification</a>),</p></li>
+<li><p>уведомление об изменении статуса ЭЛН (тип документооборота <a class="reference external" href="urn:docflow:fss-sedo-sick-report-change-notification">urn:docflow:fss-sedo-sick-report-change-notification</a>).</p></li>
+</ul>
+<p>Для получения извещений ПВСО и уведомлений об изменении статуса ЭЛН, сперва необходимо совершить <a class="reference internal" href="sedo-subscription.html"><span class="doc">подписки на получение извещений и уведомлений</span></a>. Подписки также являются отдельными документооборотами.</p>
+<p class="rubric">Особенности документооборотов с СЭДО</p>
+<ul class="simple">
+<li><p>Входящие документообороты от ФСС, отправленные через СЭДО, в статусе received не содержат документов. Чтобы их получить нужно сформировать запрос на получение документов.</p></li>
+<li><p>Все отправляемые в СЭДО документы являются SOAP-запросами.</p></li>
+<li><p>Запросы должны быть подписаны подписью в формате XMLDsig.</p></li>
+</ul>
+<div class="section" id="id3">
+<h2>Извещения ПВСО<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Если страхователь не в полном объеме представляет документы или сведения для назначения пособия, территориальное отделение ФСС в течение 5 рабочих дней со дня их получения направляет страхователю извещение о представлении недостающих документов или сведений (<a class="reference external" href="https://normativ.kontur.ru/document?moduleId=1&amp;documentId=326338&amp;rangeId=389064">Постановление Правительства РФ от 21.04.2011 № 294</a>).</p>
+<p>Извещение направляется в электронном виде. При получении извещения страхователь должен отправить подтверждение в электронном виде о его получении в течение 5 рабочих дней со дня получения.</p>
+<p>В случае отсутствия подтверждения получения извещения территориальный орган Фонда направляет страхователю такое извещение заказным письмом. В этом случае через 6 рабочих дней после отправки по почте, считается, что извещение получено.</p>
+<p>У страхователя есть 5 рабочих дней с даты подтверждения, чтобы отправить реестр с дополненными сведениями. Если направить реестр позже отведенного срока, то возможен административный штраф в размере 300-500 руб. (<a class="reference external" href="https://normativ.kontur.ru/document?moduleId=1&amp;documentId=367767&amp;rangeId=389122">часть 4 ст.15.33 КоАП</a>).</p>
+</div>
+<div class="section" id="id4">
+<h2>Уведомления об электронных больничных<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Данные уведомления позволяют не ждать, пока сотрудник предоставит номер больничного листа работодателю. Если работодатель подписан на уведомления ЭЛН по сотруднику, то он сможет получать от ФСС:</p>
+<ul class="simple">
+<li><p>уведомления о новых электронных больничных,</p></li>
+<li><p>уведомления об изменении из статуса электронных больничных.</p></li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h2>Получение извещений, уведомлений и ошибок<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Примечание</p>
+<p>Для получения извещений и уведомлений страхователю необходимо осуществить подписку.</p>
+</div>
+<p>После успешных подписок, ФСС начинает присылать извещения ПВСО и уведомления об ЭЛН. Если в ходе документооборотов происходит ошибка, она может прийти в отдельном документообороте Сообщения об ошибках (тип документооборота <a class="reference external" href="urn:docflow:fss-sedo-error">urn:docflow:fss-sedo-error</a>).</p>
+<div class="admonition warning">
+<p class="admonition-title">Предупреждение</p>
+<p>Изначально, документообороты в статусе <strong>received</strong> не содержат документ с извещением, уведомлением или ошибкой. При поступлении нового входящего документооборота пользователю необходимо сформировать запрос на получение документов, подписать его своим сертификатом и отправить в ФСС. После получения подписанного запроса ФСС направит документ с извещением или уведомлением.</p>
+</div>
+<p>Схемы смены статусов документооборотов см. в разделе <a class="reference internal" href="../specification/%D1%81%D1%82%D0%B0%D1%82%D1%83%D1%81%D1%8B%20%D0%94%D0%9E.html#rst-markup-pvso"><span class="std std-ref">спецификация</span></a>.</p>
+<p>Порядок действий для получения документов от ФСС смотрите в статье <a class="reference internal" href="proactive_%20algorithm.html#rst-markup-sedo-incoming-dc"><span class="std std-ref">Алгоритм работы с методами в проактивных выплатах</span></a>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="sedo-subscription.html" class="btn btn-neutral float-right" title="Подписки СЭДО ФСС на получение извещений и уведомлений" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="reestr-pvso.html" class="btn btn-neutral float-left" title="Реестр ПВСО" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ <script type="text/javascript">
+ 	document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.toggle').forEach(item => {
+        const switcher = document.createElement('div');
+        switcher.classList.add('switcher');
+        switcher.addEventListener('click', () => {
+          item.classList.toggle('open');
+        })
+        item.appendChild(switcher);
+      });
+    })
+    /*
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+    */
+</script>
+
+
+</body>
+</html>

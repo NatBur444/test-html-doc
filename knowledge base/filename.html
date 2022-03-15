@@ -1,0 +1,334 @@
+
+
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Наименование файлов &mdash; документация extern-api 1.1</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
+    <link rel="search" title="Поиск" href="../search.html" />
+    <link rel="next" title="Печать документов" href="print.html" />
+    <link rel="prev" title="База знаний" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> extern-api
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Поиск в документации" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">История изменений</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release%20notes.html">История изменений API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Подготовка</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../recommendations.html">Рекомендации по работе c API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/index.html">Начало работы с API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth_oidc/index.html">Аутентификация OpenID Connect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../specification/index.html">Спецификация</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">База знаний</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Наименование файлов</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Наименование файлов для отчетов ФНС</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rst-markup-name-reestr-pvso">Наименование файлов реестров ПВСО</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="print.html">Печать документов</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content.html">Сервис контентов</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DraftsBuilder.html">DraftsBuilder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loks.html">Блокировки</a></li>
+<li class="toctree-l2"><a class="reference internal" href="businessReg.html">Документооборот регистрации бизнеса</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demand.html">Требование</a></li>
+<li class="toctree-l2"><a class="reference internal" href="check-demand.html">Проверка требования ФНС</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inventory.html">Опись — ответ на требование</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rnpt.html">Прослеживаемость товаров. РНПТ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FSS.html">Документооборот с ФСС</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reestr-pvso.html">Реестр ПВСО</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sedo-fss.html">Уведомления и извещения СЭДО ФСС</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sedo-subscription.html">Подписки СЭДО ФСС на получение извещений и уведомлений</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proactiv.html">Проактивные выплаты</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proactive_%20algorithm.html">Алгоритм работы с методами в проактивных выплатах</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PFR.html">Документооборот с ПФР</a></li>
+<li class="toctree-l2"><a class="reference internal" href="szvtd.html">Отчетность в ПФР по форме СЗВ-ТД</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stat-letter.html">Письма в Росстат</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Работа с API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../accounts/index.html">Работа с учетными записями</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drafts/index.html">Работа с черновиками</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dc/index.html">Работа с документооборотами</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inventories/index.html">Представление документов к требованиям</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../builder/index.html">Конструктор черновиков (DraftsBuilder)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents/index.html">Сервис контентов</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Дополнительно</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../manuals/index.html">Справка</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contacts.html">Контакты</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SDK.html">SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/index.html">Аутентификация по auth.sid (obsolete)</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">extern-api</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">База знаний</a> &raquo;</li>
+        
+      <li>Наименование файлов</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/knowledge base/filename.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id3">
+<h1>Наименование файлов<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h1>
+<div class="section" id="id4">
+<h2>Наименование файлов для отчетов ФНС<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Примечание</p>
+<p>Все файлы отчетов в формате xml, которые вы отправляете в ИФНС должны быть сохранены в кодировке windows-1251.</p>
+</div>
+<p>Для отчетов в ФНС в формате xml имя файла, помимо названия, <strong>дублируется внутри файла</strong> в теге Файл параметр ИдФайл. И в названии, и в теге имя файла должно полностью совпадать.</p>
+<p>Формат имени файла установлен в нормативных документах. Имя файла для ФНС будет состоять из следующих частей:</p>
+<ul class="simple">
+<li><p>название формы отчетности по приказу,</p></li>
+<li><p>код транзитной инспекции  (код МРИ),</p></li>
+<li><p>код конечной инспекции,</p></li>
+<li><p>ИНН-КПП слитно без разделителей (если по доверенности, то ИНН-КПП отправителя),</p></li>
+<li><p>дата формирования файла,</p></li>
+<li><p>идентификатор файла.</p></li>
+</ul>
+<p>Если вы не хотите вручную менять данные внутри файла и в его имени, воспользуйтесь <a class="reference external" href="https://developer.kontur.ru/doc/extern.test.tools">сервисом генерации тестовых данных</a>. В данном API реализованы методы для генерации тестовых файлов на ваших данных.</p>
+</div>
+<div class="section" id="rst-markup-name-reestr-pvso">
+<span id="id5"></span><h2>Наименование файлов реестров ПВСО<a class="headerlink" href="#rst-markup-name-reestr-pvso" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для <a class="reference internal" href="reestr-pvso.html"><span class="doc">реестров ПВСО</span></a> имя файла должно принимать вид согласно <a class="reference external" href="http://fz122.fss.ru/doc/reglrest.pdf">спецификации ФСС</a>:</p>
+<p><strong>E_NUMBER_YYYY_MM_DD_NNNN.xml</strong></p>
+<p><strong>Литера_Регистрационный номер_Год_Месяц_День_Номер реестра за день</strong></p>
+<p>Описание элементов имени файла:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Литера E (Employer)</strong>  — работодатель, он же страхователь для ФСС РФ.</p></li>
+<li><p><strong>Регистрационный номер</strong> — следует за литерой и позволяет определить работодателя на этапе приема реестра порталом ФСС. Для филиалов используется регистрационный номер обособленного подразделения, это последние 10 знаков расширенного регистрационного номера. Если у филиала он отсутствует, то используется регистрационный номер вышестоящей организации.</p></li>
+<li><p><strong>YYYY</strong>  — год.</p></li>
+<li><p><strong>MM</strong> — месяц, допустимы значения из диапазона 01, 02, …, 12.</p></li>
+<li><p><strong>DD</strong> — день, допустимы значения из диапазона 01, 02, …, 31 в соответствии с количеством дней месяца и годом.</p></li>
+<li><p><strong>Номер в конце наименования</strong> — указывает на очередность реестра при отправке нескольких реестров в один день и состоит их четырех символов.</p></li>
+</ul>
+</div></blockquote>
+<p>Максимальная длина имени без расширения не может быть больше 28 символов.</p>
+<div class="admonition note">
+<p class="admonition-title">Примечание</p>
+<p>После подписания реестра электронно-цифровой подписью расширение файла должно быть: <strong>*.esl</strong>.</p>
+</div>
+<p>Пример названия и файла до подписания:</p>
+<p><a class="reference download internal" download="" href="../_downloads/1f5ba617c5ac66ac869b8a31468cbc85/E_0000000000_2021_04_14_0002 .xml"><code class="xref download docutils literal notranslate"><span class="pre">E_0000000000_2021_04_14_0002.xml</span></code></a></p>
+<p>Пример названия и файла после подписания:</p>
+<p><a class="reference download internal" download="" href="../_downloads/1f90b4ab97a9174906022e85dc2bde6c/E_0000000000_2021_04_14_0002.esl"><code class="xref download docutils literal notranslate"><span class="pre">E_0000000000_2021_04_14_0002.esl</span></code></a></p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="print.html" class="btn btn-neutral float-right" title="Печать документов" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="База знаний" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ <script type="text/javascript">
+ 	document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.toggle').forEach(item => {
+        const switcher = document.createElement('div');
+        switcher.classList.add('switcher');
+        switcher.addEventListener('click', () => {
+          item.classList.toggle('open');
+        })
+        item.appendChild(switcher);
+      });
+    })
+    /*
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+    */
+</script>
+
+
+</body>
+</html>

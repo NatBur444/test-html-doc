@@ -1,0 +1,331 @@
+
+
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Документооборот с ФСС &mdash; документация extern-api 1.1</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
+    <link rel="search" title="Поиск" href="../search.html" />
+    <link rel="next" title="Реестр ПВСО" href="reestr-pvso.html" />
+    <link rel="prev" title="Прослеживаемость товаров. РНПТ" href="rnpt.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> extern-api
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Поиск в документации" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">История изменений</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release%20notes.html">История изменений API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Подготовка</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../recommendations.html">Рекомендации по работе c API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/index.html">Начало работы с API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth_oidc/index.html">Аутентификация OpenID Connect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../specification/index.html">Спецификация</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">База знаний</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="filename.html">Наименование файлов</a></li>
+<li class="toctree-l2"><a class="reference internal" href="print.html">Печать документов</a></li>
+<li class="toctree-l2"><a class="reference internal" href="content.html">Сервис контентов</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DraftsBuilder.html">DraftsBuilder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loks.html">Блокировки</a></li>
+<li class="toctree-l2"><a class="reference internal" href="businessReg.html">Документооборот регистрации бизнеса</a></li>
+<li class="toctree-l2"><a class="reference internal" href="demand.html">Требование</a></li>
+<li class="toctree-l2"><a class="reference internal" href="check-demand.html">Проверка требования ФНС</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inventory.html">Опись — ответ на требование</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rnpt.html">Прослеживаемость товаров. РНПТ</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Документооборот с ФСС</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Создание и отправка черновика по форме 4-ФСС</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="reestr-pvso.html">Реестр ПВСО</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sedo-fss.html">Уведомления и извещения СЭДО ФСС</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sedo-subscription.html">Подписки СЭДО ФСС на получение извещений и уведомлений</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proactiv.html">Проактивные выплаты</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proactive_%20algorithm.html">Алгоритм работы с методами в проактивных выплатах</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PFR.html">Документооборот с ПФР</a></li>
+<li class="toctree-l2"><a class="reference internal" href="szvtd.html">Отчетность в ПФР по форме СЗВ-ТД</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stat-letter.html">Письма в Росстат</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Работа с API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../accounts/index.html">Работа с учетными записями</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drafts/index.html">Работа с черновиками</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dc/index.html">Работа с документооборотами</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inventories/index.html">Представление документов к требованиям</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../builder/index.html">Конструктор черновиков (DraftsBuilder)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents/index.html">Сервис контентов</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Дополнительно</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../manuals/index.html">Справка</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contacts.html">Контакты</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SDK.html">SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/index.html">Аутентификация по auth.sid (obsolete)</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">extern-api</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">База знаний</a> &raquo;</li>
+        
+      <li>Документооборот с ФСС</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/knowledge base/FSS.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id3">
+<h1>Документооборот с ФСС<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h1>
+<p id="rst-markup-dc-fss">Через API Контур.Экстерна в Фонд социального страхования можно отправить следующие формы отчетности:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>4-ФСС (тип документооборота <a class="reference external" href="urn:docflow:fss-report">urn:docflow:fss-report</a>).</p></li>
+</ul>
+</div></blockquote>
+<p>Также от Фонда социального страхования через сервис электронного документооборота (СЭДО) можно получать:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Извещения ПВСО;</p></li>
+<li><p>Уведомления об изменении статуса ЭЛН.</p></li>
+</ul>
+<p>Подробнее про документообороты через СЭДО см. в статье <a class="reference internal" href="sedo-fss.html"><span class="doc">Уведомления и извещения СЭДО ФСС</span></a>.</p>
+</div></blockquote>
+<div class="section" id="id4">
+<h2>Создание и отправка черновика по форме 4-ФСС<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h2>
+<p><strong>Особенности документооборота 4-ФСС</strong>:</p>
+<ul class="simple">
+<li><p>подробное описание документов доступно в <a class="reference external" href="https://www.kontur-extern.ru/support/faq/31/157">инструкции</a>;</p></li>
+<li><p>подпись документа передается вместе с содержимым документа;</p></li>
+<li><p>в данном виде документооборота нет ответных документов;</p></li>
+<li><p>помимо статусов важную роль имеют стадии. Подробное описание представлено в разделе <a class="reference internal" href="../specification/%D1%81%D1%82%D0%B0%D1%82%D1%83%D1%81%D1%8B%20%D0%94%D0%9E.html#rst-markup-4fss"><span class="std std-ref">спецификация</span></a>;</p></li>
+<li><p>со стороны контролирующего органа отчетность принимает <a class="reference external" href="http://f4.fss.ru/fss/office">шлюз ФСС</a>, на котором вы можете найти отправленный отчет по его идентификатору.</p></li>
+</ul>
+<p><strong>Алгоритм работы с черновиком:</strong></p>
+<ol class="arabic simple">
+<li><p>Создать черновик: <a class="reference external" href="https://developer.kontur.ru/doc/extern.drafts/method?type=post&amp;path=%2Fv1%2F%7BaccountId%7D%2Fdrafts">POST Create draft</a>. При создании черновика в теле запроса обязательно указать:</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>в payer параметр registration-number-fss;</p></li>
+<li><p>в recipient параметр fss-code.</p></li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>Загрузить файл отчета по форме 4-ФСС в <a class="reference internal" href="../contents/content_methods.html"><span class="doc">Сервис контентов</span></a>.</p></li>
+<li><p>Создать документ в черновике <a class="reference external" href="https://developer.kontur.ru/doc/extern.drafts/method?type=post&amp;path=%2Fv1%2F%7BaccountId%7D%2Fdrafts%2F%7BdraftId%7D%2Fdocuments">POST AddDocument</a>. При создании указать ссылку на документ в виде идентификатора из Сервиса контентов.</p></li>
+<li><p>Приложить подпись к документу <a class="reference external" href="https://developer.kontur.ru/doc/extern.drafts/method?type=post&amp;path=%2Fv1%2F%7BaccountId%7D%2Fdrafts%2F%7BdraftId%7D%2Fdocuments%2F%7BdocumentId%7D%2Fsignatures">POST Add signature</a>.</p></li>
+<li><p>Когда черновик готов, запускаем последовательность методов: <a class="reference external" href="https://developer.kontur.ru/doc/extern.drafts/method?type=post&amp;path=%2Fv1%2F%7BaccountId%7D%2Fdrafts%2F%7BdraftId%7D%2Fcheck">POST Check</a> -&gt; <a class="reference external" href="https://developer.kontur.ru/doc/extern.drafts/method?type=post&amp;path=%2Fv1%2F%7BaccountId%7D%2Fdrafts%2F%7BdraftId%7D%2Fprepare">POST Prepare</a> -&gt; <a class="reference external" href="https://developer.kontur.ru/doc/extern.drafts/method?type=post&amp;path=%2Fv1%2F%7BaccountId%7D%2Fdrafts%2F%7BdraftId%7D%2Fsend">POST Send</a>. Метод <code class="docutils literal notranslate"><span class="pre">Prepare</span></code> объединит подпись и документ.</p></li>
+</ol>
+<p>После отправки отчета требуется дождаться получения квитанции или протокола обработки. Для этого нужно отлеживать статус и стадию документооборота: <a class="reference external" href="https://developer.kontur.ru/doc/extern.docflows/method?type=get&amp;path=%2Fv1%2F%7BaccountId%7D%2Fdocflows%2F%7BdocflowId%7D">GET Docflow</a>. Статусы и стадии документооборота по форме 4-ФСС описаны в <a class="reference internal" href="../specification/%D1%81%D1%82%D0%B0%D1%82%D1%83%D1%81%D1%8B%20%D0%94%D0%9E.html#rst-markup-4fss"><span class="std std-ref">спецификации</span></a>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="reestr-pvso.html" class="btn btn-neutral float-right" title="Реестр ПВСО" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="rnpt.html" class="btn btn-neutral float-left" title="Прослеживаемость товаров. РНПТ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ <script type="text/javascript">
+ 	document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.toggle').forEach(item => {
+        const switcher = document.createElement('div');
+        switcher.classList.add('switcher');
+        switcher.addEventListener('click', () => {
+          item.classList.toggle('open');
+        })
+        item.appendChild(switcher);
+      });
+    })
+    /*
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+    */
+</script>
+
+
+</body>
+</html>

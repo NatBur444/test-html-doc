@@ -1,0 +1,292 @@
+
+
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Подпись XMLDsig для отчетов в ПФР &mdash; документация extern-api 1.1</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
+    <link rel="search" title="Поиск" href="../search.html" />
+    <link rel="next" title="Контакты" href="../contacts.html" />
+    <link rel="prev" title="Примеры файлов отчетов" href="files-for-examples.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> extern-api
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Поиск в документации" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">История изменений</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release%20notes.html">История изменений API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Подготовка</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../recommendations.html">Рекомендации по работе c API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../howto/index.html">Начало работы с API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth_oidc/index.html">Аутентификация OpenID Connect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../specification/index.html">Спецификация</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge%20base/index.html">База знаний</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Работа с API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../accounts/index.html">Работа с учетными записями</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drafts/index.html">Работа с черновиками</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dc/index.html">Работа с документооборотами</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inventories/index.html">Представление документов к требованиям</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../builder/index.html">Конструктор черновиков (DraftsBuilder)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents/index.html">Сервис контентов</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Дополнительно</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Справка</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cryptography.html">Криптография</a></li>
+<li class="toctree-l2"><a class="reference internal" href="using-OpenSSL-and-RSA.html">Использование OpenSSL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="RSA-certs.html">Получение RSA-сертификата</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contracts.html">Контракты для формирования документов в черновике</a></li>
+<li class="toctree-l2"><a class="reference internal" href="files-for-examples.html">Примеры файлов отчетов</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Подпись XMLDsig для отчетов в ПФР</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#xmldsig-api">Формирование XMLDsig подписи на стороне API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contacts.html">Контакты</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SDK.html">SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/index.html">Аутентификация по auth.sid (obsolete)</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">extern-api</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Справка</a> &raquo;</li>
+        
+      <li>Подпись XMLDsig для отчетов в ПФР</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/manuals/xmldsig.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="xmldsig">
+<h1>Подпись XMLDsig для отчетов в ПФР<a class="headerlink" href="#xmldsig" title="Ссылка на этот заголовок">¶</a></h1>
+<p>Заявление на подключение к ЭДОК и отчет СЗВ-ТД в ПФР должны быть подписаны подписью в формате xmlDsig. Для этого соответствующий блок Signature выносится по w3c в корень. Такая подпись является подписью по правилам СМЭВ 3. <a class="reference external" href="https://www.w3.org/TR/2013/REC-xmldsig-core1-20130411/">Описание стандарта подписи</a> (см. Enveloped or enveloping signatures).</p>
+<p>Если вы испытываете трудности в добавлении подписи в документ черновика на своей стороне, в методах API реализована функция помощи в подписании.</p>
+<div class="section" id="xmldsig-api">
+<span id="rst-markup-apiforxmldsig"></span><h2>Формирование XMLDsig подписи на стороне API<a class="headerlink" href="#xmldsig-api" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Порядок вызова методов для формирования подписи XMLDsig:</p>
+<ol class="arabic simple">
+<li><p>Загрузить в черновик XML-документ (Отчет или Заявление на подключение). Либо сформировать заявление с помощью <a class="reference internal" href="../drafts/DraftDocumentBuildController.html"><span class="doc">методов формирования файлов documentBuilder</span></a>.</p></li>
+<li><p>Проверить черновик <a class="reference external" href="https://developer.kontur.ru/doc/extern.drafts/method?type=post&amp;path=%2Fv1%2F%7BaccountId%7D%2Fdrafts%2F%7BdraftId%7D%2Fcheck">POST Check</a>.</p></li>
+<li><p>Если в загруженном документе не было XMLDsig, то на шаге Check в документ будет добавлено поле dataToSignContentId.</p></li>
+<li><p>После Check необходимо получить документ <a class="reference external" href="https://developer.kontur.ru/doc/extern.drafts/method?type=get&amp;path=%2Fv1%2F%7BaccountId%7D%2Fdrafts%2F%7BdraftId%7D">GET DraftDocument</a>.</p></li>
+<li><p>Через сервис контентов по dataToSignContentId получить данные для подписи <a class="reference internal" href="../contents/content_methods.html#rst-markup-get-content"><span class="std std-ref">GET Download</span></a>.</p></li>
+<li><p>Подписать эти данные «сырой» (raw) подписью.</p></li>
+<li><p>Загрузить в черновик подпись <a class="reference external" href="https://developer.kontur.ru/doc/extern.drafts/method?type=put&amp;path=%2Fv1%2F%7BaccountId%7D%2Fdrafts%2F%7BdraftId%7D%2Fdocuments%2F%7BdocumentId%7D%2Fsignature">PUT DocumentSignature</a>.</p></li>
+<li><p>Вызвать для черновика шаг <a class="reference external" href="https://developer.kontur.ru/doc/extern.drafts/method?type=post&amp;path=%2Fv1%2F%7BaccountId%7D%2Fdrafts%2F%7BdraftId%7D%2Fprepare">POST Prepare</a>. На этом шаге подпись XMLDsig будет добавлена в XML-документ.</p></li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../contacts.html" class="btn btn-neutral float-right" title="Контакты" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="files-for-examples.html" class="btn btn-neutral float-left" title="Примеры файлов отчетов" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ <script type="text/javascript">
+ 	document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.toggle').forEach(item => {
+        const switcher = document.createElement('div');
+        switcher.classList.add('switcher');
+        switcher.addEventListener('click', () => {
+          item.classList.toggle('open');
+        })
+        item.appendChild(switcher);
+      });
+    })
+    /*
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+    */
+</script>
+
+
+</body>
+</html>

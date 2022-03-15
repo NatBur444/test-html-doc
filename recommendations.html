@@ -1,0 +1,401 @@
+
+
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Рекомендации по работе c API &mdash; документация extern-api 1.1</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/translations.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Алфавитный указатель" href="genindex.html" />
+    <link rel="search" title="Поиск" href="search.html" />
+    <link rel="next" title="Начало работы с API" href="howto/index.html" />
+    <link rel="prev" title="История изменений API" href="release%20notes.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> extern-api
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Поиск в документации" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">История изменений</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release%20notes.html">История изменений API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Подготовка</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Рекомендации по работе c API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Советы по технической реализации интеграции</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#api">Параллельное выполнение запросов к API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Массовая отправка отчетности</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Новые типы и параметры</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Трейсинг запросов в API Контур Экстерн</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">Особенности работы с методами</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Получение ресурса по идентификатору</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Мониторинг документооборотов</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">Работа со списком документооборотов</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">Отложенное выполнение задач</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">Сервис контентов</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">Время хранения контентов</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="howto/index.html">Начало работы с API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auth_oidc/index.html">Аутентификация OpenID Connect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="specification/index.html">Спецификация</a></li>
+<li class="toctree-l1"><a class="reference internal" href="knowledge%20base/index.html">База знаний</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Работа с API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="accounts/index.html">Работа с учетными записями</a></li>
+<li class="toctree-l1"><a class="reference internal" href="drafts/index.html">Работа с черновиками</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dc/index.html">Работа с документооборотами</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inventories/index.html">Представление документов к требованиям</a></li>
+<li class="toctree-l1"><a class="reference internal" href="builder/index.html">Конструктор черновиков (DraftsBuilder)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/index.html">Сервис контентов</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Дополнительно</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="manuals/index.html">Справка</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contacts.html">Контакты</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SDK.html">SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="auth/index.html">Аутентификация по auth.sid (obsolete)</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">extern-api</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Рекомендации по работе c API</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/recommendations.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="c-api">
+<h1>Рекомендации по работе c API<a class="headerlink" href="#c-api" title="Ссылка на этот заголовок">¶</a></h1>
+<div class="section" id="id1">
+<h2>Советы по технической реализации интеграции<a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="section" id="api">
+<h3>Параллельное выполнение запросов к API<a class="headerlink" href="#api" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Для обеспечения надежной работы API в Контур Экстерне настроены ограничения для каждого клиента таким образом, чтобы он не мог влиять на других.</p>
+<p>Запросы к API можно выполнять параллельно, но нужно осторожно выставлять уровень параллелизма и выносить его в настройки.</p>
+<p>В данный момент по умолчанию каждый клиент ограничен 20 одновременными HTTP запросами. Все, что превышает данный уровень, отправляется в очередь и может быть отброшено с кодом ответа <code class="docutils literal notranslate"><span class="pre">HTTP</span> <span class="pre">429</span> <span class="pre">Throttling</span></code>.</p>
+</div>
+<div class="section" id="id2">
+<h3>Массовая отправка отчетности<a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Для отправки большого количества документооборотов рекомендуем реализовать очередь отправок с конфигурацией количества параллельных запросов.</p>
+<p>При такой архитектуре можно будет обеспечить надежную отправку независимо от сетевых проблем на стороне клиентов, превышения количества отправляемых запросов и балансировки нагрузки.</p>
+</div>
+<div class="section" id="id3">
+<h3>Новые типы и параметры<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h3>
+<p>API Контур Экстерна развивается, и постепенно появляется новая функциональность. Поэтому при проектировании интеграции обязательно учитывайте возможность расширения текущего списка документооборотов, документов, статусов ленты событий и т.д.</p>
+<p>Также в моделях данных могут появляться новые параметры для реализации новых сценариев работы в API. Например, возможно появление новых типов и параметров в моделях Docflow, DocflowDescription, Document и т.п.</p>
+<p>Плохо делать так:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">docType</span> <span class="o">==</span> <span class="s2">&quot;docType1&quot;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="o">...</span>
+    <span class="k">return</span> <span class="n">DocType1Description</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">docType</span> <span class="o">==</span> <span class="s2">&quot;docType2&quot;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="o">...</span>
+    <span class="k">return</span> <span class="n">DocType2Descriotion</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="n">throw</span> <span class="ne">Exception</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>Трейсинг запросов в API Контур Экстерн<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h3>
+<p>В ответе каждого запроса будет лежать заголовок <code class="docutils literal notranslate"><span class="pre">X-Kontur-Trace-Id</span></code> — уникальный идентификатор запроса. Рекомендуем сохранять или логировать на вашей стороне данный идентификатор trace-id для диагностики работы вашего приложения.</p>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>Особенности работы с методами<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h2>
+<div class="section" id="id6">
+<h3>Получение ресурса по идентификатору<a class="headerlink" href="#id6" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Не рекомендуем хранить идентификаторы на вашей стороне, чтобы защититься от ошибок вследствие их возможной смены. Например, возможно изменение:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>accountId — идентификатора учетной записи,</p></li>
+<li><p>orgId — идентификатора организации.</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="id7">
+<h3>Мониторинг документооборотов<a class="headerlink" href="#id7" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Для мониторинга документооборотов есть два варианта работы с API:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>использование <a class="reference internal" href="dc/%D0%BB%D0%B5%D0%BD%D1%82%D0%B0%20%D1%81%D0%BE%D0%B1%D1%8B%D1%82%D0%B8%D0%B9%20%D0%94%D0%9E.html"><span class="doc">ленты событий</span></a>,</p></li>
+<li><p>чтение списка документооборотов.</p></li>
+</ol>
+</div></blockquote>
+<p>Ленту событий будет удобно использовать интеграторам, которые работают со множеством учетных записей Контур Экстерна. В такой ситуации у вас будет единый механизм получения уведомлений по изменениям статусов документооборотов для всех учетных записей.</p>
+<p>Список документооборотов удобно использовать, когда в интеграции одна учетная запись. В таком сценарии достаточно будет вычитывать список документооборотов.</p>
+<p><strong>Исключением является</strong> сценарий, когда необходимо мониторить статусы ответов на требования. Их через список документооборотов не получить. Поэтому придется воспользоваться лентой событий.</p>
+</div>
+<div class="section" id="id8">
+<h3>Работа со списком документооборотов<a class="headerlink" href="#id8" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Чтобы получить список документооборотов (ДО), используйте метод <a class="reference internal" href="dc/%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20API%20%D0%B4%D0%BB%D1%8F%20%D0%94%D0%9E.html#rst-markup-get-dcs"><span class="std std-ref">GET Docflows</span></a>. При этом соблюдайте следующее ограничение:</p>
+<div class="admonition note">
+<p class="admonition-title">Примечание</p>
+<p>получать список ДО только <strong>по одному типу</strong> документооборота с использованием фильтра <code class="docutils literal notranslate"><span class="pre">type</span></code> и сортировкой по дате создания или изменения.</p>
+</div>
+<p>При получении общего списка ДО без фильтра type метод GET Docflows не возвращает ДО следующих типов:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="urn:docflow:business-registration">urn:docflow:business-registration</a>,</p></li>
+<li><p><a class="reference external" href="urn:docflow:fns534-cu-broadcast">urn:docflow:fns534-cu-broadcast</a>,</p></li>
+<li><p><a class="reference external" href="urn:docflow:stat-cu-broadcast">urn:docflow:stat-cu-broadcast</a>,</p></li>
+<li><p><a class="reference external" href="urn:docflow:fss-sedo-abonent-subscription-result">urn:docflow:fss-sedo-abonent-subscription-result</a>,</p></li>
+<li><p><a class="reference external" href="urn:docflow:fss-sedo-provider-subscription">urn:docflow:fss-sedo-provider-subscription</a>,</p></li>
+<li><p><a class="reference external" href="urn:docflow:fss-sedo-abonent-subscription">urn:docflow:fss-sedo-abonent-subscription</a>,</p></li>
+<li><p><a class="reference external" href="urn:docflow:fss-sedo-error">urn:docflow:fss-sedo-error</a>,</p></li>
+<li><p><a class="reference external" href="urn:docflow:fss-sedo-pvso-notification">urn:docflow:fss-sedo-pvso-notification</a>.</p></li>
+</ul>
+</div></blockquote>
+<p>Для документооборота Ответ на требование (<a class="reference external" href="urn:docflow:fns534-inventory">urn:docflow:fns534-inventory</a>) нужно использовать метод <a class="reference internal" href="inventories/%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B4%D0%BE%20%D0%BE%D0%BF%D0%B8%D1%81%D0%B8.html#rst-markup-get-all-inventory"><span class="std std-ref">GET GetAllInventoryDocflows</span></a> из раздела Документооборот описи.</p>
+<p>После выбора из списка нужного документооборота получите его по идентификатору. В ответе вернется информация о документообороте и документах в нем. Не рекомендуем использовать отдельные методы получения документов по идентификатору: вся информация о них содержится в документообороте.</p>
+</div>
+<div class="section" id="id9">
+<h3>Отложенное выполнение задач<a class="headerlink" href="#id9" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Рекомендуем использовать в API отложенное выполнение задач в методах, где это предусмотрено. Например в методах:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="drafts/%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B%20%D1%81%20%D1%87%D0%B5%D1%80%D0%BD%D0%BE%D0%B2%D0%B8%D0%BA%D0%B0%D0%BC%D0%B8.html#rst-markup-check"><span class="std std-ref">Проверки</span></a>, <a class="reference internal" href="drafts/%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B%20%D1%81%20%D1%87%D0%B5%D1%80%D0%BD%D0%BE%D0%B2%D0%B8%D0%BA%D0%B0%D0%BC%D0%B8.html#rst-markup-prepare"><span class="std std-ref">подготовки</span></a>, <a class="reference internal" href="drafts/%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B%20%D1%81%20%D1%87%D0%B5%D1%80%D0%BD%D0%BE%D0%B2%D0%B8%D0%BA%D0%B0%D0%BC%D0%B8.html#rst-markup-send"><span class="std std-ref">отправки</span></a> черновика.</p></li>
+<li><p><a class="reference internal" href="drafts/DraftDocumentsController.html#rst-markup-draft-print"><span class="std std-ref">Печати документа в черновике</span></a>.</p></li>
+<li><p><a class="reference internal" href="dc/%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20API%20%D0%B4%D0%BB%D1%8F%20%D0%94%D0%9E.html#rst-markup-dcprint"><span class="std std-ref">Печати документа в документообороте</span></a>.</p></li>
+<li><p><a class="reference internal" href="builder/%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20%D0%B1%D0%B8%D0%BB%D0%B4%D0%B5%D1%80%D0%B0.html#rst-markup-builddb"><span class="std std-ref">Сборки DraftsBuilder в черновик</span></a>.</p></li>
+</ul>
+</div></blockquote>
+<p>Некоторые операции из этого списка потенциально выполняются дольше других методов в API, возможно даже более 10-15 минут. Данные методы обрабатывают контенты документов, поэтому длительность работы также зависит от их размера.</p>
+<p>В таких методах реализован параметр deferred. Когда приходит запрос с deferred=true, создается задача на выполнение операции в фоновом режиме. Метод возвращает идентификатор задачи, чтобы можно было отследить прогресс ее выполнения и получить результат.</p>
+<p>Отложенное выполнение задач более надежно, т.к. все HTTP запросы на постановку задачи и получение ее результатов будут короткие. Это минимизирует риск получить ошибку из-за обрыва соединения.</p>
+<p>Даже если вы обрабатываете небольшие документы при тестировании API, в реальной работе пользователи могут в любой момент отправить объемный документ, например, ответ на требование или декларации по НДС. В этом случае операция с контентом может долго выполняться, и сетевое соединение может быть разорвано. Тогда пользователь не получит результат, и операцию придется выполнять заново.</p>
+</div>
+<div class="section" id="id10">
+<h3>Сервис контентов<a class="headerlink" href="#id10" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Для загрузки и скачивания документов рекомендуем всегда использовать <a class="reference internal" href="contents/index.html"><span class="doc">Сервис контентов</span></a>. Такой способ надежно будет работать для контентов любого объема.</p>
+</div>
+<div class="section" id="id11">
+<h3>Время хранения контентов<a class="headerlink" href="#id11" title="Ссылка на этот заголовок">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Примечание</p>
+<p>Контенты документов в документооборотах хранятся без ограничений по времени.</p>
+</div>
+<p>Для остальных видов контентов определено время хранения. Например:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Документы, загруженные через сервис контентов, хранятся 90 дней.</p></li>
+<li><p>Печатные формы документов черновиков хранятся 1 год.</p></li>
+<li><p>Печатные формы документов документооборотов хранятся 5 дней.</p></li>
+</ul>
+</div></blockquote>
+<p>Время хранения контентов может измениться.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="howto/index.html" class="btn btn-neutral float-right" title="Начало работы с API" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="release%20notes.html" class="btn btn-neutral float-left" title="История изменений API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ <script type="text/javascript">
+ 	document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.toggle').forEach(item => {
+        const switcher = document.createElement('div');
+        switcher.classList.add('switcher');
+        switcher.addEventListener('click', () => {
+          item.classList.toggle('open');
+        })
+        item.appendChild(switcher);
+      });
+    })
+    /*
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+    */
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,1610 @@
+
+
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="ru" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Работа с документооборотом &mdash; документация extern-api 1.1</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon2.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Алфавитный указатель" href="../genindex.html" />
+    <link rel="search" title="Поиск" href="../search.html" />
+    <link rel="next" title="Аутентификация OpenID Connect" href="../auth_oidc/index.html" />
+    <link rel="prev" title="Работа с черновиком" href="howtodrafts.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> extern-api
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Поиск в документации" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">История изменений</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../release%20notes.html">История изменений API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Подготовка</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../recommendations.html">Рекомендации по работе c API</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Начало работы с API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="stepbystep.html">Алгоритм работы с API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="howtodrafts.html">Работа с черновиком</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Работа с документооборотом</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Основные понятия</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Особенности работы с документооборотом</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Порядок работы с документооборотом после отправки черновика</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rst-markup-track-docflow-status">Проверка статуса документооборота</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">Получение входящих документов от контролирующего органа</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id9">Алгоритм получения документа из зашифрованного контента</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">Формирование ответных документов</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id11">Порядок работы с ответным документом</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id12">Создание ответного документа</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">Подписание документа</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id14">Отправка ответного документа</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../auth_oidc/index.html">Аутентификация OpenID Connect</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../specification/index.html">Спецификация</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../knowledge%20base/index.html">База знаний</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Работа с API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../accounts/index.html">Работа с учетными записями</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../drafts/index.html">Работа с черновиками</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dc/index.html">Работа с документооборотами</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inventories/index.html">Представление документов к требованиям</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../builder/index.html">Конструктор черновиков (DraftsBuilder)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents/index.html">Сервис контентов</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Дополнительно</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../manuals/index.html">Справка</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contacts.html">Контакты</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SDK.html">SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auth/index.html">Аутентификация по auth.sid (obsolete)</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">extern-api</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Начало работы с API</a> &raquo;</li>
+        
+      <li>Работа с документооборотом</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/howto/howtodocflow.rst.txt" rel="nofollow"> Просмотреть исходный код страницы</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id3">
+<h1>Работа с документооборотом<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h1>
+<p>В предыдущей статье было описано, как отправлять отчет в налоговый орган. В этой статье рассмотрим завершение документооборота с налоговым органом: как получить документооборот, проверить его статус, получить входящие документы от контролирующего органа и сформировать ответный документ.</p>
+<p class="rubric">Что такое документооборот?</p>
+<p>Документооборот (ДО) — это обмен юридически значимыми документами между организацией и контролирующим органом (КО).</p>
+<img alt="../_images/whatisdocflow.jpg" src="../_images/whatisdocflow.jpg" />
+<p>ДО характеризуется типом и статусом и появляется после отправки черновика или при поступлении входящего запроса к организации от контролирующего органа.</p>
+<p>Рассмотрим работу с документооборотом после отправки черновика отчета в ФНС. Когда вы поймете как работать с отчетом в ФНС, вам станет проще понимать процесс работы с другими типами документооборотов.</p>
+<div class="section" id="id4">
+<h2>Основные понятия<a class="headerlink" href="#id4" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Прежде чем перейти к алгоритму действий изучите <a class="reference internal" href="../specification/%D1%81%D1%82%D0%B0%D1%82%D1%83%D1%81%D1%8B%20%D0%94%D0%9E.html#rst-markup-fnsreport-status"><span class="std std-ref">процесс смены статусов ДО</span></a> в зависимости от поступающих документов. А также ознакомьтесь с <a class="reference external" href="https://www.kontur-extern.ru/support/faq/41/246">описанием документов в документообороте с ФНС</a>.</p>
+<p>Если обобщить простыми словами, то в документообороте можно выделить три категории документов:</p>
+<ol class="arabic simple">
+<li><p>Отправленные документы — отчет пользователя с приложениями.</p></li>
+<li><p>Входящие технологические документы — все, что пришло пользователю на его отправленный отчет.</p></li>
+<li><p>Ответный документ (reply document) — технологический документ Извещение о получении, который пользователь должен отправлять в ответ на входящие документы. Для создания ответных документов в документообороте будут появляться ссылки с типом <em>reply</em>.</p></li>
+</ol>
+<p>У документооборота с ФНС типа декларация (<a class="reference external" href="urn:docflow:fns534-report">urn:docflow:fns534-report</a>) возможны следующие статусы:</p>
+<ul class="simple">
+<li><p>Отправлен (<a class="reference external" href="urn:docflow-common-status:sent">urn:docflow-common-status:sent</a>) — черновик отправлен. В документообороте появился документ Подтверждение даты отправки, сформированный оператором ЭДО, а также новая ссылка с типом reply. Переходим к формированию ответного документа;</p></li>
+<li><p>Доставлен (<a class="reference external" href="urn:docflow-common-status:delivered">urn:docflow-common-status:delivered</a>) — документ дошел до ФНС и принят в работу. В документообороте при этом появится новый документ Извещение о получении, никаких действий не требуется;</p></li>
+<li><p>Получен ответ (<a class="reference external" href="urn:docflow-common-status:response-arrived">urn:docflow-common-status:response-arrived</a>) — на отправленный документооборот пришли результаты приема или результаты обработки. В документообороте появилась новая ссылка с типом reply. Переходим к формированию ответного документа;</p></li>
+<li><p>Ответ обработан (<a class="reference external" href="urn:docflow-common-status:response-processed">urn:docflow-common-status:response-processed</a>) — пользователь отправил Извещение о получении на квитанцию о приеме;</p></li>
+<li><p>Завершен (<a class="reference external" href="urn:docflow-common-status:finished">urn:docflow-common-status:finished</a>) — документооборот завершен.</p></li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h2>Особенности работы с документооборотом<a class="headerlink" href="#id5" title="Ссылка на этот заголовок">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Статусы документооборота меняются, когда появляются новые документы со стороны налоговой инспекции, либо при отправке Извещения о получении.</p></li>
+<li><p>Ссылки с типом <em>reply</em> появляются постепенно после отправки документооборота.</p></li>
+<li><p>На все ссылки с типом <em>reply</em> необходимо сформировать ответный документ.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Примечание</p>
+<p>Таким образом, работа с документооборотом — это:</p>
+<ul class="simple">
+<li><p>запрос статуса документооборота (отслеживание изменений в метаинформации);</p></li>
+<li><p>получение входящих документов от контролирующего органа;</p></li>
+<li><p>формирование ответного документа по ссылкам с типом reply, по мере их появления в документообороте.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>Порядок работы с документооборотом после отправки черновика<a class="headerlink" href="#id6" title="Ссылка на этот заголовок">¶</a></h2>
+<ol class="arabic">
+<li><p>Запрашиваем статус документооборота. Ожидаем значение статуса «Отправлен» и получения подтверждения даты отправки.</p></li>
+<li><p>Формируем и отправляем ответный документ.</p></li>
+<li><p>Запрашиваем статус документооборота. Ожидаем значение статуса «Доставлен» и появления извещения о получении либо сообщения об ошибке.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Если было получено сообщение об ошибке, документооборот завершен.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Запрашиваем статус документооборота. Ожидаем значение статуса «Получен ответ» и получения квитанции о приеме либо уведомления об отказе. Квитанция подтверждает факт приема отчета, уведомление об отказе свидетельствует, что отчет не прошел проверку.</p></li>
+<li><p>Смотрим и печатаем результаты приема отчета.</p></li>
+<li><p>Формируем и отправляем ответные документы.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Если в результате приема пришло уведомление об отказе, документооборот завершен. Нужно исправить ошибки и отправить отчет заново.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Запрашиваем статус документооборота. Ожидаем получения извещения о вводе или уведомления об уточнении — результатов обработки. Данные документы подтверждают факт переноса данных отчета в базу налогового органа.</p></li>
+<li><p>Смотрим и печатаем результаты обработки.</p></li>
+<li><p>Формируем и отправляем ответный документ. Документооборот завершен, статус должен смениться на «Завершен». Если пришло уведомление об уточнении, пользователю необходимо ознакомиться с документом и, возможно, направить корректировку отчета.</p></li>
+</ol>
+<p><strong>Порядок работы в виде схемы:</strong></p>
+<a class="reference internal image-reference" href="../_images/docflow.jpg"><img alt="../_images/docflow.jpg" src="../_images/docflow.jpg" style="width: 800px;" /></a>
+<p><em>Документы от контролирующего органа могут прийти раньше, чем вы проверите статус документооборота. Поэтому вы можете не увидеть некоторые статусы, а сразу получить в документообороте N новых документов со статусом «Получен ответ». В этом случае нужно сформировать ответные документы по всем ссылкам типа reply и завершить документооборот</em>.</p>
+<p>Для удобства тестирования работы с документооборотом можно скачать файл коллекции Postman:</p>
+<p><a class="reference download internal" download="" href="../_downloads/f3e8d9f329bb96e3078d6c42cbfb9556/Работа с документооборотом.postman_collection.json"><code class="xref download docutils literal notranslate"><span class="pre">файл</span> <span class="pre">коллекции</span> <span class="pre">Postman</span></code></a></p>
+</div>
+<div class="section" id="rst-markup-track-docflow-status">
+<span id="id7"></span><h2>Проверка статуса документооборота<a class="headerlink" href="#rst-markup-track-docflow-status" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В этом примере рассмотрим, как по идентификатору получить документооборот и посмотреть его статус.</p>
+<p>Запросить статус документооборота можно двумя способами. Первый — запрашивать периодически конкретный документооборот, запомнив его id при отправке черновика, методом <a class="reference external" href="https://developer.kontur.ru/doc/extern.docflows/method?type=get&amp;path=%2Fv1%2F%7BaccountId%7D%2Fdocflows%2F%7BdocflowId%7D">GET Docflow</a>. Второй — запрашивать список документооборотов своей учетной записи методом <a class="reference external" href="https://developer.kontur.ru/doc/extern.docflows/method?type=get&amp;path=%2Fv1%2F%7BaccountId%7D%2Fdocflows">GET Docflows</a>.</p>
+<p>После успешной отправки черновика методом Send вы получите идентификатор сформированного документооборота. Для примера посмотрим результат выполнения задачи методом <a class="reference internal" href="howtodrafts.html#rst-markup-drafttask"><span class="std std-ref">GET DraftTask</span></a>. В параметре task-result лежит идентификатор документооборота.</p>
+<p>Также можно выполнить поиск документооборотов и выбрать нужный идентификатор в общем списке. По полученному идентификатору получаем документооборот методом <a class="reference internal" href="../dc/%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D1%8B%20API%20%D0%B4%D0%BB%D1%8F%20%D0%94%D0%9E.html#rst-markup-get-dc"><span class="std std-ref">GET Docflow</span></a>. В ответе метода нужно посмотреть на статус документооборота и сформированные ссылки (параметры status и links).</p>
+<p><strong>Пример запроса GET Docflow</strong></p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/a9bc74bd-311b-43f0-aff7-faba24ce35d9</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Authorization</span><span class="o">:</span> <span class="l">Bearer &lt;token&gt;</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+</pre></div>
+</div>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<p><strong>Пример ответа GET Docflow</strong></p>
+</div>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;0c4e50b5-66ac-4a92-b051-3bc95472dddb&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;organization-id&quot;</span><span class="p">:</span> <span class="s2">&quot;988b38f1-5580-4ba9-b9f8-3215e7f392ea&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:docflow:fns534-report&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:docflow-common-status:response-arrived&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;success-state&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:docflow-state:successful&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;form-version&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;knd&quot;</span><span class="p">:</span> <span class="s2">&quot;1110018&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;100501&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;form-fullname&quot;</span><span class="p">:</span> <span class="s2">&quot;Сведения о среднесписочной численности работников за предшествующий календарный год&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;form-shortname&quot;</span><span class="p">:</span> <span class="s2">&quot;Сведения о среднесписочной численности&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;recipient&quot;</span><span class="p">:</span> <span class="s2">&quot;0007&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;final-recipient&quot;</span><span class="p">:</span> <span class="s2">&quot;0007&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;correction-number&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nt">&quot;period-begin&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-01T00:00:00.0000000&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;period-end&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-12-31T00:00:00.0000000&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;period-code&quot;</span><span class="p">:</span> <span class="s2">&quot;34&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;payer-inn&quot;</span><span class="p">:</span> <span class="s2">&quot;7757424860-680345565&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;original-draft-id&quot;</span><span class="p">:</span> <span class="s2">&quot;d9622b9d-aa31-477b-a399-fc676588bfb5&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;documents&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;09da96fe-a21a-4f69-84db-ff9d82c86bde&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:document:fns534-report-processing-result-ok&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;IV_NOSRCHIS_7757424860_7757424860_0007_20200422_171abbd163074f34ae30d3f9b9439579.xml&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;content-type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/xml&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;encrypted-content-size&quot;</span><span class="p">:</span> <span class="mi">1642</span><span class="p">,</span>
+            <span class="nt">&quot;compressed&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;requisites&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="nt">&quot;support-recognition&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;encrypted-certificates&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;serial-number&quot;</span><span class="p">:</span> <span class="s2">&quot;01D0850043AB3C924A605B8D8661E43E&quot;</span>
+            <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;encrypted&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;encrypted-content&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/09da96fe-a21a-4f69-84db-ff9d82c86bde/encrypted-content&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;docflow-document-contents&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;content-id&quot;</span><span class="p">:</span> <span class="s2">&quot;7eded1eb-5d84-4e64-b8ca-82576a345eb0&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;encrypted&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="nt">&quot;compressed&quot;</span><span class="p">:</span> <span class="kc">true</span>
+            <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;send-date&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-04-22T14:17:13.8960679Z&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;signatures&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;c3eca6e8-2409-41e5-aec5-3aa1a566fb6e&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Корионов  Илья Валерьянович&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;signature-certificate-thumbprint&quot;</span><span class="p">:</span> <span class="s2">&quot;344AAD7111FC77ADE2A98FFB5E35F039BC4DD650&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;content-link&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;content&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/09da96fe-a21a-4f69-84db-ff9d82c86bde/signatures/c3eca6e8-2409-41e5-aec5-3aa1a566fb6e/content&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/09da96fe-a21a-4f69-84db-ff9d82c86bde/signatures/c3eca6e8-2409-41e5-aec5-3aa1a566fb6e/content&quot;</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;docflow&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb&quot;</span>
+                <span class="p">}</span>
+            <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;docflow&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/09da96fe-a21a-4f69-84db-ff9d82c86bde&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;reply&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/09da96fe-a21a-4f69-84db-ff9d82c86bde/generate-reply?documentType=fns534-report-receipt&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;fns534-report-receipt&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;encrypted-content&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/09da96fe-a21a-4f69-84db-ff9d82c86bde/encrypted-content&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;decrypt-content&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/09da96fe-a21a-4f69-84db-ff9d82c86bde/decrypt-content&quot;</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;68ed1449-d420-44df-a0ed-57568a1c7904&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:document:fns534-report-acceptance-result-positive&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;KV_NOSRCHIS_7757424860_7757424860_0007_20200422_726d74c3db7d41bbae6527512765b313.xml&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;content-type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/xml&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;encrypted-content-size&quot;</span><span class="p">:</span> <span class="mi">1809</span><span class="p">,</span>
+            <span class="nt">&quot;compressed&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;requisites&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="nt">&quot;support-recognition&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;encrypted-certificates&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;serial-number&quot;</span><span class="p">:</span> <span class="s2">&quot;01D0850043AB3C924A605B8D8661E43E&quot;</span>
+            <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;encrypted&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;encrypted-content&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/68ed1449-d420-44df-a0ed-57568a1c7904/encrypted-content&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;docflow-document-contents&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;content-id&quot;</span><span class="p">:</span> <span class="s2">&quot;2213c733-b4a8-413b-a7d5-17a35e0149f4&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;encrypted&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="nt">&quot;compressed&quot;</span><span class="p">:</span> <span class="kc">true</span>
+            <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;send-date&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-04-22T14:16:43.3017428Z&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;signatures&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;0f9a8e29-8e55-4e4e-87ed-8d9b685fb585&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Корионов  Илья Валерьянович&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;signature-certificate-thumbprint&quot;</span><span class="p">:</span> <span class="s2">&quot;344AAD7111FC77ADE2A98FFB5E35F039BC4DD650&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;content-link&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;content&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/68ed1449-d420-44df-a0ed-57568a1c7904/signatures/0f9a8e29-8e55-4e4e-87ed-8d9b685fb585/content&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/68ed1449-d420-44df-a0ed-57568a1c7904/signatures/0f9a8e29-8e55-4e4e-87ed-8d9b685fb585/content&quot;</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;docflow&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb&quot;</span>
+                <span class="p">}</span>
+            <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;docflow&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/68ed1449-d420-44df-a0ed-57568a1c7904&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;reply&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/68ed1449-d420-44df-a0ed-57568a1c7904/generate-reply?documentType=fns534-report-receipt&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;fns534-report-receipt&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;encrypted-content&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/68ed1449-d420-44df-a0ed-57568a1c7904/encrypted-content&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;decrypt-content&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/68ed1449-d420-44df-a0ed-57568a1c7904/decrypt-content&quot;</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;bc36f712-32b5-41a3-a8f9-060618385b76&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:document:fns534-report-receipt&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;IZ_NOSRCHIS_7757424860_7757424860_0007_20200422_6bbfacb8f7b64520a433d74e709ae4ec.xml&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;content-type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/xml&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;decrypted-content-size&quot;</span><span class="p">:</span> <span class="mi">4961</span><span class="p">,</span>
+            <span class="nt">&quot;compressed&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;requisites&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="nt">&quot;support-recognition&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;encrypted-certificates&quot;</span><span class="p">:</span> <span class="p">[]</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;decrypted&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;decrypted-content&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/bc36f712-32b5-41a3-a8f9-060618385b76/decrypted-content&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;docflow-document-contents&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;content-id&quot;</span><span class="p">:</span> <span class="s2">&quot;7b5ee74a-7a84-4d08-8a3f-a338e301fed2&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;encrypted&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+                <span class="nt">&quot;compressed&quot;</span><span class="p">:</span> <span class="kc">true</span>
+            <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;send-date&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-04-22T14:16:43.1767308Z&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;signatures&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;373d7891-b0ae-4cdd-9ba8-6ee583889cc0&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Корионов  Илья Валерьянович&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;signature-certificate-thumbprint&quot;</span><span class="p">:</span> <span class="s2">&quot;344AAD7111FC77ADE2A98FFB5E35F039BC4DD650&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;content-link&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;content&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/bc36f712-32b5-41a3-a8f9-060618385b76/signatures/373d7891-b0ae-4cdd-9ba8-6ee583889cc0/content&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/bc36f712-32b5-41a3-a8f9-060618385b76/signatures/373d7891-b0ae-4cdd-9ba8-6ee583889cc0/content&quot;</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;docflow&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb&quot;</span>
+                <span class="p">}</span>
+            <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;docflow&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/bc36f712-32b5-41a3-a8f9-060618385b76&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;decrypted-content&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/bc36f712-32b5-41a3-a8f9-060618385b76/decrypted-content&quot;</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;111f7485-7e2d-4c81-8017-9edc61835684&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:document:fns534-report&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;NO_SRCHIS_0007_0007_7757424860680345565_20200129_92425a70-4ac9-4680-bada-3666f0c0514v.xml&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;content-type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/xml&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;decrypted-content-size&quot;</span><span class="p">:</span> <span class="mi">2233</span><span class="p">,</span>
+            <span class="nt">&quot;encrypted-content-size&quot;</span><span class="p">:</span> <span class="mi">2233</span><span class="p">,</span>
+            <span class="nt">&quot;compressed&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;requisites&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="nt">&quot;related-docflows-count&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="nt">&quot;support-recognition&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;encrypted-certificates&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;serial-number&quot;</span><span class="p">:</span> <span class="s2">&quot;01D0850043AB3C924A605B8D8661E43E&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;serial-number&quot;</span><span class="p">:</span> <span class="s2">&quot;33AC7500C3AAAE924839AA8AE6C459FE&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;serial-number&quot;</span><span class="p">:</span> <span class="s2">&quot;19CCC7C800010000215D&quot;</span>
+            <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;decrypted&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;decrypted-content&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/111f7485-7e2d-4c81-8017-9edc61835684/decrypted-content&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;encrypted&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;encrypted-content&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/111f7485-7e2d-4c81-8017-9edc61835684/encrypted-content&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;docflow-document-contents&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;content-id&quot;</span><span class="p">:</span> <span class="s2">&quot;2e1a8085-875a-471c-881e-9600f6ac96ef&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;encrypted&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="nt">&quot;compressed&quot;</span><span class="p">:</span> <span class="kc">true</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;content-id&quot;</span><span class="p">:</span> <span class="s2">&quot;c670c7ab-0849-4536-a7b5-0594ea76212a&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;encrypted&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+                <span class="nt">&quot;compressed&quot;</span><span class="p">:</span> <span class="kc">false</span>
+            <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;send-date&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-04-22T14:16:36.1338472Z&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;signatures&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;920a7f48-9acd-4582-841a-e21df444e06d&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;ООО &#39;Баланс Плюс&#39; (Марков Георгий Эльдарович)&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;signature-certificate-thumbprint&quot;</span><span class="p">:</span> <span class="s2">&quot;20AACA440F33D0C90FBC052108012D3062D44873&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;content-link&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;content&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/111f7485-7e2d-4c81-8017-9edc61835684/signatures/920a7f48-9acd-4582-841a-e21df444e06d/content&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/111f7485-7e2d-4c81-8017-9edc61835684/signatures/920a7f48-9acd-4582-841a-e21df444e06d/content&quot;</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;docflow&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb&quot;</span>
+                <span class="p">}</span>
+            <span class="p">]</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;0017673e-b8a1-412c-9698-5d2d01a25af9&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Корионов  Илья Валерьянович&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;signature-certificate-thumbprint&quot;</span><span class="p">:</span> <span class="s2">&quot;344AAD7111FC77ADE2A98FFB5E35F039BC4DD650&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;content-link&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;content&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/111f7485-7e2d-4c81-8017-9edc61835684/signatures/0017673e-b8a1-412c-9698-5d2d01a25af9/content&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/111f7485-7e2d-4c81-8017-9edc61835684/signatures/0017673e-b8a1-412c-9698-5d2d01a25af9/content&quot;</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;docflow&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb&quot;</span>
+                <span class="p">}</span>
+            <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;docflow&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/111f7485-7e2d-4c81-8017-9edc61835684&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;related-docflow&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru//v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/111f7485-7e2d-4c81-8017-9edc61835684/related&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;encrypted-content&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/111f7485-7e2d-4c81-8017-9edc61835684/encrypted-content&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;decrypted-content&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/111f7485-7e2d-4c81-8017-9edc61835684/decrypted-content&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;decrypt-content&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/111f7485-7e2d-4c81-8017-9edc61835684/decrypt-content&quot;</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;6076f7bc-a016-4d22-bb63-221df6582906&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:document:fns534-report-date-confirmation&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;PD_NOSRCHIS_7757424860680345565_7757424860680345565_1BM_20200422_b4885f2a-dddb-4484-89f3-e83dc94ea83d.xml&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;content-type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/xml&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;decrypted-content-size&quot;</span><span class="p">:</span> <span class="mi">3023</span><span class="p">,</span>
+            <span class="nt">&quot;compressed&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;requisites&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="nt">&quot;support-recognition&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;encrypted-certificates&quot;</span><span class="p">:</span> <span class="p">[]</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;decrypted&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;decrypted-content&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/6076f7bc-a016-4d22-bb63-221df6582906/decrypted-content&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;docflow-document-contents&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;content-id&quot;</span><span class="p">:</span> <span class="s2">&quot;c5227d5f-7b80-41a3-91a1-34136a99171c&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;encrypted&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+                <span class="nt">&quot;compressed&quot;</span><span class="p">:</span> <span class="kc">true</span>
+            <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;send-date&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-04-22T14:16:36.1338472Z&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;signatures&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;7117bfa4-60b6-4652-942d-7bafe10c476a&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;АО \&quot;ПФ \&quot;СКБ Контур\&quot;&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;signature-certificate-thumbprint&quot;</span><span class="p">:</span> <span class="s2">&quot;ADBB03393A5C3F5402A8EFF8F7AAE859076079F8&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;content-link&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;content&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/6076f7bc-a016-4d22-bb63-221df6582906/signatures/7117bfa4-60b6-4652-942d-7bafe10c476a/content&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/6076f7bc-a016-4d22-bb63-221df6582906/signatures/7117bfa4-60b6-4652-942d-7bafe10c476a/content&quot;</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;docflow&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb&quot;</span>
+                <span class="p">}</span>
+            <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;docflow&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/6076f7bc-a016-4d22-bb63-221df6582906&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;reply&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/6076f7bc-a016-4d22-bb63-221df6582906/generate-reply?documentType=fns534-report-receipt&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;fns534-report-receipt&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;decrypted-content&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/6076f7bc-a016-4d22-bb63-221df6582906/decrypted-content&quot;</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;79e6d1db-fbe6-4b00-a447-cc9eb1a90571&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:document:fns534-report-description&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;TR_DEKL.xml&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;content-type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/xml&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;decrypted-content-size&quot;</span><span class="p">:</span> <span class="mi">364</span><span class="p">,</span>
+            <span class="nt">&quot;compressed&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;requisites&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="nt">&quot;support-recognition&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;encrypted-certificates&quot;</span><span class="p">:</span> <span class="p">[]</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;decrypted&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;decrypted-content&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/79e6d1db-fbe6-4b00-a447-cc9eb1a90571/decrypted-content&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;docflow-document-contents&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;content-id&quot;</span><span class="p">:</span> <span class="s2">&quot;ad34e8ab-4518-47e8-b578-b26adc728d1f&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;encrypted&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+                <span class="nt">&quot;compressed&quot;</span><span class="p">:</span> <span class="kc">true</span>
+            <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;send-date&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-04-22T14:16:36.1338472Z&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;signatures&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;docflow&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/79e6d1db-fbe6-4b00-a447-cc9eb1a90571&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;decrypted-content&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/79e6d1db-fbe6-4b00-a447-cc9eb1a90571/decrypted-content&quot;</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+        <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+        <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;organization&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/organizations/988b38f1-5580-4ba9-b9f8-3215e7f392ea&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+        <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;web-docflow&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://setter.testkontur.ru/?inn=662909960905&amp;forward_to_rel=/ft/transmission/state.aspx?key=cfOOHYSO4USxIIRIMEKAL%2fE4i5iAValLufgyFefzkuqKJpsKOwY6TorTSpphojA7tVBODKxmkkqwUTvJVHLd2w%3d%3d&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+        <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;reply&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/09da96fe-a21a-4f69-84db-ff9d82c86bde/generate-reply?documentType=fns534-report-receipt&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;fns534-report-receipt&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+        <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;reply&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/68ed1449-d420-44df-a0ed-57568a1c7904/generate-reply?documentType=fns534-report-receipt&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;fns534-report-receipt&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+        <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;reply&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/0c4e50b5-66ac-4a92-b051-3bc95472dddb/documents/6076f7bc-a016-4d22-bb63-221df6582906/generate-reply?documentType=fns534-report-receipt&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;fns534-report-receipt&quot;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;send-date&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-04-22T17:16:36.1338472&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;last-change-date&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-04-22T14:17:13.8960679Z&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>Сверим полученный в ответе статус документооборота со <a class="reference internal" href="../specification/%D1%81%D1%82%D0%B0%D1%82%D1%83%D1%81%D1%8B%20%D0%94%D0%9E.html#rst-markup-fnsreport-status"><span class="std std-ref">схемой смены статусов для документооборота типа декларация</span></a>. В данном случае статус «<a class="reference external" href="urn:docflow-common-status:response-arrived">urn:docflow-common-status:response-arrived</a>». Он означает, что в документообороте уже появилось извещение о получении от налогового органа (или робота на тестовой площадке), а также результаты приема и обработки. Эти документы можно посмотреть в списке документов документооборота, сохранить и напечатать.</p>
+</div>
+<div class="section" id="id8">
+<h2>Получение входящих документов от контролирующего органа<a class="headerlink" href="#id8" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В нашем документообороте есть три новых документа, у которых в description указаны следующие типы:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="urn:document:fns534-report-receipt">urn:document:fns534-report-receipt</a></p></li>
+<li><p><a class="reference external" href="urn:document:fns534-report-processing-result-ok">urn:document:fns534-report-processing-result-ok</a></p></li>
+<li><p><a class="reference external" href="urn:document:fns534-report-acceptance-result-positive">urn:document:fns534-report-acceptance-result-positive</a></p></li>
+</ul>
+<p>Это и есть извещение о получении, квитанция о приеме, извещение о вводе. Мы можем их скачать и напечатать. Если на момент проверки статуса документооборота в нем еще не появились результаты обработки, значит нужно отправить ответные документы к подтверждению даты отправки, квитанции о приеме и заново запрашивать статус документооборота.</p>
+<p>Все документы, которые появляются в документообороте, автоматически загружаются в <a class="reference internal" href="../knowledge%20base/content.html"><span class="doc">сервис контентов</span></a>. Идентификатор контента можно посмотреть в информации о документе, в параметре content-id. По этому идентификатору можно скачать документ в сервисе контентов.</p>
+<p>Контролирующий орган присылает документы зашифрованными и сжатыми. Для получения документа в расшифрованном и разжатом виде нужно выполнить следующий алгоритм.</p>
+<div class="section" id="id9">
+<h3>Алгоритм получения документа из зашифрованного контента<a class="headerlink" href="#id9" title="Ссылка на этот заголовок">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Получаем зашифрованный контент файла: скачиваем напрямую или через сервис контентов.</p></li>
+<li><p>Если документ в формате base64, декодируем файл.</p></li>
+<li><p>В метаинформации о документе в параметре encrypted-certificates перечислены сертификаты, на которые контролирующий орган зашифровал отправленный документ. Расшифровываем документ одним из сертификатов.</p></li>
+<li><p>Смотрим в description документа поле compressed, в котором указано, сжат ли зашифрованный файл.</p></li>
+<li><p>Распаковываем архив, получаем файл.</p></li>
+</ol>
+<p><strong>Пример получения зашифрованного контента</strong></p>
+<p>Выполним запрос получения документа в документообороте методом <a class="reference external" href="https://developer.kontur.ru/doc/extern.docflows/method?type=get&amp;path=%2Fv1%2F%7BaccountId%7D%2Fcontents%2F%7Bid%7D">GET Document</a>. В ответе необходимо посмотреть значения полей в параметре docflow-document-contents: content-id - идентификатор, по которому можно скачать контент в сервисе контентов, encrypted - признак зашифрованного контента, compressed - признак сжатого контента.</p>
+<p><strong>Запрос GET Download</strong></p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">GET</span> <span class="nn">/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/contents/d065adea-8b9d-4228-bc17-8f86539e01a3</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Authorization</span><span class="o">:</span> <span class="l">Bearer &lt;token&gt;</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/octet-stream</span>
+</pre></div>
+</div>
+<p><strong>Ответ</strong></p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/octet-stream</span>
+<span class="na">Content-Length</span><span class="o">:</span> <span class="l">727</span>
+
+&quot;0�*�H����0�1�0��0�0��...&quot;
+</pre></div>
+</div>
+<p>В ответе мы получили строку с контентом в формате base64. Далее по алгоритму: декодируем файл, расшифровываем его, распаковываем архив. Таким образом, получим файл документа, который сформировал контролирующий орган в ответ на отправленный отчет. Чтобы напечатать файл, <a class="reference internal" href="../knowledge%20base/print.html"><span class="doc">воспользуйтесь методом Print</span></a>.</p>
+<p>Далее нужно сформировать ответные документы согласно порядку работы с документооборотом.</p>
+</div>
+</div>
+<div class="section" id="id10">
+<h2>Формирование ответных документов<a class="headerlink" href="#id10" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Статус полученного документооборота — «ответ обработан» (<a class="reference external" href="urn:docflow-common-status:response-arrived">urn:docflow-common-status:response-arrived</a>). Значит в документообороте уже сформированы ссылки с типом «rel»: «reply». В нашем примере их три, значит нужно сформировать и отправить три ответных документа. Ответным документом является технологический документ «Извещение о получении». Для работы с ответными документами в swagger есть <a class="reference external" href="https://developer.kontur.ru/doc/extern.docflows/method?type=post&amp;path=%2Fv1%2F%7BaccountId%7D%2Fdocflows%2F%7BdocflowId%7D%2Fdocuments%2F%7BdocumentId%7D%2Fgenerate-reply">специальный раздел методов</a>. Будьте внимательны, часть методов разработана только для ответных документов в ПФР, они нам пока не нужны.</p>
+<div class="section" id="id11">
+<h3>Порядок работы с ответным документом<a class="headerlink" href="#id11" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Формирование ответного документа похоже на создание черновика. Но все данные уже есть, API самостоятельно сгенерирует файл ответного документа:</p>
+<ol class="arabic simple">
+<li><p>Создаем ответный документ (можно по ссылке типа reply) методом <a class="reference external" href="https://developer.kontur.ru/doc/extern.docflows/method?type=post&amp;path=%2Fv1%2F%7BaccountId%7D%2Fdocflows%2F%7BdocflowId%7D%2Fdocuments%2F%7BdocumentId%7D%2Fgenerate-reply">POST CreateReplyDocument</a>. В ответе метод вернет печатную форму и контент ответного документа в формате base64.</p></li>
+<li><p>Сформировать к ответному документу подпись. После формирования файла приложить подпись методом <a class="reference external" href="https://developer.kontur.ru/doc/extern.docflows/method?type=put&amp;path=%2Fv1%2F%7BaccountId%7D%2Fdocflows%2F%7BdocflowId%7D%2Fdocuments%2F%7BdocumentId%7D%2Freplies%2F%7BreplyId%7D%2Fsignature">PUT SaveReplyDocumentSignature</a>.</p></li>
+<li><p>Отправляем ответный документ <a class="reference external" href="https://developer.kontur.ru/doc/extern.docflows/method?type=post&amp;path=%2Fv1%2F%7BaccountId%7D%2Fdocflows%2F%7BdocflowId%7D%2Fdocuments%2F%7BdocumentId%7D%2Freplies%2F%7BreplyId%7D%2Fsend">POST SendReplyDocument</a>.</p></li>
+</ol>
+</div>
+<div class="section" id="id12">
+<h3>Создание ответного документа<a class="headerlink" href="#id12" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Метод позволяет сгенерировать xml-файл документа установленного формата и печатную форму извещения о получении, в теле запроса передаем контент сертификата подписанта. Контент возвращается в формате base64, он не зашифрован и не сжат. Нужно конвертировать полученный контент в xml файл, подписать его и приложить подпись к файлу.</p>
+<p><strong>Пример запроса POST CreateReplyDocument</strong></p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">POST</span> <span class="nn">/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/70c3746a-28c0-441c-ad5d-cb585cf5ed22/generate-reply?documentType=fns534-report-receipt</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">X-Kontur-Apikey</span><span class="o">:</span> <span class="l">****</span>
+<span class="na">Authorization</span><span class="o">:</span> <span class="l">Bearer &lt;token&gt;</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;certificate-base64&quot;</span><span class="p">:</span> <span class="s2">&quot;MIIJcDCCCR2gAwI...NRsAZ8sYpQYKykqopO+/MYE3Xk=&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<p><strong>Пример ответа POST CreateReplyDocument</strong></p>
+</div>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span>{
+    &quot;id&quot;: &quot;9ae00ec3-9b23-48d7-a417-368e24f1c6ca&quot;,
+    &quot;content&quot;: &quot;PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0id2luZG93cy0xMjUxIj8...zl7fI+DQo8L9Tg6es+&quot;,
+    &quot;print-content&quot;: &quot;JVBERi0xLjQKJdPr6eEKMSAwIG...mVmCjU3Njk0CiUlRU9G&quot;,
+    &quot;filename&quot;: &quot;IZ_IVNOSRCHIS_0007_0007_7757424860680345565_20200421_e6abd9111944426e9956138cbfe16bfc.xml&quot;,
+    &quot;links&quot;: [
+            {
+            &quot;rel&quot;: &quot;self&quot;,
+            &quot;href&quot;: &quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/70c3746a-28c0-441c-ad5d-cb585cf5ed22/replies/9ae00ec3-9b23-48d7-a417-368e24f1c6ca&quot;
+            },
+            {
+            &quot;rel&quot;: &quot;save-signature&quot;,
+            &quot;href&quot;: &quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/70c3746a-28c0-441c-ad5d-cb585cf5ed22/replies/9ae00ec3-9b23-48d7-a417-368e24f1c6ca/signature&quot;
+            },
+            {
+            &quot;rel&quot;: &quot;send&quot;,
+            &quot;href&quot;: &quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/70c3746a-28c0-441c-ad5d-cb585cf5ed22/replies/9ae00ec3-9b23-48d7-a417-368e24f1c6ca/send&quot;
+            },
+            {
+            &quot;rel&quot;: &quot;docflow&quot;,
+            &quot;href&quot;: &quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663&quot;
+            },
+            {
+            &quot;rel&quot;: &quot;content&quot;,
+            &quot;href&quot;: &quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/70c3746a-28c0-441c-ad5d-cb585cf5ed22/replies/9ae00ec3-9b23-48d7-a417-368e24f1c6ca/content&quot;
+            }
+        ],
+    &quot;docflow-id&quot;: &quot;7b9edebc-32bc-4317-b4a4-abbc26fe3663&quot;,
+    &quot;document-id&quot;: &quot;70c3746a-28c0-441c-ad5d-cb585cf5ed22&quot;
+}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id13">
+<h3>Подписание документа<a class="headerlink" href="#id13" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Для формирования файла подписи нужно скачать полученный xml-файл. Для этого строку из поля content декодируем из base64 в файл ответного документа. В примере используем обычный сертификат, поэтому файл подписи получили локально. Теперь его нужно приложить к ответному документу методом <a class="reference external" href="https://developer.kontur.ru/doc/extern.docflows/method?type=put&amp;path=%2Fv1%2F%7BaccountId%7D%2Fdocflows%2F%7BdocflowId%7D%2Fdocuments%2F%7BdocumentId%7D%2Freplies%2F%7BreplyId%7D%2Fsignature">PUT SaveReplyDocumentSignature</a>.</p>
+<p>В теле данного метода необходимо передать сам файл подписи, его не нужно конвертировать в base64.</p>
+<p><strong>Пример запроса PUT SaveReplyDocumentSignature</strong></p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">PUT</span> <span class="nn">/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/70c3746a-28c0-441c-ad5d-cb585cf5ed22/replies/9ae00ec3-9b23-48d7-a417-368e24f1c6ca/signature</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Authorization</span><span class="o">:</span> <span class="l">Bearer &lt;token&gt;</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/pgp-signature</span>
+<span class="na">X-Kontur-Apikey</span><span class="o">:</span> <span class="l">****</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">extern-api.testkontur.ru</span>
+<span class="na">Content-Length</span><span class="o">:</span> <span class="l">3353</span>
+
+&quot;&lt;file contents here&gt;&quot;
+</pre></div>
+</div>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<p><strong>Пример ответа PUT SaveReplyDocumentSignature</strong></p>
+</div>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+<span class="na">Content-Encoding</span><span class="o">:</span> <span class="l">gzip</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;9ae00ec3-9b23-48d7-a417-368e24f1c6ca&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;PD94bWwgdmV...9Tg6es+&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;print-content&quot;</span><span class="p">:</span> <span class="s2">&quot;JVBERi0xLjQKJdPr6e...jk0CiUlRU9G&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;IZ_IVNOSRCHIS_0007_0007_7757424860680345565_20200421_e6abd9111944426e9956138cbfe16bfc.xml&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;signature&quot;</span><span class="p">:</span> <span class="s2">&quot;MIINFQYJK...a5U8yWyng=&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+        <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/70c3746a-28c0-441c-ad5d-cb585cf5ed22/replies/9ae00ec3-9b23-48d7-a417-368e24f1c6ca&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+        <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;save-signature&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/70c3746a-28c0-441c-ad5d-cb585cf5ed22/replies/9ae00ec3-9b23-48d7-a417-368e24f1c6ca/signature&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+        <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;send&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/70c3746a-28c0-441c-ad5d-cb585cf5ed22/replies/9ae00ec3-9b23-48d7-a417-368e24f1c6ca/send&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+        <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;docflow&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+        <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;content&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/70c3746a-28c0-441c-ad5d-cb585cf5ed22/replies/9ae00ec3-9b23-48d7-a417-368e24f1c6ca/content&quot;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;docflow-id&quot;</span><span class="p">:</span> <span class="s2">&quot;7b9edebc-32bc-4317-b4a4-abbc26fe3663&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;document-id&quot;</span><span class="p">:</span> <span class="s2">&quot;70c3746a-28c0-441c-ad5d-cb585cf5ed22&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id14">
+<h3>Отправка ответного документа<a class="headerlink" href="#id14" title="Ссылка на этот заголовок">¶</a></h3>
+<p><strong>Пример запроса POST SendReplyDocument</strong></p>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="nf">POST</span> <span class="nn">/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/70c3746a-28c0-441c-ad5d-cb585cf5ed22/replies/9ae00ec3-9b23-48d7-a417-368e24f1c6ca/send</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">extern-api.testkontur.ru</span>
+<span class="na">Authorization</span><span class="o">:</span> <span class="l">Bearer &lt;token&gt;</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/json</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json</span>
+<span class="na">X-Kontur-Apikey</span><span class="o">:</span> <span class="l">****</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;sender-ip&quot;</span><span class="p">:</span> <span class="s2">&quot;8.8.8.8&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="toggle docutils container">
+<div class="header docutils container">
+<p><strong>Пример ответа POST SendReplyDocument</strong></p>
+</div>
+<div class="highlight-http notranslate"><div class="highlight"><pre><span></span><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/json; charset=utf-8</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;7b9edebc-32bc-4317-b4a4-abbc26fe3663&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;organization-id&quot;</span><span class="p">:</span> <span class="s2">&quot;988b38f1-5580-4ba9-b9f8-3215e7f392ea&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:docflow:fns534-report&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:docflow-common-status:finished&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;success-state&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:docflow-state:successful&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;form-version&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;knd&quot;</span><span class="p">:</span> <span class="s2">&quot;1110018&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;100501&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;form-fullname&quot;</span><span class="p">:</span> <span class="s2">&quot;Сведения о среднесписочной численности работников за предшествующий календарный год&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;form-shortname&quot;</span><span class="p">:</span> <span class="s2">&quot;Сведения о среднесписочной численности&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;recipient&quot;</span><span class="p">:</span> <span class="s2">&quot;0007&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;final-recipient&quot;</span><span class="p">:</span> <span class="s2">&quot;0007&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;correction-number&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="nt">&quot;period-begin&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-01-01T00:00:00.0000000&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;period-end&quot;</span><span class="p">:</span> <span class="s2">&quot;2018-12-31T00:00:00.0000000&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;period-code&quot;</span><span class="p">:</span> <span class="s2">&quot;34&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;payer-inn&quot;</span><span class="p">:</span> <span class="s2">&quot;7757424860-680345565&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;original-draft-id&quot;</span><span class="p">:</span> <span class="s2">&quot;7b273c79-e814-424f-a81f-6c4b6f791f85&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;documents&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;9ae00ec3-9b23-48d7-a417-368e24f1c6ca&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:document:fns534-report-receipt&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;IZ_IVNOSRCHIS_0007_0007_7757424860680345565_20200421_e6abd9111944426e9956138cbfe16bfc.xml&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;content-type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/xml&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;decrypted-content-size&quot;</span><span class="p">:</span> <span class="mi">2735</span><span class="p">,</span>
+            <span class="nt">&quot;compressed&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;requisites&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="nt">&quot;support-recognition&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;encrypted-certificates&quot;</span><span class="p">:</span> <span class="p">[]</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;decrypted&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;decrypted-content&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/9ae00ec3-9b23-48d7-a417-368e24f1c6ca/decrypted-content&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;docflow-document-contents&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;content-id&quot;</span><span class="p">:</span> <span class="s2">&quot;943e7222-1355-4e71-b095-00a793853bfd&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;encrypted&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+                <span class="nt">&quot;compressed&quot;</span><span class="p">:</span> <span class="kc">true</span>
+            <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;send-date&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-04-22T08:48:32.0342794Z&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;signatures&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;f69b4263-705c-4ad4-a4ee-3c78649798d0&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;ООО &#39;Баланс Плюс&#39; (Марков Георгий Эльдарович)&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;signature-certificate-thumbprint&quot;</span><span class="p">:</span> <span class="s2">&quot;20AACA440F33D0C90FBC052108012D3062D44873&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;content-link&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;content&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/9ae00ec3-9b23-48d7-a417-368e24f1c6ca/signatures/f69b4263-705c-4ad4-a4ee-3c78649798d0/content&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/9ae00ec3-9b23-48d7-a417-368e24f1c6ca/signatures/f69b4263-705c-4ad4-a4ee-3c78649798d0/content&quot;</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;docflow&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663&quot;</span>
+                <span class="p">}</span>
+            <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;docflow&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/9ae00ec3-9b23-48d7-a417-368e24f1c6ca&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;decrypted-content&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/9ae00ec3-9b23-48d7-a417-368e24f1c6ca/decrypted-content&quot;</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;70c3746a-28c0-441c-ad5d-cb585cf5ed22&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:document:fns534-report-processing-result-ok&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;IV_NOSRCHIS_7757424860_7757424860_0007_20200421_d2d2b19bef984e5a821b1cd1c7bbffd4.xml&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;content-type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/xml&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;encrypted-content-size&quot;</span><span class="p">:</span> <span class="mi">1642</span><span class="p">,</span>
+            <span class="nt">&quot;compressed&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;requisites&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="nt">&quot;support-recognition&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;encrypted-certificates&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;serial-number&quot;</span><span class="p">:</span> <span class="s2">&quot;01D0850043AB3C924A605B8D8661E43E&quot;</span>
+            <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;encrypted&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;encrypted-content&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/70c3746a-28c0-441c-ad5d-cb585cf5ed22/encrypted-content&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;docflow-document-contents&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;content-id&quot;</span><span class="p">:</span> <span class="s2">&quot;4cf756aa-496d-4afc-8b93-7fa4477bed19&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;encrypted&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="nt">&quot;compressed&quot;</span><span class="p">:</span> <span class="kc">true</span>
+            <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;send-date&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-04-21T16:17:24.5827069Z&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;signatures&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;aa81d013-c99b-4e71-8deb-67f0beca6c91&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Корионов  Илья Валерьянович&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;signature-certificate-thumbprint&quot;</span><span class="p">:</span> <span class="s2">&quot;344AAD7111FC77ADE2A98FFB5E35F039BC4DD650&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;content-link&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;content&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/70c3746a-28c0-441c-ad5d-cb585cf5ed22/signatures/aa81d013-c99b-4e71-8deb-67f0beca6c91/content&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/70c3746a-28c0-441c-ad5d-cb585cf5ed22/signatures/aa81d013-c99b-4e71-8deb-67f0beca6c91/content&quot;</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;docflow&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663&quot;</span>
+                <span class="p">}</span>
+            <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;docflow&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/70c3746a-28c0-441c-ad5d-cb585cf5ed22&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;encrypted-content&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/70c3746a-28c0-441c-ad5d-cb585cf5ed22/encrypted-content&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;decrypt-content&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/70c3746a-28c0-441c-ad5d-cb585cf5ed22/decrypt-content&quot;</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;ad5d5d21-59c2-4365-8b2b-16734f05fb5c&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:document:fns534-report-acceptance-result-positive&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;KV_NOSRCHIS_7757424860_7757424860_0007_20200421_373b5c60ba2847a38787e6ab12a881d5.xml&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;content-type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/xml&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;encrypted-content-size&quot;</span><span class="p">:</span> <span class="mi">1809</span><span class="p">,</span>
+            <span class="nt">&quot;compressed&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;requisites&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="nt">&quot;support-recognition&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;encrypted-certificates&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;serial-number&quot;</span><span class="p">:</span> <span class="s2">&quot;01D0850043AB3C924A605B8D8661E43E&quot;</span>
+            <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;encrypted&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;encrypted-content&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/ad5d5d21-59c2-4365-8b2b-16734f05fb5c/encrypted-content&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;docflow-document-contents&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;content-id&quot;</span><span class="p">:</span> <span class="s2">&quot;716693b7-68f8-40dd-bdee-17b301f12f0f&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;encrypted&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="nt">&quot;compressed&quot;</span><span class="p">:</span> <span class="kc">true</span>
+            <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;send-date&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-04-21T16:17:24.3326778Z&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;signatures&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;3018cdbd-b400-43d3-8d7f-a7970fcbeb5b&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Корионов  Илья Валерьянович&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;signature-certificate-thumbprint&quot;</span><span class="p">:</span> <span class="s2">&quot;344AAD7111FC77ADE2A98FFB5E35F039BC4DD650&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;content-link&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;content&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/ad5d5d21-59c2-4365-8b2b-16734f05fb5c/signatures/3018cdbd-b400-43d3-8d7f-a7970fcbeb5b/content&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/ad5d5d21-59c2-4365-8b2b-16734f05fb5c/signatures/3018cdbd-b400-43d3-8d7f-a7970fcbeb5b/content&quot;</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;docflow&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663&quot;</span>
+                <span class="p">}</span>
+            <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;docflow&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/ad5d5d21-59c2-4365-8b2b-16734f05fb5c&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;reply&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/ad5d5d21-59c2-4365-8b2b-16734f05fb5c/generate-reply?documentType=fns534-report-receipt&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;fns534-report-receipt&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;encrypted-content&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/ad5d5d21-59c2-4365-8b2b-16734f05fb5c/encrypted-content&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;decrypt-content&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/ad5d5d21-59c2-4365-8b2b-16734f05fb5c/decrypt-content&quot;</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;de2402a0-f68c-4b60-9a92-b39b53f49536&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:document:fns534-report-receipt&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;IZ_NOSRCHIS_7757424860_7757424860_0007_20200421_55abc6b7229b419481615c202a5f932d.xml&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;content-type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/xml&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;decrypted-content-size&quot;</span><span class="p">:</span> <span class="mi">4961</span><span class="p">,</span>
+            <span class="nt">&quot;compressed&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;requisites&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="nt">&quot;support-recognition&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;encrypted-certificates&quot;</span><span class="p">:</span> <span class="p">[]</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;decrypted&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;decrypted-content&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/de2402a0-f68c-4b60-9a92-b39b53f49536/decrypted-content&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;docflow-document-contents&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;content-id&quot;</span><span class="p">:</span> <span class="s2">&quot;1d702ada-de98-4f05-a00e-798c78f22d37&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;encrypted&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+                <span class="nt">&quot;compressed&quot;</span><span class="p">:</span> <span class="kc">true</span>
+            <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;send-date&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-04-21T16:17:08.6973832Z&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;signatures&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;5c01eb0b-f3b9-440e-b9f3-013aed1a2cfc&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Корионов  Илья Валерьянович&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;signature-certificate-thumbprint&quot;</span><span class="p">:</span> <span class="s2">&quot;344AAD7111FC77ADE2A98FFB5E35F039BC4DD650&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;content-link&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;content&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/de2402a0-f68c-4b60-9a92-b39b53f49536/signatures/5c01eb0b-f3b9-440e-b9f3-013aed1a2cfc/content&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/de2402a0-f68c-4b60-9a92-b39b53f49536/signatures/5c01eb0b-f3b9-440e-b9f3-013aed1a2cfc/content&quot;</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;docflow&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663&quot;</span>
+                <span class="p">}</span>
+            <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;docflow&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/de2402a0-f68c-4b60-9a92-b39b53f49536&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;decrypted-content&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/de2402a0-f68c-4b60-9a92-b39b53f49536/decrypted-content&quot;</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;eb312e60-6b26-425c-9917-3b8d2bd59fd0&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:document:fns534-report&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;NO_SRCHIS_0007_0007_7757424860680345565_20200129_92425a70-4ac9-4680-bada-3666f0c0514f.xml&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;content-type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/xml&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;decrypted-content-size&quot;</span><span class="p">:</span> <span class="mi">2233</span><span class="p">,</span>
+            <span class="nt">&quot;encrypted-content-size&quot;</span><span class="p">:</span> <span class="mi">2233</span><span class="p">,</span>
+            <span class="nt">&quot;compressed&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;requisites&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="nt">&quot;related-docflows-count&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="nt">&quot;support-recognition&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;encrypted-certificates&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;serial-number&quot;</span><span class="p">:</span> <span class="s2">&quot;01D0850043AB3C924A605B8D8661E43E&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;serial-number&quot;</span><span class="p">:</span> <span class="s2">&quot;33AC7500C3AAAE924839AA8AE6C459FE&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;serial-number&quot;</span><span class="p">:</span> <span class="s2">&quot;19CCC7C800010000215D&quot;</span>
+            <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;decrypted&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;decrypted-content&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/eb312e60-6b26-425c-9917-3b8d2bd59fd0/decrypted-content&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;encrypted&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;encrypted-content&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/eb312e60-6b26-425c-9917-3b8d2bd59fd0/encrypted-content&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;docflow-document-contents&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;content-id&quot;</span><span class="p">:</span> <span class="s2">&quot;90ccb811-7a1d-4eaf-8f3e-4a4913167fd8&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;encrypted&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+                <span class="nt">&quot;compressed&quot;</span><span class="p">:</span> <span class="kc">true</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;content-id&quot;</span><span class="p">:</span> <span class="s2">&quot;f9fc3787-14b5-4d14-aa49-033397c7aa3b&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;encrypted&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+                <span class="nt">&quot;compressed&quot;</span><span class="p">:</span> <span class="kc">false</span>
+            <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;send-date&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-04-21T16:16:53.1173657Z&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;signatures&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;88f38975-9b68-4983-b1f9-a3d32c75d84e&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;ООО &#39;Баланс Плюс&#39; (Марков Георгий Эльдарович)&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;signature-certificate-thumbprint&quot;</span><span class="p">:</span> <span class="s2">&quot;20AACA440F33D0C90FBC052108012D3062D44873&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;content-link&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;content&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/eb312e60-6b26-425c-9917-3b8d2bd59fd0/signatures/88f38975-9b68-4983-b1f9-a3d32c75d84e/content&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/eb312e60-6b26-425c-9917-3b8d2bd59fd0/signatures/88f38975-9b68-4983-b1f9-a3d32c75d84e/content&quot;</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;docflow&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663&quot;</span>
+                <span class="p">}</span>
+            <span class="p">]</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;493018fa-119d-4aa8-9973-b105742907c3&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Корионов  Илья Валерьянович&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;signature-certificate-thumbprint&quot;</span><span class="p">:</span> <span class="s2">&quot;344AAD7111FC77ADE2A98FFB5E35F039BC4DD650&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;content-link&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;content&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/eb312e60-6b26-425c-9917-3b8d2bd59fd0/signatures/493018fa-119d-4aa8-9973-b105742907c3/content&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/eb312e60-6b26-425c-9917-3b8d2bd59fd0/signatures/493018fa-119d-4aa8-9973-b105742907c3/content&quot;</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;docflow&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663&quot;</span>
+                <span class="p">}</span>
+            <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;docflow&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/eb312e60-6b26-425c-9917-3b8d2bd59fd0&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;related-docflow&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru//v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/eb312e60-6b26-425c-9917-3b8d2bd59fd0/related&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;encrypted-content&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/eb312e60-6b26-425c-9917-3b8d2bd59fd0/encrypted-content&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;decrypted-content&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/eb312e60-6b26-425c-9917-3b8d2bd59fd0/decrypted-content&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;decrypt-content&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/eb312e60-6b26-425c-9917-3b8d2bd59fd0/decrypt-content&quot;</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;18b6bbc4-ae15-47cb-8ef9-7b5256501845&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:document:fns534-report-date-confirmation&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;PD_NOSRCHIS_7757424860680345565_7757424860680345565_1BM_20200421_c0836c44-7a08-41bf-96c1-f8a94f674b2e.xml&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;content-type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/xml&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;decrypted-content-size&quot;</span><span class="p">:</span> <span class="mi">3019</span><span class="p">,</span>
+            <span class="nt">&quot;compressed&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;requisites&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="nt">&quot;support-recognition&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;encrypted-certificates&quot;</span><span class="p">:</span> <span class="p">[]</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;decrypted&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;decrypted-content&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/18b6bbc4-ae15-47cb-8ef9-7b5256501845/decrypted-content&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;docflow-document-contents&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;content-id&quot;</span><span class="p">:</span> <span class="s2">&quot;de76f58b-c24a-4b6d-b6de-0d801f32bdde&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;encrypted&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+                <span class="nt">&quot;compressed&quot;</span><span class="p">:</span> <span class="kc">true</span>
+            <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;send-date&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-04-21T16:16:53.1173657Z&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;signatures&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;0f0b7caf-6d0a-444e-a119-0f65c7b1ffa7&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;АО \&quot;ПФ \&quot;СКБ Контур\&quot;&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;signature-certificate-thumbprint&quot;</span><span class="p">:</span> <span class="s2">&quot;ADBB03393A5C3F5402A8EFF8F7AAE859076079F8&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;content-link&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;content&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/18b6bbc4-ae15-47cb-8ef9-7b5256501845/signatures/0f0b7caf-6d0a-444e-a119-0f65c7b1ffa7/content&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/18b6bbc4-ae15-47cb-8ef9-7b5256501845/signatures/0f0b7caf-6d0a-444e-a119-0f65c7b1ffa7/content&quot;</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;docflow&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663&quot;</span>
+                <span class="p">}</span>
+            <span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;docflow&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/18b6bbc4-ae15-47cb-8ef9-7b5256501845&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;reply&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/18b6bbc4-ae15-47cb-8ef9-7b5256501845/generate-reply?documentType=fns534-report-receipt&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;fns534-report-receipt&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;decrypted-content&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/18b6bbc4-ae15-47cb-8ef9-7b5256501845/decrypted-content&quot;</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+        <span class="nt">&quot;id&quot;</span><span class="p">:</span> <span class="s2">&quot;db37a722-de69-4413-992d-216bd1088926&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;urn:document:fns534-report-description&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;filename&quot;</span><span class="p">:</span> <span class="s2">&quot;TR_DEKL.xml&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;content-type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/xml&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;decrypted-content-size&quot;</span><span class="p">:</span> <span class="mi">364</span><span class="p">,</span>
+            <span class="nt">&quot;compressed&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;requisites&quot;</span><span class="p">:</span> <span class="p">{},</span>
+            <span class="nt">&quot;support-recognition&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;encrypted-certificates&quot;</span><span class="p">:</span> <span class="p">[]</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;decrypted&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;decrypted-content&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/db37a722-de69-4413-992d-216bd1088926/decrypted-content&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;docflow-document-contents&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="nt">&quot;content-id&quot;</span><span class="p">:</span> <span class="s2">&quot;1d9bc226-5b16-4b8e-8cb6-34960230ef51&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;encrypted&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+                <span class="nt">&quot;compressed&quot;</span><span class="p">:</span> <span class="kc">true</span>
+            <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;send-date&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-04-21T16:16:53.1173657Z&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;signatures&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;docflow&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/db37a722-de69-4413-992d-216bd1088926&quot;</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+            <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;decrypted-content&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/db37a722-de69-4413-992d-216bd1088926/decrypted-content&quot;</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;links&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+        <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;self&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+        <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;organization&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/organizations/988b38f1-5580-4ba9-b9f8-3215e7f392ea&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+        <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;web-docflow&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://setter.testkontur.ru/?inn=662909960905&amp;forward_to_rel=/ft/transmission/state.aspx?key=cfOOHYSO4USxIIRIMEKAL%2fE4i5iAValLufgyFefzkuqKJpsKOwY6TorTSpphojA7vN6ee7wyF0O0pKu8Jv42Yw%3d%3d&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+        <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;reply&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/ad5d5d21-59c2-4365-8b2b-16734f05fb5c/generate-reply?documentType=fns534-report-receipt&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;fns534-report-receipt&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+        <span class="nt">&quot;rel&quot;</span><span class="p">:</span> <span class="s2">&quot;reply&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;href&quot;</span><span class="p">:</span> <span class="s2">&quot;https://extern-api.testkontur.ru/v1/bd0cd3f6-315d-4f03-a9cc-3507f63265ed/docflows/7b9edebc-32bc-4317-b4a4-abbc26fe3663/documents/18b6bbc4-ae15-47cb-8ef9-7b5256501845/generate-reply?documentType=fns534-report-receipt&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;fns534-report-receipt&quot;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;send-date&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-04-21T19:16:53.1173657&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;last-change-date&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-04-22T08:48:32.0342794Z&quot;</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>После отправки ответного документа в ответе метода SendReplyDocument возвращается модель документооборота. В данном примере «Извещение о получении» было отправлено к документу «Извещение о вводе». Согласно схеме смены статусов документооборота, после отправки ответного документа к «Извещению о вводе» документооборот завершается. В примере можно увидеть, что появился новый документ типа <a class="reference external" href="urn:document:fns534-report-receipt">urn:document:fns534-report-receipt</a> — Извещение о получении, а также после отправки этого документа сменился статус документооборота на «<a class="reference external" href="urn:docflow-common-status:finished">urn:docflow-common-status:finished</a>».</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../auth_oidc/index.html" class="btn btn-neutral float-right" title="Аутентификация OpenID Connect" accesskey="n" rel="next">Следующая <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="howtodrafts.html" class="btn btn-neutral float-left" title="Работа с черновиком" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Предыдущая</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ <script type="text/javascript">
+ 	document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.toggle').forEach(item => {
+        const switcher = document.createElement('div');
+        switcher.classList.add('switcher');
+        switcher.addEventListener('click', () => {
+          item.classList.toggle('open');
+        })
+        item.appendChild(switcher);
+      });
+    })
+    /*
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+    */
+</script>
+
+
+</body>
+</html>
